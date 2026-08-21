@@ -1,69 +1,82 @@
-import Image from "next/image";
+import { CredibilityBand } from "@/components/sections/home/credibility-band";
+import { DifferentialsBento } from "@/components/sections/home/differentials-bento";
+import { ExtensionBlock } from "@/components/sections/home/extension-block";
+import { FinalCta } from "@/components/sections/home/final-cta";
+import { HeroCinematic } from "@/components/sections/home/hero-cinematic";
+import { IandreaBlock } from "@/components/sections/home/iandrea-block";
+import { MethodStack } from "@/components/sections/home/method-stack";
+import { ProblemBlock } from "@/components/sections/home/problem-block";
+import { ProfileAccordion } from "@/components/sections/home/profile-accordion";
+import { SavingsCalculator } from "@/components/sections/home/savings-calculator";
+import { Testimonials } from "@/components/sections/home/testimonials";
+import { Container } from "@/components/ui/section";
+import { home } from "@/content/home";
+import { ValueBento } from "@/components/sections/home/value-bento";
 
-export default function Home() {
+/**
+ * Home.
+ *
+ * Estructura y copy: demo aprobada (web nueva/Copys). Diseno: propio.
+ *
+ * Recorrido AIDA:
+ *   Atencion  hero cinematografico + banda de credibilidad
+ *   Interes   problema (scrub) + bento de valor + testimonios
+ *   Deseo     calculadora + acordeon de perfiles + iAndrea + Extension Dinamica
+ *   Accion    diferenciales + metodologia apilada + CTA de cierre
+ *
+ * Ritmo claro/oscuro, sin dos bloques oscuros a sangre consecutivos:
+ *   claro - OSCURO - claro - claro - claro - OSCURO - claro - OSCURO - claro -
+ *   claro - claro - DEGRADADO
+ */
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    // overflow-x-hidden: cinturon de seguridad contra desbordes de las
+    // animaciones de entrada, que se desplazan desde fuera del viewport.
+    <main id="main" className="w-full max-w-full overflow-x-hidden">
+      {/* ATENCION */}
+      <HeroCinematic />
+      <CredibilityBand />
+
+      {/* INTERES */}
+      <ProblemBlock />
+      <ValueBento />
+      <Testimonials />
+
+      {/* DESEO */}
+      <SavingsCalculator />
+      <ProfileAccordion />
+      <InnovationIntro />
+      <IandreaBlock />
+      <ExtensionBlock />
+
+      {/* ACCION */}
+      <DifferentialsBento />
+      <MethodStack />
+      <FinalCta />
+    </main>
+  );
+}
+
+/**
+ * Antesala del area de innovacion. Es un puente corto entre el acordeon de
+ * perfiles y los dos bloques de producto (iAndrea y Extension Dinamica): sin el,
+ * se pasa de "elige tu perfil" a "mira este producto" sin transicion.
+ */
+function InnovationIntro() {
+  const { innovation } = home;
+  return (
+    <section data-tone="light" className="bg-paper pt-section pb-section-sm">
+      <Container>
+        <div className="mx-auto max-w-[52rem] text-center">
+          <p className="font-mono text-eyebrow tracking-[0.2em] text-cyan-ink-strong uppercase">
+            {innovation.eyebrow}
+          </p>
+          <h2 className="mt-7 text-display-2 text-balance">{innovation.title}</h2>
+          <p className="measure-lead mx-auto mt-7 text-lead text-fg-muted">
+            {innovation.lead}
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </Container>
+    </section>
   );
 }
