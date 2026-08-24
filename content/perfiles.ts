@@ -14,7 +14,16 @@ export type HotelProfile = {
   id: "conectado" | "consolidado" | "gestionado" | "especializado";
   /** Nombre del perfil. */
   name: string;
-  /** Rango de tamano, tal cual la insignia de la demo. */
+  /**
+   * Rango de tamano, SIEMPRE en numero de propiedades.
+   *
+   * Antes el primer perfil se medía en habitaciones ("Una propiedad · 20-120
+   * habitaciones") y los otros tres en propiedades. Puestos uno debajo de otro
+   * en la lista de pestañas, "20-120" y "2-10" parecian la misma magnitud y la
+   * escala se leia al reves. La unidad se unifica: una sola magnitud para los
+   * cuatro perfiles. El detalle de habitaciones, cuando aporta, vive en el
+   * cuerpo de la ficha, no en la insignia.
+   */
   size: string;
   /** A quien va dirigido. */
   audience: string;
@@ -40,7 +49,7 @@ export const hotelProfiles = [
   {
     id: "conectado",
     name: "Hotel Conectado",
-    size: "Una propiedad · 20-120 habitaciones",
+    size: "1 propiedad",
     audience: "Para hoteles independientes",
     headline: "Lo esencial bien resuelto",
     pain: "Tienes un hotel que gestionar. No necesitas convertirte también en experto en telecomunicaciones.",
@@ -163,7 +172,7 @@ export const hotelProfiles = [
   {
     id: "especializado",
     name: "Proyecto Especializado",
-    size: "Proyectos a medida",
+    size: "50+ propiedades",
     audience: "Para grandes cadenas",
     headline: "No hace falta sustituir lo que funciona para resolver lo que falta",
     pain: "Quizá no necesites cambiar tu infraestructura. Quizá necesites resolver únicamente aquello que tu proveedor habitual no puede cubrir. Entramos ahí.",

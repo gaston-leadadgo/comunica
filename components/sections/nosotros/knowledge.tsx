@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/section";
 import { Icon } from "@/components/ui/icon";
 import { nosotros } from "@/content/nosotros";
@@ -75,13 +76,35 @@ export function NosotrosKnowledge() {
           </div>
         </div>
 
-        <div data-reveal className="rounded-shield mt-14 bg-navy p-8 text-fg-inverse lg:p-12">
-          <p className="measure-lead text-body-sm text-fg-inverse-muted">
-            {knowledge.conclusion.before}
-          </p>
-          <p className="mt-3 text-display-2 text-cyan">
-            {knowledge.conclusion.emphasis}
-          </p>
+        {/* Banner de conclusion.
+            ---------------------------------------------------------------
+            Llevaba el remate del argumento ("Especialistas en hoteles") y
+            ninguna salida: el lector llegaba al punto mas convencido de la
+            seccion y no tenia donde pulsar. Se le añade el CTA, en la misma
+            fila para no alargar el bloque. */}
+        <div
+          data-tone="dark"
+          data-reveal
+          className="rounded-shield mt-14 grid gap-x-12 gap-y-8 bg-navy p-8 text-fg-inverse lg:grid-cols-[1fr_auto] lg:items-end lg:p-12"
+        >
+          <div className="min-w-0">
+            <p className="measure-lead text-body-sm text-fg-inverse-muted">
+              {knowledge.conclusion.before}
+            </p>
+            <p className="mt-3 text-display-2 text-cyan">
+              {knowledge.conclusion.emphasis}
+            </p>
+          </div>
+
+          <Button
+            href={knowledge.conclusion.cta.href}
+            variant="cyan"
+            size="lg"
+            iconRight={<Icon name="arrow-right" size={18} />}
+            className="w-full sm:w-auto"
+          >
+            {knowledge.conclusion.cta.label}
+          </Button>
         </div>
       </div>
       </Container>

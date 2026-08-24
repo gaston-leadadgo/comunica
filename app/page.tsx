@@ -1,6 +1,6 @@
 import { CredibilityBand } from "@/components/sections/home/credibility-band";
 import { DifferentialsBento } from "@/components/sections/home/differentials-bento";
-import { ExtensionBlock } from "@/components/sections/home/extension-block";
+import { ExtensionBlock } from "@/components/sections/shared/extension-block";
 import { FinalCta } from "@/components/sections/home/final-cta";
 import { HeroCinematic } from "@/components/sections/home/hero-cinematic";
 import { IandreaBlock } from "@/components/sections/home/iandrea-block";

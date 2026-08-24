@@ -26,6 +26,16 @@ export const partners = {
       label: "Quiero ser partner",
       href: `${routes.contacto}?intent=partner_canal`,
     } satisfies Cta,
+    /**
+     * CTA secundario para quien YA es partner. El hero solo hablaba a quien aun
+     * no lo es, y un partner en activo que entra buscando material o soporte no
+     * tenia ninguna puerta hasta el bloque de portal, muy abajo. Ancla a ese
+     * bloque en lugar de a contacto: es donde esta la respuesta.
+     */
+    secondaryCta: {
+      label: "Ya soy partner",
+      href: "#portal",
+    } satisfies Cta,
   },
 
   opportunity: {

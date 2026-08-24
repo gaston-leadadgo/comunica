@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 
 import { ClosingCta } from "@/components/sections/shared/closing-cta";
+import { ExtensionBlock } from "@/components/sections/shared/extension-block";
 import { SolucionesCapabilities } from "@/components/sections/soluciones/capabilities";
 import { SolucionesHero } from "@/components/sections/soluciones/hero";
+import { SolucionesIandreaDemo } from "@/components/sections/soluciones/iandrea-demo";
 import { SolucionesIandrea } from "@/components/sections/soluciones/iandrea-deep";
 import { SolucionesProfileTabs } from "@/components/sections/soluciones/profile-tabs";
 import { soluciones } from "@/content/soluciones";
@@ -32,6 +34,11 @@ export default function SolucionesPage() {
       <SolucionesProfileTabs />
       <SolucionesCapabilities />
       <SolucionesIandrea />
+      {/* El simulador va justo detras de la ficha de iAndrea: primero se explica
+          que hace, y acto seguido se prueba. Separarlos obligaria a leer la
+          ficha entera de memoria antes de llegar a la demo. */}
+      <SolucionesIandreaDemo />
+      <ExtensionBlock />
       <ClosingCta
         title={soluciones.closing.title}
         body={soluciones.closing.body}

@@ -15,12 +15,15 @@ import { useBrandMotion } from "@/lib/gsap/use-brand-motion";
  * funciones distintas:
  *
  *   1. Bento de sintomas. Los tres sintomas son tarjetas-señal del lado huesped,
- *      con su icono y un punto de estado en rojo. La cuarta celda es el widget de
- *      diagnostico: las cuatro categorias de servicio marcadas "sin asignar", que
- *      es literalmente lo que describe el parrafo de al lado. Dibujar el problema
- *      convence mas que enunciarlo.
+ *      con su icono y un punto de estado en rojo. Debajo, la consecuencia
+ *      operativa ("Y mientras tanto...") cierra la escena.
  *   2. Isla navy con la cita y el giro del discurso.
  *   3. Las cuatro preguntas, ya en modo Comunica, con su indice en mono.
+ *
+ * El widget "¿Quien lo resuelve?" (las cuatro categorias marcadas "sin asignar")
+ * se retira por peticion de cliente: duplicaba en forma de interfaz lo que el
+ * parrafo de al lado ya decia con palabras, y alargaba la seccion sin anadir
+ * argumento.
  *
  * Movimiento: stagger de rejilla (`grid: "auto"`, `from: "center"`) segun el
  * preset Standard de la guia de motion, pero con `power2.out` en lugar del
@@ -30,7 +33,6 @@ import { useBrandMotion } from "@/lib/gsap/use-brand-motion";
  */
 export function ProblemBlock() {
   const { problem } = home;
-  const { diagnostic } = problem;
 
   const scope = useBrandMotion<HTMLDivElement>(({ gsap, scope, reduced }) => {
     if (reduced) return;
@@ -51,27 +53,16 @@ export function ProblemBlock() {
   return (
     <section data-tone="light" className="relative isolate bg-paper py-section">
       <Container width="wide">
-        {/* Encabezado: el sintoma a la izquierda, la consecuencia operativa a la
-            derecha. Son las dos caras del mismo fallo y por eso van enfrentadas
-            en la misma fila, no una debajo de otra. */}
-        <div className="grid gap-x-16 gap-y-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
-          <h2 className="max-w-[24ch] text-display-2 text-balance">
-            {problem.title}
-          </h2>
-          {problem.body.map((p) => (
-            <p key={p} className="measure-body text-body text-fg-muted">
-              {p}
-            </p>
-          ))}
-        </div>
+        <h2 className="max-w-[24ch] text-display-2 text-balance">
+          {problem.title}
+        </h2>
 
         <div ref={scope}>
-          <p className="mt-14 font-mono text-eyebrow tracking-[0.2em] text-cyan-ink-strong uppercase">
+          <p className="mt-12 font-mono text-eyebrow tracking-[0.2em] text-cyan-ink-strong uppercase">
             {problem.introLabel}
           </p>
 
-          {/* Bento denso: 3 sintomas (2+2+2) sobre el widget de diagnostico
-              (col-span-6). Filas exactas de 6, cero celdas muertas. */}
+          {/* Bento denso: 3 sintomas (2+2+2) = una fila exacta de 6. */}
           <div className="mt-5 grid grid-flow-dense grid-cols-1 gap-px overflow-hidden rounded-xl bg-line sm:grid-cols-2 lg:grid-cols-6">
             {problem.symptoms.map((s) => (
               <article
@@ -93,38 +84,21 @@ export function ProblemBlock() {
                 <p className="measure-card text-display-3 text-fg">{s.text}</p>
               </article>
             ))}
+          </div>
 
-            {/* Widget de diagnostico: las cuatro categorias, ninguna asignada */}
-            <div
-              data-cell
-              className="min-w-0 bg-paper-warm-2 p-7 lg:col-span-6 lg:p-8"
-            >
-              <p className="font-mono text-eyebrow tracking-[0.2em] text-navy uppercase">
-                {diagnostic.label}
+          {/* "Y mientras tanto...": la consecuencia operativa va DEBAJO de los
+              sintomas, no enfrentada al titular.
+              ---------------------------------------------------------------
+              Antes ocupaba la columna derecha del encabezado, donde se leia
+              antes que los tres sintomas a los que se refiere — el "mientras
+              tanto" no tenia todavia un "mientras" al que remitir. Aqui cierra
+              la escena en el orden en que ocurre. */}
+          <div className="mt-6 flex items-start gap-4 border-l-2 border-cyan pl-5">
+            {problem.body.map((p) => (
+              <p key={p} className="measure-body text-body text-fg-muted">
+                {p}
               </p>
-              <ul className="mt-5 grid grid-cols-2 gap-2.5 lg:grid-cols-4">
-                {diagnostic.services.map((s) => (
-                  <li
-                    key={s.name}
-                    className="flex min-w-0 items-center gap-3 rounded-lg border border-line bg-paper px-4 py-3.5"
-                  >
-                    <Icon
-                      name={s.icon}
-                      size={17}
-                      className="shrink-0 text-navy/45"
-                    />
-                    <span className="min-w-0">
-                      <span className="block truncate text-card-title">
-                        {s.name}
-                      </span>
-                      <span className="mt-0.5 block font-mono text-[0.6875rem] tracking-[0.08em] text-critical uppercase">
-                        {diagnostic.unassigned}
-                      </span>
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            ))}
           </div>
         </div>
 

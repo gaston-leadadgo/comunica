@@ -65,22 +65,8 @@ export const home = {
         icon: "help-circle",
       },
     ] satisfies readonly { text: string; icon: IconName }[],
-    /**
-     * Andamiaje del widget de diagnostico. NO es copy nuevo de marca: son las
-     * cuatro categorias de servicio que ya aparecen en `value.capabilitiesLine`,
-     * mas una etiqueta de estado, para poder dibujar lo que el parrafo describe
-     * ("averiguar cual de los proveedores tiene que resolver el problema").
-     */
-    diagnostic: {
-      label: "¿Quién lo resuelve?",
-      unassigned: "Sin asignar",
-      services: [
-        { name: "Conectividad", icon: "globe" },
-        { name: "WiFi", icon: "wifi" },
-        { name: "Voz", icon: "phone" },
-        { name: "IPTV", icon: "tv" },
-      ] satisfies readonly { name: string; icon: IconName }[],
-    },
+    /* El widget "¿Quien lo resuelve?" se retiro por peticion de cliente:
+       repetia en forma de interfaz lo que el parrafo de `body` ya dice. */
     body: [
       "Y mientras tanto, alguien de tu equipo intenta averiguar cuál de los proveedores tiene que resolver el problema.",
     ],
@@ -100,8 +86,12 @@ export const home = {
   value: {
     title: "Tecnología hotelera, resuelta",
     lead: "Comunica integra y gestiona las telecomunicaciones y soluciones tecnológicas que necesita un hotel",
+    /** Etiqueta del listado. Era "Las piezas"; cliente pide "Soluciones". */
+    capabilitiesLabel: "Soluciones",
     capabilitiesLine:
       "Conectividad. Voz. WiFi. IPTV. Integraciones. Inteligencia artificial. Soporte",
+    /** Fragmento de `differenceIntro` que va resaltado. */
+    differenceLabel: "nuestra diferencia",
     differenceIntro: "Pero nuestra diferencia no está en tener muchos servicios.",
     differenceHighlight:
       "Está en conseguir que tú tengas menos cosas de las que preocuparte.",
@@ -187,15 +177,75 @@ export const home = {
       "Una llamada que recepción no atiende puede ser una reserva que se pierde",
     title: "iAndrea",
     subtitle: "La voz con inteligencia artificial de Comunica para hoteles",
+    /**
+     * Solo la escena de apertura. Los tres parrafos que empezaban por "Puede..."
+     * salen de aqui y pasan a `capabilities`: eran una enumeracion disfrazada de
+     * prosa —tres frases con seis o siete acciones cada una— y en pantalla se
+     * leian como un muro de texto. La informacion es la misma, troceada en las
+     * unidades que ya tenia dentro.
+     */
     body: [
       "En recepción no siempre se puede coger el teléfono. Hay huéspedes delante. Check-ins. Incidencias. Consultas. Momentos en los que simplemente no quedan más manos.",
       "iAndrea está para esos momentos. Y para muchos otros.",
-      "Puede atender llamadas las 24 horas, responder preguntas frecuentes, gestionar reservas, recoger datos, cualificar llamadas o derivarlas a una persona cuando la conversación necesita intervención humana.",
-      "Puede atender varias llamadas de forma simultánea y configurarse en más de 15 idiomas.",
-      "Además, puede integrarse con sistemas de reservas, CRM, ERP y centralitas IP para consultar información o realizar acciones durante la conversación.",
     ],
     /** El segundo parrafo va destacado. */
     bodyHighlightIndex: 1,
+
+    /** Rotulo de la rejilla de capacidades. */
+    canLabel: "iAndrea puede:",
+    /**
+     * Las capacidades, una por celda y con icono. Desglosadas literalmente de
+     * los tres parrafos "Puede..." de la demo aprobada: no hay copy inventado,
+     * solo separado.
+     */
+    capabilities: [
+      {
+        title: "Atender llamadas 24/7",
+        description:
+          "Sin franjas sin cobertura y sin que una llamada fuera de horario se pierda.",
+        icon: "phone-call",
+      },
+      {
+        title: "Responder preguntas frecuentes",
+        description:
+          "Horarios, servicios, ubicación o condiciones, resueltos en la propia llamada.",
+        icon: "help-circle",
+      },
+      {
+        title: "Gestionar reservas y recoger datos",
+        description:
+          "Toma la información que necesitas y la deja registrada donde corresponde.",
+        icon: "calendar-range",
+      },
+      {
+        title: "Cualificar y derivar a una persona",
+        description:
+          "Cuando la conversación necesita intervención humana, la pasa con el contexto.",
+        icon: "users",
+      },
+      {
+        title: "Atender varias llamadas a la vez",
+        description:
+          "La centralita deja de tener un límite de manos disponibles en recepción.",
+        icon: "layers",
+      },
+      {
+        title: "Hablar en más de 15 idiomas",
+        description:
+          "El huésped recibe respuesta en su idioma sin depender del turno de guardia.",
+        icon: "globe",
+      },
+      {
+        title: "Integrarse con tus sistemas",
+        description:
+          "Reservas, CRM, ERP y centralitas IP: consulta información y ejecuta acciones durante la conversación.",
+        icon: "workflow",
+      },
+    ] satisfies readonly {
+      title: string;
+      description: string;
+      icon: IconName;
+    }[],
     benefits: [
       "Menos llamadas perdidas",
       "Menos interrupciones",

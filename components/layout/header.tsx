@@ -8,7 +8,7 @@ import { Logo } from "@/components/brand/logo";
 import { Button } from "@/components/ui/button";
 import { Icon } from "@/components/ui/icon";
 import { headerClaim, headerCtas, headerNav } from "@/content/nav";
-import { routes } from "@/content/site";
+import { darkHeroRoutes, routes } from "@/content/site";
 import { cn } from "@/lib/utils/cn";
 
 /**
@@ -36,6 +36,24 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
 
+  /**
+   * ¿La cabecera flota sobre un hero oscuro?
+   *
+   * Sin scroll la pildora es transparente y su contenido cae directamente sobre
+   * la primera seccion. En Partners esa seccion es navy, y ahi el logotipo en
+   * Process Black y los enlaces en tinta quedaban ilegibles sobre azul.
+   *
+   * Se deriva de la ruta durante el render, no de un efecto que mida el DOM: un
+   * efecto solo puede leer el tono DESPUES de pintar, asi que en cada carga de
+   * Partners la cabecera aparecia un instante en su version oscura antes de
+   * corregirse. Derivado, sale bien ya en el primer pintado (y tambien en el
+   * HTML del servidor). La lista vive en `content/site.ts`, junto a las rutas.
+   */
+  const overDark = darkHeroRoutes.includes(pathname);
+
+  /** Solo mientras la pildora es transparente: al hacer scroll gana fondo claro. */
+  const inverted = overDark && !scrolled && !open;
+
   useEffect(() => {
     const el = headerRef.current;
     if (!el) return;
@@ -56,6 +74,7 @@ export function Header() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
 
   useEffect(() => {
     if (!open) return;
@@ -80,6 +99,11 @@ export function Header() {
       className="fixed inset-x-0 top-0 z-40 px-gutter pt-3 sm:pt-4"
     >
       <div
+        // `data-tone="dark"` cuando la pildora flota sobre un hero oscuro: es
+        // el mismo interruptor que ya usan `Button` y el anillo de foco en el
+        // resto del sitio, asi que la variante primaria pasa sola a blanco
+        // sobre navy en lugar de quedarse navy sobre navy.
+        data-tone={inverted ? "dark" : undefined}
         className={cn(
           "mx-auto flex max-w-[1320px] items-center gap-4 rounded-full px-4 py-2.5 transition-[background-color,box-shadow,border-color,backdrop-filter] duration-300 sm:px-5",
           scrolled || open
@@ -87,36 +111,67 @@ export function Header() {
             : "border border-transparent bg-transparent",
         )}
       >
-        <Link
-          href={routes.home}
-          className="shrink-0 rounded-full"
-          aria-label="Comunica, ir a la portada"
-        >
-          <Logo height={24} decorative />
-        </Link>
+        {/* Logo + cifra, alineados por la MISMA linea base.
+            ---------------------------------------------------------------
+            Peticion de cliente: los dos textos tenian "pisos" distintos. La
+            causa era que ambos eran hermanos de un contenedor `items-center`,
+            que centra por la caja y no por el texto: el logo, mas alto,
+            quedaba con su base por debajo de la del "350".
 
-        {/* Indicador de credibilidad.
-            Sube de `xl` a `md` y la cifra pasa a display 700: es la peticion de
-            dar protagonismo al 350 para que la autoridad este en la cabecera y
-            no solo en la banda de abajo. Sigue siendo un dato, no un adorno: la
-            unidad va en mono para que se lea como instrumentacion. */}
-        <p className="hidden shrink-0 items-baseline gap-1.5 border-l border-line pl-4 md:flex">
-          <span
-            data-tabular
-            className="font-display text-[1.0625rem] leading-none font-bold text-navy"
+            Se agrupan aparte con `items-baseline`. Un SVG es un elemento
+            reemplazado y su linea base ES su borde inferior, asi que la base
+            del logotipo cae exactamente sobre la base de la cifra. El grupo
+            entero sigue centrado dentro de la pildora. */}
+        <div className="flex shrink-0 items-baseline gap-4">
+          <Link
+            href={routes.home}
+            className="shrink-0 rounded-full"
+            aria-label="Comunica, ir a la portada"
           >
-            {headerClaim.count}
-          </span>
-          {/* El espacio va dentro del texto, no solo en el `gap`: sin el, un
-              lector de pantalla anuncia "350hoteles". */}
-          <span className="font-mono text-[0.6875rem] tracking-[0.12em] whitespace-nowrap text-fg-muted uppercase">
-            {` ${headerClaim.unit}`}
-            <span aria-hidden="true" className="mx-1.5 text-line">
-              ·
+            <Logo
+              height={30}
+              variant={inverted ? "negativo" : "principal"}
+              decorative
+            />
+          </Link>
+
+          {/* Indicador de credibilidad. La cifra en display 700 da
+              protagonismo al 350; la unidad va en mono para que el conjunto se
+              lea como instrumentacion y no como un adorno. */}
+          <p
+            className={cn(
+              "hidden shrink-0 items-baseline gap-1.5 border-l pl-4 md:flex",
+              inverted ? "border-white/25" : "border-line",
+            )}
+          >
+            <span
+              data-tabular
+              className={cn(
+                "font-display text-[1.0625rem] leading-none font-bold",
+                inverted ? "text-white" : "text-navy",
+              )}
+            >
+              {headerClaim.count}
             </span>
-            <span data-tabular>{headerClaim.countries}</span>
-          </span>
-        </p>
+            {/* El espacio va dentro del texto, no solo en el `gap`: sin el, un
+                lector de pantalla anuncia "350hoteles". */}
+            <span
+              className={cn(
+                "font-mono text-[0.6875rem] tracking-[0.12em] whitespace-nowrap uppercase",
+                inverted ? "text-fg-inverse-muted" : "text-fg-muted",
+              )}
+            >
+              {` ${headerClaim.unit}`}
+              <span
+                aria-hidden="true"
+                className={cn("mx-1.5", inverted ? "text-white/35" : "text-line")}
+              >
+                ·
+              </span>
+              <span data-tabular>{headerClaim.countries}</span>
+            </span>
+          </p>
+        </div>
 
         <nav
           aria-label="Navegacion principal"
@@ -129,9 +184,15 @@ export function Header() {
               aria-current={isActive(item.href) ? "page" : undefined}
               className={cn(
                 "relative rounded-full px-4 py-2 text-body-sm font-semibold transition-colors",
-                isActive(item.href)
-                  ? "text-cyan-ink"
-                  : "text-fg hover:text-cyan-ink",
+                // Sobre navy, el cyan de marca (4,53:1) y el blanco (13,46:1)
+                // pasan AA; el `cyan-ink` de fondo claro se hundiria en el azul.
+                inverted
+                  ? isActive(item.href)
+                    ? "text-cyan"
+                    : "text-white hover:text-cyan"
+                  : isActive(item.href)
+                    ? "text-cyan-ink"
+                    : "text-fg hover:text-cyan-ink",
               )}
             >
               {item.label}
@@ -148,7 +209,12 @@ export function Header() {
         <div className="ml-auto flex items-center gap-2 lg:ml-2">
           <Link
             href={headerCtas.secondary.href}
-            className="hidden items-center gap-2 rounded-full border border-line px-4 py-2 text-body-sm font-semibold text-navy transition-colors hover:border-navy hover:bg-navy hover:text-white lg:inline-flex"
+            className={cn(
+              "hidden items-center gap-2 rounded-full border px-4 py-2 text-body-sm font-semibold transition-colors lg:inline-flex",
+              inverted
+                ? "border-white/35 text-white hover:border-white hover:bg-white hover:text-navy"
+                : "border-line text-navy hover:border-navy hover:bg-navy hover:text-white",
+            )}
           >
             <Icon name="file-text" size={15} />
             {headerCtas.secondary.label}

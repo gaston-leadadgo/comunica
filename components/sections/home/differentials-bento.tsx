@@ -2,6 +2,7 @@
 
 import { SIZES, SmartImage } from "@/components/media/smart-image";
 import { Container } from "@/components/ui/section";
+import { HotelText } from "@/components/ui/hotel-text";
 import { home } from "@/content/home";
 import { useBrandMotion } from "@/lib/gsap/use-brand-motion";
 import { cn } from "@/lib/utils/cn";
@@ -47,7 +48,7 @@ export function DifferentialsBento() {
             corte natural cae antes de esa palabra y el titular se va a tres
             lineas aunque geometricamente quepa en dos. */}
         <h2 className="mx-auto max-w-[46ch] text-center text-display-2 text-balance">
-          {differentials.title}
+          <HotelText>{differentials.title}</HotelText>
         </h2>
 
         <div

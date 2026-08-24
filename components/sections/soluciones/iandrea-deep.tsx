@@ -97,7 +97,7 @@ export function SolucionesIandrea() {
     <section
       id="iandrea"
       data-tone="dark"
-      className="relative isolate overflow-hidden bg-ink py-section text-fg-inverse"
+      className="relative isolate overflow-hidden bg-navy py-section text-fg-inverse"
     >
       <BrandArc
         placement="edge"
@@ -111,7 +111,7 @@ export function SolucionesIandrea() {
       <div ref={scope}>
         <div className="grid gap-x-16 gap-y-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div className="min-w-0">
-            <h2 data-reveal-l className="text-display-1 text-white">
+            <h2 data-reveal-l className="text-display-2 text-white">
               {iandrea.title}
             </h2>
             <p data-reveal-l className="mt-3 max-w-[30ch] text-display-3 text-cyan">
@@ -152,7 +152,7 @@ export function SolucionesIandrea() {
                 <li
                   key={c}
                   data-call
-                  className="flex min-w-0 items-center gap-4 bg-ink p-5"
+                  className="flex min-w-0 items-center gap-4 bg-navy p-5"
                 >
                   <span className="grid size-9 shrink-0 place-items-center rounded-full bg-cyan/10 text-cyan">
                     <Icon name="phone-call" size={16} />
@@ -174,7 +174,7 @@ export function SolucionesIandrea() {
         {/* Las ocho capacidades: 4x2 exacto */}
         <ul className="mt-16 grid grid-cols-1 gap-px overflow-hidden rounded-xl bg-white/12 sm:grid-cols-2 lg:grid-cols-4">
           {iandrea.features.map((f) => (
-            <li key={f.title} data-feature className="min-w-0 bg-ink p-7">
+            <li key={f.title} data-feature className="min-w-0 bg-navy p-7">
               <span className="grid size-10 place-items-center rounded-md bg-white/[0.06] text-cyan">
                 <Icon name={f.icon} size={18} />
               </span>

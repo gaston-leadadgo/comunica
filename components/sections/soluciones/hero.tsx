@@ -3,6 +3,7 @@
 import { BrandArc } from "@/components/brand/brand-arc";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/section";
+import { HotelText } from "@/components/ui/hotel-text";
 import { Icon } from "@/components/ui/icon";
 import { soluciones } from "@/content/soluciones";
 import { useBrandMotion } from "@/lib/gsap/use-brand-motion";
@@ -62,7 +63,7 @@ export function SolucionesHero() {
         <h1 data-reveal className="mt-8 max-w-[76rem] text-display-hero">
           <span className="block text-balance">{hero.titleLine1}</span>{" "}
           <span className="mt-1 block text-balance text-cyan-strong">
-            {hero.titleLine2}
+            <HotelText>{hero.titleLine2}</HotelText>
           </span>
         </h1>
 

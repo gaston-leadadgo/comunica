@@ -1,5 +1,6 @@
 "use client";
 
+import { QrMotif } from "@/components/brand/qr-motif";
 import { SIZES, SmartImage } from "@/components/media/smart-image";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/section";
@@ -107,12 +108,27 @@ export function ExtensionBlock() {
 
           {/* Columna visual: foto, secuencia y acciones */}
           <div ref={scope} className="flex min-w-0 flex-col gap-4">
-            <SmartImage
-              image="home-extension-qr-room"
-              sizes={SIZES.heroSplit}
-              decorative
-              wrapperClassName="d-crop-r"
-            />
+            {/* El QR va compuesto por CSS sobre la foto, no generado dentro de
+                ella. Es el patron Tier B del plan: la fotografia aporta el
+                objeto fisico (el soporte de la mesilla) y el codigo se pone
+                encima como vector. Un QR "dibujado" por un modelo de imagen
+                sale como una mancha de ruido y delata el montaje al instante;
+                ademas, asi el motivo se mantiene nitido en retina. */}
+            <div className="d-crop-r relative">
+              <SmartImage
+                image="home-extension-qr-room"
+                sizes={SIZES.heroSplit}
+                decorative
+                wrapperClassName="h-full"
+              />
+
+              <div className="absolute top-1/2 left-[8%] w-[26%] max-w-[9rem] -translate-y-1/2 rounded-lg bg-white p-2.5 shadow-md sm:left-[10%]">
+                <QrMotif className="w-full" />
+                <p className="mt-1.5 text-center font-mono text-[0.5rem] leading-tight tracking-[0.08em] text-ink uppercase">
+                  {m.qrAction}
+                </p>
+              </div>
+            </div>
 
             {/* Los tres pasos, en tira horizontal */}
             <ol className="grid grid-cols-1 gap-px overflow-hidden rounded-lg bg-line sm:grid-cols-3">

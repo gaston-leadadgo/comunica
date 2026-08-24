@@ -75,14 +75,29 @@ export function PartnersHero() {
               {hero.highlight}
             </p>
 
-            <div className="mt-8">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <Button
                 href={hero.cta.href}
                 size="lg"
                 variant="cyan"
                 iconRight={<Icon name="arrow-right" size={18} />}
+                className="w-full sm:w-auto"
               >
                 {hero.cta.label}
+              </Button>
+              {/* Segunda puerta, para quien ya trabaja con nosotros. En
+                  `outline`, que sobre `data-tone=dark` se resuelve solo a borde
+                  y texto blancos. */}
+              <Button
+                href={hero.secondaryCta.href}
+                size="lg"
+                variant="outline"
+                className="w-full sm:w-auto"
+              >
+                <span className="inline-flex items-center gap-2">
+                  <Icon name="shield-check" size={17} />
+                  {hero.secondaryCta.label}
+                </span>
               </Button>
             </div>
           </div>

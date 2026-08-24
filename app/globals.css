@@ -259,6 +259,35 @@
 }
 
 /* ============================================================================
+   Enfasis de "tu hotel"
+   ---------------------------------------------------------------------------
+   Peticion de cliente: la expresion se destaca en TODA la web. Aparece en
+   titulares (ink sobre claro), en parrafos apagados (`fg-muted`), sobre navy y
+   sobre el degradado del CTA de cierre, asi que un color fijo no vale: en la
+   mitad de esos fondos seria ilegible.
+
+   La solucion es no tocar el color del texto. El enfasis lo pone un trazo cyan
+   por detras de la linea base —el gesto de subrayador— mas el peso. Asi el
+   texto conserva SIEMPRE el contraste que ya tenia sobre su fondo, y el acento
+   funciona igual en claro y en oscuro. `box-shadow: inset` en lugar de
+   `background` para que el trazo no se parta al final de linea.
+   ========================================================================== */
+
+@layer components {
+  .mark-hotel {
+    font-style: normal;
+    font-weight: 700;
+    box-shadow: inset 0 -0.3em 0 rgb(0 159 227 / 0.28);
+  }
+
+  /* Sobre superficies oscuras el cyan pierde presencia contra el fondo: sube
+     de opacidad para que el trazo siga leyendose. */
+  [data-tone="dark"] .mark-hotel {
+    box-shadow: inset 0 -0.3em 0 rgb(0 159 227 / 0.42);
+  }
+}
+
+/* ============================================================================
    Marquee de grupos hoteleros y fondos ambientales
    ========================================================================== */
 

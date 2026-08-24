@@ -39,11 +39,31 @@ export function IandreaBlock() {
     });
   });
 
+  // Scope propio para la rejilla de capacidades: vive FUERA del `div` de las dos
+  // columnas, y `gsap.utils.toArray(selector, scope)` solo busca descendientes.
+  // Con un unico scope arriba, estos `[data-cap]` no se encontrarian nunca.
+  const capsScope = useBrandMotion<HTMLDivElement>(({ gsap, scope, reduced }) => {
+    if (reduced) return;
+    revealOnScroll(gsap, scope, "[data-caps-label]", { start: "top 85%" });
+    const caps = gsap.utils.toArray<HTMLElement>("[data-cap]", scope);
+    if (!caps.length) return;
+    gsap.from(caps, {
+      opacity: 0,
+      y: 20,
+      scale: 0.97,
+      duration: 0.5,
+      ease: "power2.out",
+      immediateRender: true,
+      stagger: { each: 0.06, from: "start", grid: "auto" },
+      scrollTrigger: { trigger: scope, start: "top 82%", once: true },
+    });
+  });
+
   return (
     <section
       id="iandrea"
       data-tone="dark"
-      className="relative isolate overflow-hidden bg-ink py-section text-fg-inverse"
+      className="relative isolate overflow-hidden bg-navy py-section text-fg-inverse"
     >
       <BrandArc
         placement="edge"
@@ -67,7 +87,7 @@ export function IandreaBlock() {
             </p>
 
             <div data-reveal-l>
-              <h2 className="mt-7 text-display-1 text-white">{iandrea.title}</h2>
+              <h2 className="mt-7 text-display-2 text-white">{iandrea.title}</h2>
               <p className="mt-2 max-w-[30ch] text-display-3 text-cyan">
                 {iandrea.subtitle}
               </p>
@@ -97,7 +117,7 @@ export function IandreaBlock() {
               {iandrea.benefits.map((b) => (
                 <li
                   key={b}
-                  className="flex min-w-0 items-center gap-2.5 bg-ink p-4"
+                  className="flex min-w-0 items-center gap-2.5 bg-navy p-4"
                 >
                   <Icon name="check" size={15} className="shrink-0 text-cyan" />
                   <span className="text-body-sm font-semibold text-white">
@@ -142,6 +162,50 @@ export function IandreaBlock() {
               </Button>
             </div>
           </div>
+        </div>
+
+        {/* "iAndrea puede:" — la enumeracion, ya como rejilla.
+            ---------------------------------------------------------------
+            Estas siete capacidades venian embutidas en tres parrafos que
+            empezaban por "Puede...". En prosa, siete acciones seguidas se leen
+            como un solo bloque gris y no se retiene ninguna. Con icono, titulo
+            y una linea de detalle, cada una se lee por separado y se puede
+            escanear sin leer.
+
+            Rejilla de 6 columnas: 7 items no dan filas exactas, asi que el
+            septimo (el de integraciones, el mas denso) ocupa `col-span-2`
+            —doble ancho— y cierra la segunda fila sin dejar hueco:
+            3+3 | 2+2+2 -> con el ultimo a doble, 3+3 y 2+2+2 encajan. */}
+        <div ref={capsScope} className="mt-16">
+          <p
+            data-caps-label
+            className="font-mono text-eyebrow tracking-[0.2em] text-cyan uppercase"
+          >
+            {iandrea.canLabel}
+          </p>
+
+          <ul className="mt-5 grid grid-cols-1 gap-px overflow-hidden rounded-xl bg-white/12 sm:grid-cols-2 lg:grid-cols-6">
+            {iandrea.capabilities.map((c, i) => (
+              <li
+                key={c.title}
+                data-cap
+                className={cn(
+                  "flex min-w-0 flex-col bg-navy p-6 transition-colors hover:bg-navy-deep",
+                  // 2+2+2 | 3+3 | 3+3 = tres filas exactas de 6 para 7 items.
+                  // Cero celdas muertas.
+                  i < 3 ? "lg:col-span-2" : "lg:col-span-3",
+                )}
+              >
+                <span className="grid size-10 shrink-0 place-items-center rounded-md bg-cyan/12 text-cyan">
+                  <Icon name={c.icon} size={18} />
+                </span>
+                <h3 className="mt-4 text-card-title text-white">{c.title}</h3>
+                <p className="mt-2 text-small text-fg-inverse-muted">
+                  {c.description}
+                </p>
+              </li>
+            ))}
+          </ul>
         </div>
       </Container>
     </section>

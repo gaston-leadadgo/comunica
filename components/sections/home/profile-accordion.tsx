@@ -5,6 +5,7 @@ import { useState } from "react";
 import { SIZES, SmartImage } from "@/components/media/smart-image";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/section";
+import { HotelText } from "@/components/ui/hotel-text";
 import { Icon } from "@/components/ui/icon";
 import type { ImageKey } from "@/content/images";
 import { home } from "@/content/home";
@@ -58,7 +59,7 @@ export function ProfileAccordion() {
           <div data-head className="mx-auto max-w-[46rem] text-center">
             <h2 className="text-display-2 text-balance">{home.profiles.title}</h2>
             <p className="measure-lead mx-auto mt-7 text-lead text-fg-muted">
-              {home.profiles.lead}
+              <HotelText>{home.profiles.lead}</HotelText>
             </p>
           </div>
 

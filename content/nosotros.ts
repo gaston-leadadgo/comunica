@@ -41,6 +41,11 @@ export const nosotros = {
       before:
         "Pero ninguna de esas etiquetas explica por sí sola lo que hacemos. La que realmente importa es otra:",
       emphasis: "Especialistas en hoteles.",
+      /** El banner cerraba el argumento sin ofrecer ninguna salida. */
+      cta: {
+        label: "Habla con un especialista",
+        href: routes.contacto,
+      } satisfies Cta,
     },
   },
 

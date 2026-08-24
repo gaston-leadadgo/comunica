@@ -1,6 +1,8 @@
 "use client";
 
+import { SIZES, SmartImage } from "@/components/media/smart-image";
 import { Container } from "@/components/ui/section";
+import { HotelText } from "@/components/ui/hotel-text";
 import { Icon } from "@/components/ui/icon";
 import { capabilities } from "@/content/perfiles";
 import { nosotros } from "@/content/nosotros";
@@ -117,18 +119,46 @@ export function NosotrosTeamAndVision() {
           </div>
         </div>
 
-        {/* Anticipacion */}
+        {/* Anticipacion.
+            ---------------------------------------------------------------
+            Es el ultimo bloque de la pagina y era el mas vacio: titulo y dos
+            parrafos en una rejilla de dos columnas, con media seccion en
+            blanco. Se le da una tercera columna con imagen —el espacio ya
+            estaba reservado, solo faltaba llenarlo— y la frase de cierre pasa a
+            destacada, que es lo que el copy pide: "Porque ser un buen partner
+            tecnologico..." es la conclusion del argumento, no un parrafo mas. */}
         <div data-block className="mt-16 border-t border-line pt-16">
-          <div data-reveal className="grid gap-x-16 gap-y-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-            <h2 className="max-w-[20ch] text-display-2 text-balance">
-              {ahead.title}
-            </h2>
-            <div className="flex min-w-0 flex-col gap-4">
-              {ahead.body.map((p) => (
-                <p key={p} className="measure-body text-body text-fg-muted">
-                  {p}
-                </p>
-              ))}
+          <div data-reveal className="grid gap-x-16 gap-y-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+            <div className="min-w-0">
+              <h2 className="max-w-[20ch] text-display-2 text-balance">
+                {ahead.title}
+              </h2>
+
+              <div className="mt-7 flex flex-col gap-5">
+                {ahead.body.map((p, i) =>
+                  i === ahead.body.length - 1 ? (
+                    <p
+                      key={p}
+                      className="measure-body border-l-2 border-cyan pl-5 text-display-3 text-navy"
+                    >
+                      <HotelText>{p}</HotelText>
+                    </p>
+                  ) : (
+                    <p key={p} className="measure-body text-body-sm text-fg-muted">
+                      <HotelText>{p}</HotelText>
+                    </p>
+                  ),
+                )}
+              </div>
+            </div>
+
+            <div className="min-w-0">
+              <SmartImage
+                image="home-profile-gestionado-cadena"
+                sizes={SIZES.heroSplit}
+                decorative
+                wrapperClassName="d-crop-r"
+              />
             </div>
           </div>
         </div>

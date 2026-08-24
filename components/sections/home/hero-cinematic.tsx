@@ -4,6 +4,7 @@ import { BrandArc } from "@/components/brand/brand-arc";
 import { SIZES, SmartImage } from "@/components/media/smart-image";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/section";
+import { HotelText } from "@/components/ui/hotel-text";
 import { Icon } from "@/components/ui/icon";
 import { home } from "@/content/home";
 import { useBrandMotion } from "@/lib/gsap/use-brand-motion";
@@ -97,7 +98,7 @@ export function HeroCinematic() {
         <div ref={scope} className="mx-auto max-w-[76rem] text-center">
           <h1 className="text-display-hero">
             <span data-line className="block text-balance">
-              {hero.titleLine1}
+              <HotelText>{hero.titleLine1}</HotelText>
             </span>{" "}
             <span data-line className="mt-1 block text-balance text-cyan-strong">
               {hero.titleLine2}

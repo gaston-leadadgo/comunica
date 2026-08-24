@@ -2,6 +2,7 @@
 
 import { SIZES, SmartImage } from "@/components/media/smart-image";
 import { Container } from "@/components/ui/section";
+import { MarkPhrase } from "@/components/ui/hotel-text";
 import { home } from "@/content/home";
 import { useBrandMotion } from "@/lib/gsap/use-brand-motion";
 
@@ -65,7 +66,7 @@ export function ValueBento() {
           >
             <div>
               <p className="font-mono text-eyebrow tracking-[0.2em] text-cyan-ink-strong uppercase">
-                Las piezas
+                {value.capabilitiesLabel}
               </p>
               <ul className="mt-6 flex flex-wrap gap-x-3 gap-y-2">
                 {value.capabilitiesLine.split(". ").map((cap) => (
@@ -80,7 +81,11 @@ export function ValueBento() {
             </div>
 
             <div className="border-t border-line pt-8">
-              <p className="text-body text-fg-muted">{value.differenceIntro}</p>
+              <p className="text-body text-fg-muted">
+                <MarkPhrase phrase={value.differenceLabel}>
+                  {value.differenceIntro}
+                </MarkPhrase>
+              </p>
               <p className="mt-3 max-w-[34ch] text-display-3 text-navy text-balance">
                 {value.differenceHighlight}
               </p>

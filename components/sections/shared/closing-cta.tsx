@@ -3,6 +3,7 @@
 import { BrandArc } from "@/components/brand/brand-arc";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/section";
+import { HotelText } from "@/components/ui/hotel-text";
 import { Icon } from "@/components/ui/icon";
 import type { Cta } from "@/content/schema";
 import { revealOnScroll, useBrandMotion } from "@/lib/gsap/use-brand-motion";
@@ -53,7 +54,7 @@ export function ClosingCta({
       <Container>
         <div ref={scope} className="mx-auto max-w-[52rem] text-center">
           <h2 data-reveal className="text-display-2 text-balance">
-            {title}
+            <HotelText>{title}</HotelText>
           </h2>
 
           <div data-reveal className="mx-auto mt-8 flex max-w-[46ch] flex-col gap-2">

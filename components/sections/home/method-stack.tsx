@@ -2,6 +2,7 @@
 
 import { BrandArc } from "@/components/brand/brand-arc";
 import { Container } from "@/components/ui/section";
+import { HotelText } from "@/components/ui/hotel-text";
 import { home } from "@/content/home";
 import { useBrandMotion } from "@/lib/gsap/use-brand-motion";
 
@@ -35,9 +36,13 @@ export function MethodStack() {
         // La ultima no se atenua: es la que queda arriba del todo.
         if (i === cards.length - 1) return;
 
+        // Solo escala. El `filter: brightness(0.93)` que habia aqui antes
+        // oscurecia la tarjeta ENTERA, texto incluido: el cuerpo apagado
+        // (`fg-muted`, ya de por si al 6,36:1) viraba a casi negro y dejaba de
+        // leerse justo mientras la tarjeta seguia en pantalla. El retroceso lo
+        // marca ahora la escala, que no toca el contraste del texto.
         gsap.to(card, {
           scale: 1 - (cards.length - 1 - i) * 0.014,
-          filter: "brightness(0.93)",
           ease: "none",
           scrollTrigger: {
             trigger: cards[i + 1],
@@ -67,7 +72,7 @@ export function MethodStack() {
 
       <Container>
         <h2 className="mx-auto max-w-[26ch] text-center text-display-2 text-balance">
-          {method.title}
+          <HotelText>{method.title}</HotelText>
         </h2>
 
         <div ref={scope} className="mt-16 flex flex-col gap-6 lg:mt-24 lg:gap-0">
@@ -86,8 +91,11 @@ export function MethodStack() {
             >
               <div className="grid gap-6 lg:grid-cols-[8rem_1fr] lg:gap-12">
                 <div className="flex items-baseline gap-3 lg:flex-col lg:gap-2">
+                  {/* El numero iba en `text-cyan/25`: sobre papel blanco eso da
+                      1,5:1 y en la practica no se veia. Pasa al cyan de tinta,
+                      que es el mismo matiz de marca en version legible. */}
                   <span
-                    className="font-mono text-metric leading-none text-cyan/25"
+                    className="font-mono text-metric leading-none text-cyan-ink"
                     data-tabular
                     aria-hidden="true"
                   >

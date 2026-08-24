@@ -76,3 +76,16 @@ export const routes = {
   privacidad: "/legal/privacidad",
   cookies: "/legal/cookies",
 } as const;
+
+/**
+ * Rutas cuya PRIMERA seccion es oscura a sangre.
+ *
+ * La cabecera flota sin fondo hasta que se hace scroll, asi que en estas rutas
+ * cae directamente sobre navy: el logotipo en Process Black y los enlaces en
+ * tinta quedarian ilegibles. `Header` lee esta lista para invertirse.
+ *
+ * Vive aqui, junto a las rutas, y no dentro del componente, para que quede a la
+ * vista de quien anada o cambie una pagina. Si algun dia otro hero pasa a
+ * oscuro, este es el sitio donde hay que decirlo.
+ */
+export const darkHeroRoutes: readonly string[] = [routes.partners];

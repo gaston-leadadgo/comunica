@@ -16,6 +16,11 @@ import { revealOnScroll, useBrandMotion } from "@/lib/gsap/use-brand-motion";
  * `aria-hidden` para que un lector de pantalla no lea veinte nombres. Esa cinta
  * ya se mueve sola por CSS; lo que le faltaba era la entrada de la cifra.
  *
+ * Fondo en navy 540 C (el azul del manual) y no en Process Black: es la banda
+ * que sostiene la prueba de cartera, y el azul corporativo la ata a la marca
+ * mejor que un negro neutro. El blanco sobre navy da 13,46:1 y el cyan 4,53:1,
+ * asi que ambos siguen pasando AA.
+ *
  * ATENCION: los nombres son marcas de terceros y afirmaciones de cartera de
  * cliente. No se publican sin autorizacion por escrito (ver content/home.ts).
  */
@@ -33,7 +38,7 @@ export function CredibilityBand() {
   return (
     <section
       data-tone="dark"
-      className="relative isolate overflow-hidden bg-ink py-section-sm text-fg-inverse"
+      className="relative isolate overflow-hidden bg-navy py-section-sm text-fg-inverse"
     >
       <Container width="wide" className="relative">
         <div ref={scope} className="flex flex-col items-center gap-10">
