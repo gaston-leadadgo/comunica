@@ -104,6 +104,17 @@ export const nosotros = {
   },
 
   ahead: {
+    /**
+     * Partido en dos lineas desde el copy, no dejado al navegador.
+     *
+     * Es una antitesis ("hoy X / mañana Y") y solo funciona si las dos mitades
+     * caen una debajo de otra. Dejando que el navegador reparta la frase, el
+     * corte caia donde tocase por ancho —a mitad de "Mañana nos anticipamos"—
+     * y la figura se perdia.
+     */
+    titleLine1: "Hoy resolvemos.",
+    titleLine2: "Mañana nos anticipamos",
+    /** Version en una linea, para metadatos y usos sin maquetar. */
     title: "Hoy resolvemos. Mañana nos anticipamos",
     body: [
       "No queremos limitarnos a reaccionar cuando algo falla. Queremos conocer suficientemente bien tu hotel como para poder proponerte mejoras antes de que tengas que pedirlas.",

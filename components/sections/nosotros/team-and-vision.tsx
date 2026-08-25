@@ -98,20 +98,28 @@ export function NosotrosTeamAndVision() {
         </div>
         </div>
 
-        {/* Innovacion */}
+        {/* Innovacion.
+            ---------------------------------------------------------------
+            El primer parrafo pasa a la columna IZQUIERDA, bajo el titulo. Antes
+            los dos parrafos y el enfasis se apilaban a la derecha y la columna
+            del titulo quedaba medio vacia: el bloque se leia como una sola
+            columna larga con un titulo colgando al lado. Repartido, cada
+            columna sostiene su propio peso y el enfasis cierra la derecha. */}
         <div data-block className="mt-16 border-t border-line pt-16">
-          <div data-reveal className="grid gap-x-16 gap-y-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-            <h2 className="max-w-[20ch] text-display-2 text-balance">
-              {innovation.title}
-            </h2>
+          <div data-reveal className="grid gap-x-16 gap-y-8 lg:grid-cols-2 lg:items-start">
             <div className="min-w-0">
-              <div className="flex flex-col gap-4">
-                {innovation.body.map((p) => (
-                  <p key={p} className="measure-body text-body-sm text-fg-muted">
-                    {p}
-                  </p>
-                ))}
-              </div>
+              <h2 className="max-w-[20ch] text-display-2 text-balance">
+                {innovation.title}
+              </h2>
+              <p className="measure-body mt-7 text-body-sm text-fg-muted">
+                {innovation.body[0]}
+              </p>
+            </div>
+
+            <div className="min-w-0">
+              <p className="measure-body text-body-sm text-fg-muted">
+                {innovation.body[1]}
+              </p>
               <p className="mt-7 border-l-2 border-cyan pl-5 text-display-3 text-navy">
                 {innovation.closing}
               </p>
@@ -130,8 +138,12 @@ export function NosotrosTeamAndVision() {
         <div data-block className="mt-16 border-t border-line pt-16">
           <div data-reveal className="grid gap-x-16 gap-y-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
             <div className="min-w-0">
-              <h2 className="max-w-[20ch] text-display-2 text-balance">
-                {ahead.title}
+              {/* Sin `text-balance`: el equilibrado repartiria las dos lineas
+                  por ancho y volveria a romper la antitesis que el corte
+                  explicito acaba de fijar. */}
+              <h2 className="text-display-2">
+                <span className="block">{ahead.titleLine1}</span>
+                <span className="block">{ahead.titleLine2}</span>
               </h2>
 
               <div className="mt-7 flex flex-col gap-5">

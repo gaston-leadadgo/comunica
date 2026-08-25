@@ -437,14 +437,19 @@
     text-wrap: balance;
     hanging-punctuation: first;
     margin: 0;
-    /* "Telecomunicaciones" a tamano display mide ~396px: mas que el ancho de
-       contenido de un movil de 375px. Sin guionado, la palabra desborda su caja
-       y, dentro de una seccion con overflow-hidden, se recorta. El guionado
-       automatico (que funciona porque el documento declara lang="es-ES") parte
-       la palabra en lugar de romper el layout. `overflow-wrap` queda como red
-       de seguridad para cadenas sin puntos de corte. */
-    -webkit-hyphens: auto;
-    hyphens: auto;
+    /* Guionado automatico DESACTIVADO a proposito.
+       ------------------------------------------------------------------
+       Estaba puesto para que "Telecomunicaciones" (~396px a tamano display,
+       mas que el ancho util de un movil de 375px) no desbordase su caja. Pero
+       `hyphens: auto` no espera a que haga falta: parte cualquier palabra en
+       cuanto le conviene para equilibrar la linea, y en titulares de dos o
+       tres palabras eso salia como "Ma-ñana" o "ma-ñana" — un corte que en un
+       titular de marca se lee como una errata, no como tipografia.
+
+       `overflow-wrap: break-word` cubre igualmente el caso de desbordamiento
+       real: parte la palabra solo cuando de verdad no cabe. Sin guion, pero
+       tampoco rompe el layout, que era el unico motivo por el que estaba. */
+    hyphens: manual;
     overflow-wrap: break-word;
   }
 
