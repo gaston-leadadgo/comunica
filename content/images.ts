@@ -115,9 +115,10 @@ export const images = {
     key: "home-hero-isometric",
     src: "/images/home/home-hero-isometric.webp",
     alt: "Ilustración isométrica de un hotel en corte: de abajo arriba, la sala técnica con los servidores, las salas de reunión, el restaurante, la recepción y las habitaciones. Un cableado luminoso recorre las plantas y converge en un equipo de Comunica, con etiquetas de WiFi, voz, IPTV, conectividad e inteligencia artificial.",
-    width: 1215,
-    height: 941,
-    usage: "Home / hero partido, columna derecha, a tamaño completo",
+    width: 930,
+    height: 720,
+    usage:
+      "Home / hero partido, columna derecha. Hoy actúa como PÓSTER del vídeo en bucle (`public/video/home-hero-isometric.mp4`): es su primer fotograma, así que al arrancar la reproducción no hay salto. También es lo que se ve con `prefers-reduced-motion` y si el vídeo no carga.",
     role: "hero",
     grading: "ilustracion",
     safeArea:

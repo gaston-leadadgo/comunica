@@ -1,11 +1,13 @@
 "use client";
 
-import { SmartImage } from "@/components/media/smart-image";
+import { useEffect, useRef } from "react";
+
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/section";
 import { HotelText } from "@/components/ui/hotel-text";
 import { Icon } from "@/components/ui/icon";
 import { home } from "@/content/home";
+import { getImage } from "@/content/images";
 import { useBrandMotion } from "@/lib/gsap/use-brand-motion";
 
 /**
@@ -40,8 +42,46 @@ import { useBrandMotion } from "@/lib/gsap/use-brand-motion";
  * titular se renderiza en su estado final en el HTML y se anima con
  * `gsap.from()`, que es lo que permite que siga siendo el elemento LCP.
  */
+/** Bucle del hero. Sin pista de audio: se elimino al codificar, no se silencia. */
+const HERO_VIDEO = "/video/home-hero-isometric.mp4";
+
 export function HeroCinematic() {
   const { hero } = home;
+  /** El poster y la descripcion salen del registro de imagenes, no sueltos. */
+  const art = getImage("home-hero-isometric");
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  /**
+   * Arranca el bucle solo si el usuario no ha pedido reducir movimiento.
+   *
+   * Se hace aqui y no con el atributo `autoPlay` porque el atributo dispara la
+   * reproduccion antes de que ningun efecto pueda intervenir: quien tenga
+   * activado "reducir movimiento" veria arrancar el video igualmente. Sin
+   * reproducir, queda el poster —que es su primer fotograma—, asi que la
+   * composicion se ve idéntica, simplemente quieta.
+   *
+   * `play()` devuelve una promesa que el navegador rechaza si bloquea la
+   * reproduccion automatica; se ignora a proposito, porque el fallback (el
+   * poster) ya es correcto.
+   */
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const apply = () => {
+      if (media.matches) {
+        video.pause();
+        video.currentTime = 0;
+      } else {
+        void video.play().catch(() => {});
+      }
+    };
+
+    apply();
+    media.addEventListener("change", apply);
+    return () => media.removeEventListener("change", apply);
+  }, []);
 
   const scope = useBrandMotion<HTMLDivElement>(({ gsap, scope, reduced }) => {
     if (reduced) return;
@@ -238,15 +278,33 @@ export function HeroCinematic() {
             {/* `hero-art-cap` (globals.css) limita el ancho en funcion del alto
                 que de verdad queda libre, distinto segun el reparto sea apilado
                 o en dos columnas. Es lo que impide que la ilustracion empuje el
-                hero por debajo del pliegue. */}
+                hero por debajo del pliegue. El video hereda ese mismo tope: se
+                recorto al mismo encuadre que la imagen (930x720, proporcion
+                1,292 frente a 1,291) para que nada de la maquetacion cambie. */}
             <div className="hero-art-cap">
-              <SmartImage
-                image="home-hero-isometric"
-                sizes="(min-width: 1024px) 56vw, 100vw"
-                priority
-                wrapperClassName="!aspect-auto w-full"
+              <video
+                ref={videoRef}
+                // `role="img"` + `aria-label`: <video> no admite `alt`, y esto
+                // es una ilustracion en bucle sin controles ni sonido, no un
+                // reproductor. Para un lector de pantalla equivale a la imagen,
+                // y la descripcion sale del registro para no duplicarla.
+                role="img"
+                aria-label={art.alt}
+                poster={art.src}
+                width={art.width}
+                height={art.height}
+                muted
+                loop
+                playsInline
+                // Sin `autoPlay`: la reproduccion la arranca el efecto de abajo
+                // solo si el usuario no pidio reducir movimiento. Con el
+                // atributo puesto, el navegador empezaria a reproducir antes de
+                // que el efecto pueda pararlo.
+                preload="metadata"
                 className="h-auto w-full"
-              />
+              >
+                <source src={HERO_VIDEO} type="video/mp4" />
+              </video>
             </div>
           </div>
         </div>
