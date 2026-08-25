@@ -115,14 +115,14 @@ export const images = {
     key: "home-hero-isometric",
     src: "/images/home/home-hero-isometric.webp",
     alt: "Ilustración isométrica de un hotel en corte: de abajo arriba, la sala técnica con los servidores, las salas de reunión, el restaurante, la recepción y las habitaciones. Un cableado luminoso recorre las plantas y converge en un equipo de Comunica, con etiquetas de WiFi, voz, IPTV, conectividad e inteligencia artificial.",
-    width: 930,
+    width: 988,
     height: 720,
     usage:
       "Home / hero partido, columna derecha. Hoy actúa como PÓSTER del vídeo en bucle (`public/video/home-hero-isometric.mp4`): es su primer fotograma, así que al arrancar la reproducción no hay salto. También es lo que se ve con `prefers-reduced-motion` y si el vídeo no carga.",
     role: "hero",
     grading: "ilustracion",
     safeArea:
-      "Ya viene recortado. El archivo original traía un 28 % de blanco a la izquierda —la zona segura que pedía el prompt, pensada para un titular superpuesto—. En el hero partido el texto va en su propia columna, así que ese blanco solo abría un hueco entre el texto y el edificio.",
+      "Ya viene recortado (988x720 desde 1280x720, x=288). El recorte tiene dos límites que no se pueden mover sin romper algo: por la izquierda, el equipo de Comunica emite anillos concéntricos ANIMADOS que en su punto más ancho llegan a x=295 del original, así que cortar más adentro los parte por la mitad; por la derecha, la última columna del vídeo original es una línea oscura de 1px (artefacto del render) que hay que dejar fuera. Medido fotograma a fotograma sobre los 8 s.",
     ready: true,
     prompt: "Ver docs/PROMPT-HERO-ISOMETRICO.md (generada con GPT Image, no con Nano Banana).",
   },

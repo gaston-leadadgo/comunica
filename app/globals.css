@@ -316,7 +316,7 @@
      ========================================================================== */
   .hero-art-cap {
     --hero-art-space: 30dvh;
-    --hero-art-ratio: 1.2917; /* 930 / 720, la proporcion real del archivo */
+    --hero-art-ratio: 1.3722; /* 988 / 720, la proporcion real del archivo */
     inline-size: 100%;
     max-inline-size: calc(var(--hero-art-space) * var(--hero-art-ratio));
   }

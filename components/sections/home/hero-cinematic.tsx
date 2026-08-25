@@ -278,9 +278,10 @@ export function HeroCinematic() {
             {/* `hero-art-cap` (globals.css) limita el ancho en funcion del alto
                 que de verdad queda libre, distinto segun el reparto sea apilado
                 o en dos columnas. Es lo que impide que la ilustracion empuje el
-                hero por debajo del pliegue. El video hereda ese mismo tope: se
-                recorto al mismo encuadre que la imagen (930x720, proporcion
-                1,292 frente a 1,291) para que nada de la maquetacion cambie. */}
+                hero por debajo del pliegue. El video hereda ese mismo tope; su
+                proporcion (988/720 = 1,372) la fija el encuadre minimo que no
+                corta los anillos animados del equipo — ver `safeArea` en el
+                registro de imagenes. */}
             <div className="hero-art-cap">
               <video
                 ref={videoRef}
