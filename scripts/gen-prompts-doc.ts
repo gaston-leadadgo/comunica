@@ -36,7 +36,19 @@ const GROUPS: { id: string; title: string }[] = [
   { id: "og", title: "Open Graph" },
 ];
 
-const all = Object.values(images) as ImageAsset[];
+/**
+ * Solo la serie fotografica.
+ *
+ * Este documento es el guion para generar las imagenes con Nano Banana / Gemini
+ * siguiendo el bloque de estilo de la casa y el encadenamiento por anclas. Las
+ * piezas ilustradas (hoy, el hero isometrico) no salen de ahi: se generaron con
+ * otro modelo y con su propio prompt, documentado aparte en
+ * `docs/PROMPT-HERO-ISOMETRICO.md`. Listarlas aqui invitaria a regenerarlas con
+ * un bloque de estilo fotografico que no les corresponde.
+ */
+const all = (Object.values(images) as ImageAsset[]).filter(
+  (a) => a.grading !== "ilustracion",
+);
 
 function groupOf(asset: ImageAsset): string {
   return asset.src.split("/")[2] ?? "otros";

@@ -71,13 +71,24 @@
   --text-display-split--letter-spacing: -0.03em;
   --text-display-split--font-weight: 700;
 
-  /* Hero cinematografico centrado. El titular viene partido en dos lineas desde
-     el copy: la mas larga son 43 caracteres, que a 56px miden ~1.150px y caben
-     en el contenedor de 76rem. Dos lineas, no tres. */
+  /* Hero a ancho completo (Soluciones, Partners, Nosotros). El titular viene
+     partido en dos lineas desde el copy: la mas larga son 43 caracteres, que a
+     56px miden ~1.150px y caben en el contenedor de 76rem. */
   --text-display-hero: clamp(1.875rem, 3.6vw + 0.5rem, 3.5rem);
   --text-display-hero--line-height: 1.04;
   --text-display-hero--letter-spacing: -0.03em;
   --text-display-hero--font-weight: 700;
+
+  /* Hero PARTIDO (home). La columna de texto mide ~575px, no los 1.216px del
+     contenedor, asi que el tope de 56px del token de arriba mandaba la segunda
+     linea del titular a tres renglones: cinco en total, medido en pantalla.
+     A 48px cada mitad cae en dos, que es el reparto 2+2 que buscaba el copy al
+     venir ya partido. Sigue siendo el texto mas grande de la pagina —display-2,
+     el de los titulares de seccion, tope a 44px— asi que la jerarquia aguanta. */
+  --text-display-hero-split: clamp(1.875rem, 2.9vw + 0.6rem, 3rem);
+  --text-display-hero-split--line-height: 1.06;
+  --text-display-hero-split--letter-spacing: -0.03em;
+  --text-display-hero-split--font-weight: 700;
 
   /* Titular de seccion. El mas largo de la home son 93 caracteres ("No
      necesitas un proveedor que sepa..."): a 44px caben en 2 lineas de 1.090px. */

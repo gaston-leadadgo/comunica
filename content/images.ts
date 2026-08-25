@@ -36,7 +36,15 @@
  *    desde dentro, en horas muertas, no el folleto.
  */
 
-export type Grading = "A" | "B";
+/**
+ * Receta de revelado de la serie fotografica: A = lado huesped (dia, luz
+ * natural), B = lado tecnico (noche, larga exposicion).
+ *
+ * `ilustracion` no es una receta de revelado: marca las piezas que no son
+ * fotografia y por tanto quedan FUERA del encadenamiento por anclas de estilo
+ * y de la normalizacion final en lote. Hoy solo la usa el hero isometrico.
+ */
+export type Grading = "A" | "B" | "ilustracion";
 
 export type ImageAsset = {
   key: string;
@@ -58,7 +66,13 @@ export type ImageAsset = {
 export const BLUR_PLACEHOLDER =
   "data:image/gif;base64,R0lGODlhAQABAPAAAO/r5gAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==";
 
-export const HOUSE_STYLE: Record<Grading, string> = {
+/**
+ * Solo las dos recetas fotograficas. `Omit<..., "ilustracion">` y no
+ * `Record<Grading, ...>`: las piezas ilustradas no se generan con el bloque de
+ * estilo de la casa —no son fotografia— y obligar a inventarles uno seria
+ * declarar una receta que nadie va a usar.
+ */
+export const HOUSE_STYLE: Record<Exclude<Grading, "ilustracion">, string> = {
   A: `House style for this whole image set, follow it exactly: photograph it as if a single documentary photographer shot the entire series on a full-frame camera with a 40mm lens, natural available light only, no studio flash, no lens flare, no bokeh balls, no tilt-shift blur. Restrained European palette limited to warm off-white #FAFAF8, neutral warm grey #F1EFEC, deep navy #003057, near-black #1D1D1B, plus exactly one small accent of electric cyan #009FE3 that exists physically in the scene as a light, a screen glow or a status indicator. Bright exposure, gentle contrast, soft lifted shadows that read as deep navy rather than grey, highlights very slightly warm, overall saturation reduced about fifteen percent. Fine natural film grain. Photorealistic, calm, sober, precise, quietly expensive, European. When a person appears they are the owner or manager of a small independent hotel, between forty and sixty years old, in real working clothes rather than corporate suits, caught mid-task with their hands busy, at ease in a place they clearly run themselves; natural unposed expressions are welcome but nobody ever looks at the camera and nobody smiles at it. At most two people in frame. Absolutely avoid: stock-photo poses, people smiling at the camera, call-center headsets, handshakes, meeting rooms with sticky notes, people pointing at screens, models who look like models, holiday and brochure imagery of any kind including swimming pools, beaches, sunsets, cocktails, couples on holiday and glamour shots of luxury suites, floating holographic interfaces, glowing wireframe globes, world maps with connection lines, hexagon patterns, printed circuit boards, concentric signal waves, drawn clouds, 3D padlocks, teal-and-orange colour grading, and any text, lettering, numbers, logos or watermarks anywhere in the image.`,
   B: `House style for this whole image set, follow it exactly: photograph it as if a single documentary photographer shot the entire series on a full-frame camera with a 40mm lens, available light only, at night or in a dim interior, no studio flash, no lens flare, no bokeh balls. Restrained European palette limited to near-black #1D1D1B for the blacks (never pure black), deep navy #003057 in the midtones, and electric cyan #009FE3 for speculars, light trails and status glows. No green, no magenta, no yellow. Medium-high contrast with no clipped highlights, fine natural film grain equivalent to ISO 800. Photorealistic, calm, sober, precise, quietly expensive, European. When a person appears they are the owner or manager of a small independent hotel, between forty and sixty years old, in real working clothes rather than corporate suits, caught mid-task on a late shift; natural unposed expressions are welcome but nobody ever looks at the camera and nobody smiles at it. At most two people in frame. Absolutely avoid: stock-photo poses, people smiling at the camera, call-center headsets, handshakes, models who look like models, holiday and brochure imagery of any kind including swimming pools, beaches, sunsets and cocktails, floating holographic interfaces, glowing wireframe globes, world maps with connection lines, hexagon patterns, printed circuit boards, concentric signal waves, drawn clouds, 3D padlocks, teal-and-orange colour grading, and any text, lettering, numbers, logos or watermarks anywhere in the image.`,
 };
@@ -81,6 +95,37 @@ export const STYLE_ANCHORS = [
 
 export const images = {
   // ------------------------------------------------------------------ HOME
+  /**
+   * Hero actual: ilustracion isometrica en corte, generada con GPT Image a
+   * partir de `docs/PROMPT-HERO-ISOMETRICO.md`.
+   *
+   * Es la unica imagen del proyecto que NO sigue el estilo fotografico de la
+   * casa (grading A/B): es una decision de cliente, documentada en ese mismo
+   * archivo. Por eso no lleva `grading` ni entra en el encadenamiento por
+   * anclas de estilo.
+   *
+   * Los rotulos (HOTEL, WiFi, Voz, IPTV, Conectividad, IA, COMUNICA, "Todo
+   * bajo control") vienen DENTRO de la imagen, no compuestos por CSS: el
+   * modelo los escribio correctamente y componerlos encima habria obligado a
+   * anclarlos a coordenadas de la ilustracion, que se mueven en cuanto cambia
+   * el recorte. Es tambien la razon de que `alt` los describa: para un lector
+   * de pantalla, ese texto solo existe aqui.
+   */
+  "home-hero-isometric": {
+    key: "home-hero-isometric",
+    src: "/images/home/home-hero-isometric.webp",
+    alt: "Ilustración isométrica de un hotel en corte: de abajo arriba, la sala técnica con los servidores, las salas de reunión, el restaurante, la recepción y las habitaciones. Un cableado luminoso recorre las plantas y converge en un equipo de Comunica, con etiquetas de WiFi, voz, IPTV, conectividad e inteligencia artificial.",
+    width: 1672,
+    height: 941,
+    usage: "Home / hero partido, columna derecha, a tamaño completo",
+    role: "hero",
+    grading: "ilustracion",
+    safeArea:
+      "El tercio izquierdo del archivo queda vacío a propósito: ahí cae la columna de texto cuando la ilustración se coloca a sangre en pantallas grandes.",
+    ready: true,
+    prompt: "Ver docs/PROMPT-HERO-ISOMETRICO.md (generada con GPT Image, no con Nano Banana).",
+  },
+
   "home-hero-lobby-umbral": {
     key: "home-hero-lobby-umbral",
     src: "/images/home/home-hero-lobby-umbral.webp",
