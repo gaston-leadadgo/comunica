@@ -7,44 +7,42 @@ import { useRef, useState } from "react";
 import { SIZES, SmartImage } from "@/components/media/smart-image";
 import { Container } from "@/components/ui/section";
 import { HotelText } from "@/components/ui/hotel-text";
-import { Icon } from "@/components/ui/icon";
 import { home } from "@/content/home";
 import { gsap, useBrandMotion } from "@/lib/gsap/use-brand-motion";
+import { cn } from "@/lib/utils/cn";
 
 gsap.registerPlugin(Flip);
 
 /**
  * Bento de diferenciales, interactivo.
  *
- * Antes era una rejilla estatica de cinco tarjetas iguales: los cinco
- * argumentos competian por la misma atencion y ninguno ganaba. Ahora la rejilla
- * tiene un protagonista: la tarjeta seleccionada ocupa el bloque grande, en
- * navy y con su desarrollo completo; las otras cuatro quedan como titulares
- * compactos, listos para tomar el relevo. Al pulsar cualquiera, la cuadricula se
- * reorganiza y la elegida pasa a principal.
+ * Verificacion de densidad con 6 columnas y `grid-flow-dense` — es la MISMA de
+ * siempre, la interaccion no cambia la composicion:
+ *   fila 1: tres huecos estrechos (span 2 cada uno)              = 6
+ *   fila 2: hueco ancho (span 4) + imagen (span 2, dos filas)    = 6
+ *   fila 3: hueco ancho (span 4) + la imagen sigue               = 6
  *
- * Densidad, con 12 columnas y cero celdas muertas:
- *   filas 1-2: destacada (col-span-8, row-span-2) + imagen (col-span-4, row-span-2)
- *   fila 3:    las cuatro restantes (col-span-3 cada una) = 12
+ * Lo que cambia al pulsar NO es la rejilla: son las tarjetas que la ocupan. Los
+ * huecos tienen tamaño fijo y las cinco tarjetas se reparten entre ellos, con la
+ * seleccionada siempre en el primer hueco ancho —el principal, en navy—. Pulsar
+ * una tarjeta la lleva ahi y desplaza al resto un puesto.
  *
- * El orden del DOM se recalcula en cada seleccion —la destacada siempre va
- * primera— en lugar de dejarla en su sitio y estirarla: con `grid-flow-dense` y
- * la destacada en mitad de la lista, las celdas anteriores llenaban la primera
- * fila y el bloque grande caia a la segunda, cambiando la composicion entera
- * segun cual se pulsara.
+ * Esto es deliberado, y es lo contrario de lo que se intento antes: si las
+ * celdas cambian de tamaño al seleccionarlas, la seccion entera crece o encoge
+ * bajo el cursor, la pagina da un salto de scroll y la animacion tiene que
+ * interpolar un reflujo completo (que es lo que se percibia como lentitud). Con
+ * los huecos fijos, lo unico que se mueve son las tarjetas entre posiciones
+ * conocidas: la altura de la seccion no varia ni un pixel.
  *
- * El movimiento es GSAP Flip: se mide la posicion de todas las celdas ANTES de
- * cambiar de estado y se interpola desde ahi despues de que React repinte, asi
- * que las tarjetas se deslizan a su nueva posicion en lugar de saltar. Es la
- * unica forma de animar un cambio de `grid-column`/`grid-row`, que no son
- * propiedades interpolables por CSS.
+ * El movimiento es GSAP Flip porque `grid-column` y `grid-row` no son
+ * propiedades interpolables por CSS: sin el, las tarjetas saltarian de hueco.
  */
 export function DifferentialsBento() {
   const { differentials } = home;
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(3);
 
   const gridRef = useRef<HTMLDivElement>(null);
-  /** Instantanea previa al cambio. Se consume en el `useGSAP` de abajo. */
+  /** Instantanea previa al cambio. La consume el `useGSAP` de abajo. */
   const pending = useRef<Flip.FlipState | null>(null);
 
   const select = (index: number) => {
@@ -55,28 +53,28 @@ export function DifferentialsBento() {
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (grid && !reduced) {
-      pending.current = Flip.getState(grid.querySelectorAll("[data-cell]"), {
-        // `props` incluye lo que Flip no deduce de la geometria: sin esto, el
-        // cambio de fondo y de color de texto salta de golpe a mitad del
-        // deslizamiento.
+      pending.current = Flip.getState(grid.querySelectorAll("[data-card]"), {
+        // El fondo y el color de texto cambian a la vez que la posicion. Sin
+        // declararlos aqui, Flip solo interpola la geometria y el color salta
+        // de golpe al empezar el desplazamiento.
         props: "backgroundColor,color",
       });
     }
     setActive(index);
   };
 
-  // Corre despues de que React haya pintado el nuevo reparto de la rejilla, que
-  // es cuando Flip puede medir el estado final y animar desde el guardado.
+  // Corre en cuanto React ha aplicado el nuevo reparto, antes de pintar: es
+  // cuando Flip puede medir el destino y animar desde la instantanea.
   useGSAP(
     () => {
       if (!pending.current) return;
+      // Sin `absolute`. Con el, Flip saca las tarjetas del flujo durante la
+      // transicion: la rejilla se queda vacia por dentro, colapsa de altura y
+      // vuelve a crecer al terminar. Como aqui el DOM no se reordena y la
+      // rejilla mantiene sus tres filas, no hace ninguna falta.
       Flip.from(pending.current, {
-        duration: 0.55,
-        ease: "power2.inOut",
-        // `absolute` saca las celdas del flujo durante la animacion: sin ello,
-        // las que cambian de fila arrastran a las demas y el conjunto tiembla.
-        absolute: true,
-        nested: true,
+        duration: 0.4,
+        ease: "power2.out",
       });
       pending.current = null;
     },
@@ -99,11 +97,28 @@ export function DifferentialsBento() {
     });
   });
 
-  const featured = { item: differentials.items[active], index: active };
-  /** El resto, en su orden original. */
-  const rest = differentials.items
-    .map((item, index) => ({ item, index }))
-    .filter(({ index }) => index !== active);
+  /**
+   * Anchos por tarjeta. El orden del DOM NO cambia nunca: las cinco tarjetas
+   * salen siempre en su orden natural (01 a 05) y lo unico que se recalcula es
+   * cuantas columnas ocupa cada una.
+   *
+   * Reordenar el DOM fue el primer intento y estaba mal: con `grid-flow-dense`,
+   * el navegador ya reordena por su cuenta para tapar huecos, asi que mover
+   * ademas los nodos daba colocaciones impredecibles —y obligaba a Flip a sacar
+   * las tarjetas del flujo para animarlas, que es de donde salia la sensacion
+   * de que la seccion se rompia al pulsar.
+   *
+   * Aqui la seleccionada toma 4 columnas y, del resto, tres toman 2 y la ultima
+   * toma 4. Sea cual sea la elegida, la suma por fila sigue dando 6 y la rejilla
+   * conserva sus tres filas. Con la cuarta seleccionada (el valor inicial) el
+   * reparto es exactamente el de siempre.
+   */
+  const last = differentials.items.length - 1;
+  /** La segunda ancha: la ultima tarjeta, salvo que sea la seleccionada. */
+  const secondWide = active === last ? last - 1 : last;
+
+  const spanOf = (index: number) =>
+    index === active || index === secondWide ? "lg:col-span-4" : "lg:col-span-2";
 
   return (
     <section data-tone="light" className="bg-paper-warm py-section">
@@ -116,88 +131,71 @@ export function DifferentialsBento() {
           <HotelText>{differentials.title}</HotelText>
         </h2>
 
-        <p className="mx-auto mt-6 text-center font-mono text-eyebrow tracking-[0.2em] text-cyan-ink-strong uppercase">
-          {differentials.hint}
-        </p>
-
         <div ref={scope}>
           <div
             ref={gridRef}
-            className="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-xl bg-line sm:grid-cols-2 lg:grid-cols-12"
+            className="mt-16 grid grid-flow-dense grid-cols-1 gap-px overflow-hidden rounded-xl bg-line sm:grid-cols-2 lg:grid-cols-6"
           >
-            {/* Destacada. Va PRIMERA en el DOM siempre: la colocacion
-                automatica de CSS Grid llena por orden de origen, asi que un
-                bloque de 8 columnas en mitad de la lista se descolgaria a la
-                fila siguiente y la composicion cambiaria segun cual estuviera
-                seleccionada. */}
-            <article
-              key={featured.item.title}
-              data-cell
-              data-tone="dark"
-              className="flex min-w-0 flex-col bg-navy p-8 text-fg-inverse transition-colors sm:col-span-2 lg:col-span-8 lg:row-span-2 lg:p-12"
-            >
-              <span className="font-mono text-data text-cyan" data-tabular>
-                {String(featured.index + 1).padStart(2, "0")}
-              </span>
-              <h3 className="measure-card mt-6 text-display-2 text-white">
-                {featured.item.title}
-              </h3>
-              <p className="measure-body mt-6 text-body text-fg-inverse-muted">
-                {featured.item.description}
-              </p>
-            </article>
-
-            {/* Imagen: cierra las dos primeras filas junto a la destacada */}
-            <div
-              data-cell
-              className="relative min-w-0 bg-paper sm:col-span-2 lg:col-span-4 lg:row-span-2"
-            >
-              <SmartImage
-                image="home-differentials-engineer-hands"
-                sizes={SIZES.grid2}
-                decorative
-                wrapperClassName="h-full !aspect-auto min-h-[14rem]"
-              />
-            </div>
-
-            {/* Las cuatro restantes: solo el titular. El desarrollo aparece al
-                promoverlas, que es lo que hace que la rejilla quepa en pantalla
-                y que pulsar tenga una recompensa visible. */}
-            {rest.map(({ item, index }) => (
-              <article
-                key={item.title}
-                data-cell
-                className="group flex min-w-0 flex-col bg-paper transition-colors hover:bg-paper-warm-2 lg:col-span-3"
-              >
+            {differentials.items.map((item, index) => {
+              const isPrincipal = index === active;
+              return (
                 <button
+                  key={item.title}
                   type="button"
+                  data-cell
+                  data-card
+                  data-tone={isPrincipal ? "dark" : undefined}
                   onClick={() => select(index)}
-                  // No es un `tab`: la destacada no es un panel aparte, es esta
-                  // misma tarjeta transformada. `aria-expanded` describe
-                  // exactamente eso — se despliega en su sitio.
-                  aria-expanded={false}
-                  className="flex flex-1 flex-col p-7 text-left"
+                  aria-pressed={isPrincipal}
+                  className={cn(
+                    "flex min-w-0 flex-col p-8 text-left transition-colors",
+                    spanOf(index),
+                    isPrincipal
+                      ? "bg-navy text-fg-inverse"
+                      : "bg-paper hover:bg-paper-warm-2",
+                  )}
                 >
                   <span
-                    className="font-mono text-data text-cyan-ink-strong"
+                    className={cn(
+                      "font-mono text-data",
+                      isPrincipal ? "text-cyan" : "text-cyan-ink-strong",
+                    )}
                     data-tabular
                   >
                     {String(index + 1).padStart(2, "0")}
                   </span>
-                  <span className="mt-5 flex flex-1 items-end justify-between gap-4">
-                    <span className="measure-card text-card-title">
-                      {item.title}
-                    </span>
-                    <span
-                      aria-hidden="true"
-                      className="grid size-8 shrink-0 place-items-center rounded-full border border-line text-navy transition-colors group-hover:border-navy group-hover:bg-navy group-hover:text-white"
-                    >
-                      <Icon name="arrow-right" size={15} />
-                    </span>
+                  <span
+                    className={cn(
+                      "measure-card mt-5 text-display-3",
+                      isPrincipal && "text-white",
+                    )}
+                  >
+                    {item.title}
+                  </span>
+                  <span
+                    className={cn(
+                      "measure-body mt-4 text-body-sm",
+                      isPrincipal ? "text-fg-inverse-muted" : "text-fg-muted",
+                    )}
+                  >
+                    {item.description}
                   </span>
                 </button>
-              </article>
-            ))}
+              );
+            })}
+
+            {/* Imagen a dos filas: cierra la rejilla */}
+            <div
+              data-cell
+              className="relative min-w-0 bg-paper lg:col-span-2 lg:row-span-2"
+            >
+              <SmartImage
+                image="home-differentials-engineer-hands"
+                sizes={SIZES.grid3}
+                decorative
+                wrapperClassName="h-full !aspect-auto min-h-[18rem]"
+              />
+            </div>
           </div>
         </div>
       </Container>

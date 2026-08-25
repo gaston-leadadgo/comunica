@@ -1,98 +1,91 @@
-# Hero isométrico — prompts de generación
+# Hero isométrico — prompt de generación
 
-Referencia: `public/images/hero-1.png` (la maqueta que aprobaste).
+Referencia: `public/images/hero-1.png`.
+Destino: ChatGPT (GPT Image), que sí rotula bien.
 
-Objetivo: una ilustración isométrica de hotel **en corte**, con las plantas
-abiertas como una casa de muñecas y el cableado recorriendo el edificio de
-arriba abajo. Sustituye a la fotografía de lobby del hero actual.
+**Qué entra en la imagen:** el edificio, el rótulo HOTEL, las cinco etiquetas
+flotantes de la derecha (WiFi, Voz, IPTV, Conectividad, IA), la píldora "Todo
+bajo control" y la caja con la marca COMUNICA.
 
----
-
-## Reglas antes de generar (léelas, ahorran repeticiones)
-
-**1. Nada de texto dentro de la imagen.** Ni el rótulo "HOTEL" de la azotea, ni
-"COMUNICA" en la caja, ni las etiquetas WiFi / Voz / IPTV / Conectividad / IA de
-la derecha. Los modelos de imagen escriben jerigonza: letras inventadas, acentos
-mal puestos, palabras a medias. En una web que vende rigor técnico a un director
-de IT, eso se detecta en dos segundos y hunde la credibilidad.
-
-Todo ese texto lo pone la web por encima, en HTML real: nítido en pantallas
-retina, accesible, traducible y editable sin regenerar la imagen. Por eso los
-prompts piden explícitamente **superficies lisas y vacías** donde luego irán el
-rótulo y la marca.
-
-**2. El tercio izquierdo va vacío.** Ahí vive el titular. Si el edificio se
-centra, el texto le cae encima.
-
-**3. Genera primero la variante A y quédatela como referencia.** Adjúntala en
-las siguientes generaciones para que el color y la luz no deriven.
+**Qué NO entra:** solo el bloque de texto de la izquierda —titular, subtítulo,
+botones y la fila de "350 hoteles · 13 países"— porque eso ya lo pinta la web
+encima. Ese tercio izquierdo tiene que quedar vacío.
 
 ---
 
-## Prompt principal (variante A — la del render)
+## Prompt
 
-> Isometric architectural cutaway illustration of a modern five-storey boutique
-> hotel, rendered as an open dollhouse cross-section so every floor is visible at
-> once. Photorealistic 3D render, clean and precise, floating on a pure white
-> background with a soft contact shadow beneath the building.
+> A polished isometric architectural cutaway illustration of a modern five-storey
+> boutique hotel, presented like an open dollhouse cross-section so that every
+> floor is visible at once. Photorealistic 3D render, crisp and clean, on a pure
+> white background with a soft contact shadow under the building.
 >
-> The building sits in the right two thirds of the frame, seen from a raised
-> three-quarter isometric angle, tilted slightly to the left. The entire left
-> third of the image is empty white space with nothing in it.
+> **Composition.** 16:9 landscape. The hotel occupies the centre-right of the
+> frame, seen from a raised three-quarter isometric angle. **The entire left
+> third of the image must remain completely empty white space — no building, no
+> objects, no text, nothing.** A column of floating labels runs down the right
+> edge.
 >
-> From bottom to top the floors read:
-> ground floor — a technical room with slim black server racks and patch panels,
-> their status lights glowing cyan;
-> first floor — a meeting room with a long table and chairs, and a small open
-> office area;
-> second floor — a restaurant with laid tables, warm pendant lights and a bar;
-> third floor — the reception lobby: a long stone counter, a lounge with sofas
-> and armchairs, potted plants;
-> top floor — three guest bedrooms with made beds, bedside lamps and a wall
-> mounted flat screen in each.
+> **The floors, bottom to top.**
+> Ground floor: a technical room with slim black server racks and patch panels,
+> their status lights glowing cyan.
+> First floor: a meeting room with a long table and chairs, plus a small open
+> workspace.
+> Second floor: a restaurant with laid tables, warm pendant lamps and a bar.
+> Third floor: the reception lobby — a long dark stone counter with a
+> receptionist standing behind it, a lounge with sofas and armchairs, potted
+> plants, and a wall-mounted digital screen.
+> Top floor: three guest bedrooms, each with a made bed, bedside lamps and a
+> wall-mounted flat-screen television.
 >
-> A slim glowing cyan cable runs vertically through the core of the building,
-> branching into every floor along the ceilings and walls, like a nervous system
-> made of light. All the branches converge downwards into a single rounded white
-> device that floats just below the ground floor, lit from within with cyan.
+> **The network.** A slim, luminous cyan cable runs vertically through the core of
+> the building and branches along the ceilings into every floor, like a nervous
+> system made of light. All branches sweep downward and converge into a single
+> rounded white device that floats just below the building, glowing cyan from
+> within.
 >
-> On the roof there is a rectangular sign panel mounted on a frame — the panel is
-> completely blank, smooth and empty, with no letters, no logo and no markings of
-> any kind. The floating device below the building is likewise a plain smooth
-> white rounded box with a completely blank top face, no text and no logo.
+> **Text inside the image — render these exactly, spelled correctly, in a clean
+> modern geometric sans-serif.**
+> On the roof, a dark rectangular sign panel mounted on a frame reads **HOTEL** in
+> warm cream capitals, with a row of five small gold stars beneath the word.
+> On the top face of the floating white device, the word **COMUNICA** in dark navy
+> capitals with generous letter-spacing, sitting beneath a simple cyan circular
+> emblem.
+> Above the entrance canopy at street level, a small dark sign reads **HOTEL** in
+> small cream capitals.
 >
-> At street level: a small entrance canopy, three steps, clipped hedges in
-> planters, two slim trees and one dark grey saloon car parked at the kerb.
+> **Floating labels down the right edge.** Five separate white rounded-rectangle
+> pills, evenly stacked and slightly offset from one another, each with a soft
+> drop shadow, a small cyan line-art icon on the left and a short dark-navy label
+> on the right. From top to bottom they read exactly:
+> **WiFi** (wi-fi arc icon), **Voz** (telephone handset icon), **IPTV** (monitor
+> icon), **Conectividad** (connected-nodes icon), **IA** (brain icon).
+> A thin cyan connector line links each pill back to the corresponding floor of
+> the building.
 >
-> Colour: predominantly white, warm off-white and pale grey architecture, warm
-> amber interior lighting in the rooms, and a single saturated accent — electric
-> cyan #009FE3 — used only for the cables, the device glow and the server status
-> lights. Deep navy #003057 in the darkest shadows. No other saturated colour
-> anywhere.
+> Below the building, one more white rounded pill with a soft shadow, containing a
+> small green circular check icon followed by the words **Todo bajo control** in
+> dark navy.
 >
-> Crisp, clean, high detail, soft even studio lighting, subtle ambient occlusion,
-> no harsh shadows, no depth of field blur.
+> All text must be correctly spelled Spanish, sharp and perfectly legible. No
+> invented letters, no duplicated or garbled words, no lorem ipsum.
 >
-> Absolutely no text, no letters, no numbers, no logos, no watermarks, no UI
-> panels, no floating labels, no callout badges, no icons anywhere in the image.
-> No people. No world map, no globe, no dotted network mesh, no hexagons, no
-> circuit board patterns, no lens flares.
-
----
-
-## Variante B — más ilustrada, menos render
-
-Por si el fotorrealismo resulta demasiado "stock 3D". Mismo contenido, acabado de
-ilustración editorial:
-
-> Same isometric hotel cutaway as described, but rendered as a refined vector
-> style architectural illustration: flat planes with subtle gradients, clean
-> lines, no photographic texture, no reflections. Muted paper white and warm grey
-> palette with electric cyan #009FE3 as the only accent. Editorial, technical,
-> calm — closer to an architect's axonometric drawing than to a product render.
+> **Street level.** A small entrance canopy, three steps, clipped hedges in
+> planters, two slim trees, and one dark grey saloon car parked at the kerb.
 >
-> Same restrictions: no text, no letters, no logos, blank roof sign panel, blank
-> device face, empty left third, no people.
+> **Colour.** Predominantly white, warm off-white and pale grey architecture, warm
+> amber interior lighting inside the rooms, and a single saturated accent —
+> electric cyan #009FE3 — reserved for the cables, the device glow, the icons and
+> the server status lights. Deep navy #003057 for text and the darkest shadows.
+> No other saturated colour anywhere.
+>
+> Crisp, high detail, soft even studio lighting, subtle ambient occlusion, no
+> depth-of-field blur, no harsh shadows.
+>
+> Do not add any headline, paragraph, button, statistic or navigation bar. Do not
+> place any text in the left third. No people other than the single receptionist.
+> No world map, no globe, no dotted network mesh, no hexagons, no circuit-board
+> pattern, no lens flares, no watermark.
 
 ---
 
@@ -109,28 +102,27 @@ ilustración editorial:
 
 ---
 
-## Qué monta la web encima (no lo pidas en la imagen)
+## Si algún rótulo sale mal
 
-1. **Rótulo de la azotea** — texto real sobre el panel liso.
-2. **Marca en el dispositivo** — el logotipo SVG de Comunica sobre la cara lisa.
-3. **Las cinco etiquetas flotantes** (WiFi, Voz, IPTV, Conectividad, IA) — píldoras
-   en HTML con los iconos del sistema, ancladas al borde derecho.
-4. **El "Todo bajo control"** de abajo — otra píldora HTML.
+Aunque GPT Image rotula bien, conviene revisar palabra por palabra: **Conectividad**
+es la más larga y la que más se resiste. Si alguna sale con una letra de más o de
+menos, hay dos caminos:
 
-Cuando tengas la imagen generada, dímelo y monto las cuatro capas sobre ella.
+1. Reintentar solo esa zona con edición por región.
+2. Pedir la imagen con esa píldora vacía y montar el texto en HTML encima. Si
+   eliges esto, dímelo y te la compongo: se vería más nítida y además sería
+   traducible.
 
 ---
 
 ## Nota de dirección de arte
 
-Esta imagen se aparta de la línea fotográfica del resto del sitio (hotel real,
-luz natural, grano fino), que se eligió justamente para no parecer una web de
-telco genérica. El corte isométrico con cables luminosos es un recurso muy
-extendido en el sector: gana en claridad —se ve de un golpe todo lo que Comunica
-toca dentro de un hotel— y pierde en diferenciación.
+Este corte isométrico con cables luminosos es un recurso muy extendido en el
+sector telco: gana mucho en claridad —se ve de un vistazo todo lo que Comunica
+toca dentro de un hotel— y pierde en diferenciación frente a la línea fotográfica
+del resto del sitio.
 
-Es una decisión legítima y tuya; lo dejo escrito para que sea consciente, no para
-discutirla. Si se adopta, conviene que el resto de imágenes de la home sigan
-siendo fotografía real: mezclar un render isométrico con más ilustración 3D en
-otras secciones sí terminaría de acercar el sitio al aspecto de catálogo de
-operador.
+Es tu decisión y la respeto. Solo una recomendación práctica: si se adopta,
+conviene que las demás imágenes de la home sigan siendo fotografía real. Mezclar
+más ilustración 3D en otras secciones sí terminaría de acercar el conjunto al
+aspecto de catálogo de operador.

@@ -289,8 +289,6 @@ export const home = {
   differentials: {
     title:
       "No necesitas un proveedor que sepa de telecomunicaciones. Necesitas uno que entienda tu hotel",
-    /** Pista de uso: la rejilla es interactiva y conviene decirlo. */
-    hint: "Elige un diferencial para verlo en detalle",
     items: [
       {
         title: "Especialización hotelera",
