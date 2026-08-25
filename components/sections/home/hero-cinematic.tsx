@@ -6,7 +6,6 @@ import { Container } from "@/components/ui/section";
 import { HotelText } from "@/components/ui/hotel-text";
 import { Icon } from "@/components/ui/icon";
 import { home } from "@/content/home";
-import { site } from "@/content/site";
 import { useBrandMotion } from "@/lib/gsap/use-brand-motion";
 
 /**
@@ -48,9 +47,7 @@ export function HeroCinematic() {
     if (reduced) return;
 
     const lines = scope.querySelectorAll<HTMLElement>("[data-line]");
-    const rest = scope.querySelectorAll<HTMLElement>(
-      "[data-eyebrow],[data-lead],[data-ctas]",
-    );
+    const rest = scope.querySelectorAll<HTMLElement>("[data-lead],[data-ctas]");
     const art = scope.querySelector<HTMLElement>("[data-art]");
 
     gsap.from(lines, {
@@ -103,25 +100,33 @@ export function HeroCinematic() {
       data-tone="light"
       className="relative isolate flex min-h-dvh items-center overflow-hidden bg-paper pt-[calc(var(--header-h)+clamp(1.5rem,4vw,3rem))] pb-[clamp(2rem,5vw,4rem)]"
     >
+      {/* Fondo ambiental. Vuelve tras el primer montaje del hero partido, donde
+          se habia quitado por miedo a que el archivo —de fondo blanco solido— se
+          recortase encima como un rectangulo. Lo resuelve el `mix-blend-multiply`
+          de la ilustracion, mas abajo: el blanco puro se vuelve transparente y la
+          textura atraviesa la imagen en lugar de morir en su borde. */}
+      <div aria-hidden="true" className="bg-dot-grid absolute inset-0 -z-20 opacity-70" />
+      <div aria-hidden="true" className="bg-radial-wash absolute inset-0 -z-10" />
+
+      {/* Sin arco de marca en este hero. Iba pegado al borde derecho, que es
+          justo donde ahora vive la ilustracion: con `multiply`, el trazo se
+          veria ATRAVESANDO el edificio de arriba abajo, y a esa escala no se
+          lee como el arco de la identidad sino como un arañazo en el render. */}
+
       <Container width="wide" className="relative">
         <div
           ref={scope}
-          className="grid items-center gap-x-10 gap-y-10 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-x-8"
+          // `gap-x-4` en escritorio, no `gap-x-10`: la ilustracion ya trae su
+          // propio aire dentro del archivo, asi que un canal ancho se suma al
+          // margen del dibujo y el hueco entre texto e imagen se duplica.
+          className="grid items-center gap-x-10 gap-y-10 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:gap-x-4"
         >
-          {/* Columna de argumento */}
+          {/* Columna de argumento.
+              Sin cifra de credibilidad: la cabecera ya lleva "350 hoteles · 13
+              paises" a dos centimetros de aqui, y repetirla en el hero la
+              convertia en ruido en lugar de en prueba. */}
           <div className="min-w-0">
-            <p
-              data-eyebrow
-              className="flex items-center gap-2.5 font-mono text-eyebrow tracking-[0.18em] text-cyan-ink-strong uppercase"
-            >
-              <span data-tabular>{site.claims.hotels} hoteles</span>
-              <span aria-hidden="true" className="text-line">
-                ·
-              </span>
-              <span data-tabular>{site.claims.countries} países</span>
-            </p>
-
-            <h1 className="mt-6 text-display-hero-split">
+            <h1 className="text-display-hero-split">
               <span data-line className="block text-balance">
                 <HotelText>{hero.titleLine1}</HotelText>
               </span>{" "}
@@ -161,23 +166,32 @@ export function HeroCinematic() {
             </div>
           </div>
 
-          {/* La ilustracion, a sangre.
-              En escritorio solo por la derecha, con un margen negativo del ancho
-              del canal: el archivo trae aire por los cuatro lados, asi que
-              dentro del contenedor se veria pequeña y flotando. Sangrada, el
-              edificio llega al borde del viewport y el hero deja de parecer una
-              tarjeta centrada.
-              En movil sangra por los dos lados. No es estetica: a 375px la
-              ilustracion se queda en 330px y los rotulos de las etiquetas
-              (Conectividad es el mas largo) empiezan a no leerse; recuperar los
-              45px del canal es la unica holgura disponible. */}
+          {/* La ilustracion, a sangre por la derecha y fundida con el fondo.
+              -----------------------------------------------------------------
+              `mix-blend-multiply`: el archivo tiene fondo blanco SOLIDO, no
+              transparente. Multiplicar deja pasar intacto lo que hay debajo alli
+              donde la imagen es blanca (255 x fondo / 255 = fondo) y solo oscurece
+              donde hay dibujo. Resultado: la rejilla de puntos y el lavado radial
+              cruzan por detras del edificio en lugar de morir en un borde recto,
+              que es lo que delataba el montaje.
+
+              El margen negativo la lleva hasta el borde del viewport. En movil
+              sangra por los dos lados: a 375px se quedaba en 330px y los rotulos
+              (Conectividad es el mas largo) dejaban de leerse. */}
+          {/* El `mix-blend-multiply` va en ESTE contenedor y no en el `<img>`.
+              GSAP le pone un `transform` (entrada y paralaje) y una `opacity`, y
+              ambas cosas crean un contexto de apilamiento: una imagen que
+              blendease dentro de el quedaria aislada y el modo de fusion no
+              haria nada. Aplicado al propio elemento transformado, la fusion
+              sigue ocurriendo contra el fondo de la seccion, que es lo que se
+              busca. */}
           <div
             data-art
-            className="-mx-gutter min-w-0 lg:mx-0 lg:-mr-[clamp(1.25rem,4vw,3rem)]"
+            className="-mx-gutter min-w-0 mix-blend-multiply lg:mx-0 lg:-mr-[clamp(1.5rem,4.5vw,4rem)]"
           >
             <SmartImage
               image="home-hero-isometric"
-              sizes="(min-width: 1024px) 58vw, 100vw"
+              sizes="(min-width: 1024px) 56vw, 100vw"
               priority
               wrapperClassName="!aspect-auto"
               className="h-auto w-full"
