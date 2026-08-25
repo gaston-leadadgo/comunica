@@ -85,7 +85,13 @@
      A 48px cada mitad cae en dos, que es el reparto 2+2 que buscaba el copy al
      venir ya partido. Sigue siendo el texto mas grande de la pagina —display-2,
      el de los titulares de seccion, tope a 44px— asi que la jerarquia aguanta. */
-  --text-display-hero-split: clamp(1.875rem, 2.9vw + 0.6rem, 3rem);
+  /* El `min(..., 7.2vh)` es lo que hace cumplible la promesa de "el hero cabe
+     en una pantalla". El titular ocupa cuatro lineas, asi que en ventanas bajas
+     (1440x560, un portatil con mucha barra o el navegador con zoom) es el, y no
+     la ilustracion, lo que empuja la seccion por debajo del pliegue. Atado
+     tambien al alto, se encoge solo cuando falta sitio: por encima de ~667px de
+     viewport el tope de 3rem sigue mandando y no cambia nada. */
+  --text-display-hero-split: min(clamp(1.875rem, 2.9vw + 0.6rem, 3rem), 7.2vh);
   --text-display-hero-split--line-height: 1.06;
   --text-display-hero-split--letter-spacing: -0.03em;
   --text-display-hero-split--font-weight: 700;
@@ -285,6 +291,51 @@
    ========================================================================== */
 
 @layer components {
+  /* ==========================================================================
+     Tope de la ilustracion del hero
+     --------------------------------------------------------------------------
+     El hero promete caber en una pantalla, y la ilustracion es la pieza que
+     puede romperlo: escala con el ancho, asi que su ALTO crece con el del
+     viewport sin enterarse de cuanto sitio vertical queda.
+
+     Se limita el ANCHO, no el alto: con la imagen a `width: 100%`, morder un
+     `max-height` obliga a `object-contain` y eso devuelve franjas vacias a los
+     lados — justo el hueco que costo quitar. Limitando el ancho a
+     `alto_disponible x proporcion`, la caja entera encoge y la proporcion no se
+     toca nunca.
+
+     Va aqui y no como utilidad arbitraria de Tailwind porque el valor lleva una
+     multiplicacion dentro de `calc()`: esa clase no llegaba a generarse
+     —comprobado, el `max-width` calculado salia `none`— y el tope no existia.
+
+     El alto disponible depende del reparto:
+     - Apilado (< 1024px): la imagen va DEBAJO del texto y solo le toca una
+       parte de la pantalla.
+     - En dos columnas (>= 1024px): comparte fila con el texto, asi que dispone
+       de todo el alto menos cabecera y relleno.
+     ========================================================================== */
+  .hero-art-cap {
+    --hero-art-space: 30dvh;
+    --hero-art-ratio: 1.291; /* 1215 / 941, la proporcion real del archivo */
+    inline-size: 100%;
+    max-inline-size: calc(var(--hero-art-space) * var(--hero-art-ratio));
+  }
+
+  /* Tableta: sigue apilado, pero sobra alto. Con el 30dvh del movil la
+     ilustracion se quedaba en 391px sobre una columna de 704 y parecia una
+     miniatura perdida. */
+  @media (min-width: 640px) {
+    .hero-art-cap {
+      --hero-art-space: 38dvh;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-art-cap {
+      --hero-art-space: calc(100dvh - var(--header-h) - 6rem);
+    }
+  }
+
   .mark-hotel {
     font-style: normal;
     font-weight: 700;

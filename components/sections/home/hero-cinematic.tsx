@@ -98,7 +98,11 @@ export function HeroCinematic() {
   return (
     <section
       data-tone="light"
-      className="relative isolate flex min-h-dvh items-center overflow-hidden bg-paper pt-[calc(var(--header-h)+clamp(1.5rem,4vw,3rem))] pb-[clamp(2rem,5vw,4rem)]"
+      // El relleno vertical escala con la ALTURA del viewport (`vh`), no con el
+      // ancho. Atado al ancho, una ventana de 1024x640 —panoramica y baja—
+      // recibia el mismo aire que una de 1024x900 y el hero se pasaba 32px del
+      // alto de pantalla. Con `vh`, el aire se encoge justo cuando falta sitio.
+      className="relative isolate flex min-h-dvh items-center overflow-hidden bg-paper pt-[calc(var(--header-h)+clamp(1rem,4vh,3rem))] pb-[clamp(1.5rem,4vh,4rem)]"
     >
       {/* Fondo ambiental. Vuelve tras el primer montaje del hero partido, donde
           se habia quitado por miedo a que el archivo —de fondo blanco solido— se
@@ -119,7 +123,7 @@ export function HeroCinematic() {
           // `gap-x-4` en escritorio, no `gap-x-10`: la ilustracion ya trae su
           // propio aire dentro del archivo, asi que un canal ancho se suma al
           // margen del dibujo y el hueco entre texto e imagen se duplica.
-          className="grid items-center gap-x-10 gap-y-10 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:gap-x-4"
+          className="grid items-center gap-x-10 gap-y-[clamp(1rem,3.5vh,2.5rem)] lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:gap-x-4"
         >
           {/* Columna de argumento.
               Sin cifra de credibilidad: la cabecera ya lleva "350 hoteles · 13
@@ -135,20 +139,42 @@ export function HeroCinematic() {
               </span>
             </h1>
 
-            <p data-lead className="measure-lead mt-6 text-lead text-fg-muted">
+            {/* Separaciones tambien en `vh`, por el mismo motivo que el relleno
+                de la seccion: en ventanas bajas es aire que sobra y es lo que
+                empujaba el hero por debajo del pliegue. */}
+            <p
+              data-lead
+              className="measure-lead mt-[clamp(1rem,2.6vh,1.5rem)] text-lead text-fg-muted"
+            >
               {hero.lead}
             </p>
 
+            {/* `flex-wrap` + `shrink-0`, y no una fila rigida.
+                -------------------------------------------------------------
+                Los dos botones piden 636px de ancho y la columna de texto tiene
+                584: sin envolver, el primero encogia a 237px mientras su
+                etiqueta —que va en `whitespace-nowrap`— seguia midiendo 291.
+                Como la variante navy lleva `overflow-hidden` para el barrido
+                diagonal, el texto sobrante no desbordaba: se cortaba, y en
+                pantalla se leia "bla con un especialista hotelero".
+                Con `shrink-0` el boton conserva su ancho natural y, cuando los
+                dos no caben, el segundo baja a una linea nueva. */}
             <div
               data-ctas
-              className="mt-9 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center"
+              className="mt-[clamp(1.25rem,4vh,2.25rem)] flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center"
             >
               <Button
                 href={hero.ctas[0].href}
                 size="lg"
                 variant="navy"
                 iconRight={<Icon name="arrow-right" size={18} />}
-                className="w-full sm:w-auto"
+                // `whitespace-normal` en movil: el boton ocupa el ancho
+                // completo (327px utiles a 375) y la etiqueta mide ~340, asi
+                // que con el `whitespace-nowrap` del componente base el texto
+                // se salia de su caja y la variante navy —que lleva
+                // `overflow-hidden` por el barrido— lo recortaba. Envolviendo,
+                // cae en dos lineas y se lee entero.
+                className="w-full whitespace-normal sm:w-auto sm:shrink-0 sm:whitespace-nowrap"
               >
                 {hero.ctas[0].label}
               </Button>
@@ -156,7 +182,13 @@ export function HeroCinematic() {
                 href={hero.ctas[1].href}
                 size="lg"
                 variant="outline"
-                className="w-full sm:w-auto"
+                // `whitespace-normal` en movil: el boton ocupa el ancho
+                // completo (327px utiles a 375) y la etiqueta mide ~340, asi
+                // que con el `whitespace-nowrap` del componente base el texto
+                // se salia de su caja y la variante navy —que lleva
+                // `overflow-hidden` por el barrido— lo recortaba. Envolviendo,
+                // cae en dos lineas y se lee entero.
+                className="w-full whitespace-normal sm:w-auto sm:shrink-0 sm:whitespace-nowrap"
               >
                 <span className="inline-flex items-center gap-2">
                   <Icon name="file-text" size={17} />
@@ -187,15 +219,35 @@ export function HeroCinematic() {
               busca. */}
           <div
             data-art
-            className="-mx-gutter min-w-0 mix-blend-multiply lg:mx-0 lg:-mr-[clamp(1.5rem,4.5vw,4rem)]"
+            className="-mx-gutter flex min-w-0 justify-center mix-blend-multiply lg:mx-0 lg:-mr-[clamp(1.5rem,4.5vw,4rem)] lg:justify-end"
           >
-            <SmartImage
-              image="home-hero-isometric"
-              sizes="(min-width: 1024px) 56vw, 100vw"
-              priority
-              wrapperClassName="!aspect-auto"
-              className="h-auto w-full"
-            />
+            {/* El tope va en el ANCHO, derivado del alto disponible.
+                -------------------------------------------------------------
+                La ilustracion escalaba solo con `w-full`, asi que su alto
+                dependia del ancho de pantalla y en ventanas bajas se salia del
+                viewport; como el hero lleva `overflow-hidden`, lo que sobraba
+                no agrandaba la seccion, se recortaba, y lo primero en caer era
+                la caja de Comunica del pie del dibujo.
+                Poner un `max-height` no vale: con `w-full`, al morder el tope
+                de alto la imagen se deforma o hay que meter `object-contain`,
+                que reintroduce franjas vacias a los lados —justo el hueco que
+                acabamos de quitar—.
+                Se limita el ancho a `alto_disponible x 1,291` (la proporcion
+                real del archivo). Asi la imagen llena la columna cuando hay
+                sitio, encoge cuando no lo hay, y la proporcion nunca se toca. */}
+            {/* `hero-art-cap` (globals.css) limita el ancho en funcion del alto
+                que de verdad queda libre, distinto segun el reparto sea apilado
+                o en dos columnas. Es lo que impide que la ilustracion empuje el
+                hero por debajo del pliegue. */}
+            <div className="hero-art-cap">
+              <SmartImage
+                image="home-hero-isometric"
+                sizes="(min-width: 1024px) 56vw, 100vw"
+                priority
+                wrapperClassName="!aspect-auto w-full"
+                className="h-auto w-full"
+              />
+            </div>
           </div>
         </div>
       </Container>
