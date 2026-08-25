@@ -22,9 +22,24 @@ import { cn } from "@/lib/utils/cn";
  * El titulo baja de 88px a 64px por la misma razon: "iAndrea" funciona como
  * logotipo de producto sin necesidad de ocupar un tercio de la pantalla.
  *
- * La plancha del movil es Tier B: la foto sale con la pantalla en navy plano y la
- * interfaz de voz se compone encima con CSS. Un dashboard generado por IA con
- * texto dentro sale en jerigonza y mata la credibilidad.
+ * La imagen de la columna derecha (`home-iandrea-voice-ai`) es el unico asset del
+ * proyecto con gradacion C, y conviene entender por que antes de "corregirla"
+ * para que encaje con las demas fotos.
+ *
+ * Historia corta: primero fue una plancha Tier B —movil con la pantalla en navy
+ * plano y la interfaz compuesta por CSS encima— pero ese overlay nunca se
+ * construyo, asi que en pantalla habia un movil apagado. Despues se probo una
+ * foto sobria de recepcion vacia de noche, dentro de la direccion de arte de la
+ * serie. Tambien fallaba, y por un motivo mas de fondo: esta es la seccion que
+ * explica QUE ES iAndrea, y la regla general del proyecto —que la tecnologia sea
+ * incidental para no parecer una telco— aqui juega justo en contra. Quien llega
+ * a este bloque quiere ver el producto.
+ *
+ * Asi que esta imagen es declaradamente tecnologica y esta alineada con las
+ * creatividades de campaña de iAndrea: interfaz de voz luminosa, ondas, burbujas
+ * de conversacion, iconos conectados. Lo unico que hereda de la serie es la
+ * paleta de marca y la prohibicion de texto dentro de la imagen, esa por motivos
+ * tecnicos: un modelo de difusion escribe jerigonza.
  */
 export function IandreaBlock() {
   const { iandrea } = home;
@@ -132,7 +147,7 @@ export function IandreaBlock() {
           <div className="min-w-0">
             <div data-reveal-r>
               <SmartImage
-                image="home-iandrea-phone-plate"
+                image="home-iandrea-voice-ai"
                 sizes={SIZES.heroSplit}
                 decorative
                 wrapperClassName="rounded-shield"

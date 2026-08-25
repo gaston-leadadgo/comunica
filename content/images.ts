@@ -34,17 +34,43 @@
  * 3. Veto de imagineria vacacional. Nada de piscinas, playas, atardeceres,
  *    copas, parejas de vacaciones ni suites de revista. Esto es el negocio visto
  *    desde dentro, en horas muertas, no el folleto.
+ *
+ * ---------------------------------------------------------------------------
+ * LA EXCEPCION: gradacion C, imagen de producto
+ *
+ * Las reglas de arriba describen la SERIE FOTOGRAFICA, donde la tecnologia es
+ * incidental a proposito para no parecer una telco. Pero hay un sitio donde esa
+ * regla juega en contra: el bloque que explica que es iAndrea. Ahi la imagen
+ * tiene que vender un producto de inteligencia artificial, y una foto sobria en
+ * la que la tecnologia se insinua no explica nada — el usuario llega a esa
+ * seccion justamente a entender que hace el producto.
+ *
+ * La gradacion C existe para eso y solo para eso: imagen de producto,
+ * declaradamente tecnologica, alineada con las creatividades que iAndrea ya usa
+ * en campaña (ondas de voz, burbujas de conversacion, interfaz luminosa). No es
+ * una grieta en la direccion de arte, es una categoria distinta con su propio
+ * bloque de estilo y su propia paleta de marca.
+ *
+ * Lo unico que C sigue prohibiendo es el TEXTO dentro de la imagen, y no por
+ * estilo: un modelo de difusion escribe jerigonza, y un "iAndrea" mal escrito en
+ * la pantalla de un portatil destruye la credibilidad de la pagina entera. El
+ * logotipo, si hace falta, se compone despues.
  */
 
 /**
  * Receta de revelado de la serie fotografica: A = lado huesped (dia, luz
  * natural), B = lado tecnico (noche, larga exposicion).
  *
- * `ilustracion` no es una receta de revelado: marca las piezas que no son
- * fotografia y por tanto quedan FUERA del encadenamiento por anclas de estilo
- * y de la normalizacion final en lote. Hoy solo la usa el hero isometrico.
+ * `C` no pertenece a la serie: es la imagen de producto de iAndrea, con su
+ * propia estetica y su propio bloque de estilo. Se explica arriba, en la
+ * cabecera del archivo. No lleva ancla, porque es una sola pieza.
+ *
+ * `ilustracion` no es una receta de revelado ni un bloque de estilo: marca las
+ * piezas que no son fotografia y por tanto quedan FUERA del encadenamiento por
+ * anclas y de la normalizacion final en lote. Hoy solo la usa el hero
+ * isometrico.
  */
-export type Grading = "A" | "B" | "ilustracion";
+export type Grading = "A" | "B" | "C" | "ilustracion";
 
 export type ImageAsset = {
   key: string;
@@ -67,30 +93,42 @@ export const BLUR_PLACEHOLDER =
   "data:image/gif;base64,R0lGODlhAQABAPAAAO/r5gAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==";
 
 /**
- * Solo las dos recetas fotograficas. `Omit<..., "ilustracion">` y no
- * `Record<Grading, ...>`: las piezas ilustradas no se generan con el bloque de
- * estilo de la casa —no son fotografia— y obligar a inventarles uno seria
- * declarar una receta que nadie va a usar.
+ * Los tres bloques de estilo que se pegan al prompt: las dos recetas
+ * fotograficas (A y B) y la imagen de producto (C).
+ *
+ * `Exclude<..., "ilustracion">` y no `Record<Grading, ...>`: las piezas
+ * ilustradas no se generan con ningun bloque de estilo de este archivo —no son
+ * fotografia ni imagen de producto— y obligar a inventarles uno seria declarar
+ * una receta que nadie va a usar.
  */
 export const HOUSE_STYLE: Record<Exclude<Grading, "ilustracion">, string> = {
   A: `House style for this whole image set, follow it exactly: photograph it as if a single documentary photographer shot the entire series on a full-frame camera with a 40mm lens, natural available light only, no studio flash, no lens flare, no bokeh balls, no tilt-shift blur. Restrained European palette limited to warm off-white #FAFAF8, neutral warm grey #F1EFEC, deep navy #003057, near-black #1D1D1B, plus exactly one small accent of electric cyan #009FE3 that exists physically in the scene as a light, a screen glow or a status indicator. Bright exposure, gentle contrast, soft lifted shadows that read as deep navy rather than grey, highlights very slightly warm, overall saturation reduced about fifteen percent. Fine natural film grain. Photorealistic, calm, sober, precise, quietly expensive, European. When a person appears they are the owner or manager of a small independent hotel, between forty and sixty years old, in real working clothes rather than corporate suits, caught mid-task with their hands busy, at ease in a place they clearly run themselves; natural unposed expressions are welcome but nobody ever looks at the camera and nobody smiles at it. At most two people in frame. Absolutely avoid: stock-photo poses, people smiling at the camera, call-center headsets, handshakes, meeting rooms with sticky notes, people pointing at screens, models who look like models, holiday and brochure imagery of any kind including swimming pools, beaches, sunsets, cocktails, couples on holiday and glamour shots of luxury suites, floating holographic interfaces, glowing wireframe globes, world maps with connection lines, hexagon patterns, printed circuit boards, concentric signal waves, drawn clouds, 3D padlocks, teal-and-orange colour grading, and any text, lettering, numbers, logos or watermarks anywhere in the image.`,
   B: `House style for this whole image set, follow it exactly: photograph it as if a single documentary photographer shot the entire series on a full-frame camera with a 40mm lens, available light only, at night or in a dim interior, no studio flash, no lens flare, no bokeh balls. Restrained European palette limited to near-black #1D1D1B for the blacks (never pure black), deep navy #003057 in the midtones, and electric cyan #009FE3 for speculars, light trails and status glows. No green, no magenta, no yellow. Medium-high contrast with no clipped highlights, fine natural film grain equivalent to ISO 800. Photorealistic, calm, sober, precise, quietly expensive, European. When a person appears they are the owner or manager of a small independent hotel, between forty and sixty years old, in real working clothes rather than corporate suits, caught mid-task on a late shift; natural unposed expressions are welcome but nobody ever looks at the camera and nobody smiles at it. At most two people in frame. Absolutely avoid: stock-photo poses, people smiling at the camera, call-center headsets, handshakes, models who look like models, holiday and brochure imagery of any kind including swimming pools, beaches, sunsets and cocktails, floating holographic interfaces, glowing wireframe globes, world maps with connection lines, hexagon patterns, printed circuit boards, concentric signal waves, drawn clouds, 3D padlocks, teal-and-orange colour grading, and any text, lettering, numbers, logos or watermarks anywhere in the image.`,
+  C: `House style for this image, follow it exactly. This is the PRODUCT image of iAndrea, the voice AI agent, so unlike the rest of this image set it is openly, deliberately and unapologetically technological: technology is THE SUBJECT here, not an incidental detail. Premium enterprise-software campaign photography combined with clean luminous interface graphics: real photographed hardware and real materials, with crisp emissive interface elements rendered in front of and on the screens. Sharp, bright, confident, optimistic. Brand palette, strictly enforced: deep navy #003057 for the dark fields and the sense of depth, electric cyan #009FE3 for every glow, light trail, interface stroke and specular highlight, warm off-white #FAFAF8 and neutral warm grey #F1EFEC for the real-world surfaces, near-black #1D1D1B for the hardware. No green, no magenta, no purple, no orange, no teal-and-orange grading. All of the following are welcome, expected and encouraged: glowing voice waveforms, concentric voice rings radiating from a speaking source, luminous speech and conversation bubbles, thin bright connection lines linking simple glowing icons, soft holographic overlays floating just above a screen, delicate circuit-like tracery, and a luminous cyan orb or halo standing for the voice assistant itself. Render them as clean geometry with thin strokes, a soft outer glow and generous empty space around each element - luminous and precise, never a dense cluttered mess. What is still absolutely forbidden, and this one is not a style preference: any text, lettering, words, numbers, logos, wordmarks or watermarks anywhere in the image, including on every screen and display. An image model renders lettering as gibberish, and a garbled brand name on a laptop screen destroys the credibility of the whole page; the iAndrea wordmark and any real copy are composited afterwards in design software. Also avoid: cheap sci-fi clutter, dense circuit-board wallpaper, wireframe globes, world maps with connection lines, hexagon grids, falling matrix code, lens flares, chrome humanoid androids, and stock-photo staff grinning at the camera. Photorealistic where it is photographic, immaculate where it is graphic, quietly expensive, European.`,
 };
 
 /** Frase que se anade al final cuando se adjunta el ancla de estilo. */
 export const ANCHOR_SUFFIX = `Match the colour grading, contrast curve, light quality, level of desaturation, skin rendering and overall mood of the attached reference image as closely as possible. Treat it as the same photographer, the same camera, the same day, the same post-production.`;
 
 /**
- * Las dos anclas. Se generan primero y se iteran hasta el visto bueno.
+ * Las dos anclas de la SERIE FOTOGRAFICA (gradaciones A y B). Se generan
+ * primero y se iteran hasta el visto bueno.
  *
- * El ancla clara es ahora una foto CON persona, no el hero. El hero va al 16 %
- * de opacidad detras del titular, asi que como referencia no sirve: no fija
- * tonos de piel ni luz sobre una cara, que es justo lo que tiene que quedar
- * igual en toda la serie ahora que aparecen hoteleros.
+ * El ancla clara es una foto CON persona, no el hero: como referencia el hero no
+ * sirve, porque no fija tonos de piel ni luz sobre una cara, que es justo lo que
+ * tiene que quedar igual en toda la serie ahora que aparecen hoteleros.
+ *
+ * El ancla oscura era la plancha de iAndrea. Ya no puede serlo: iAndrea pasa a
+ * gradacion C (imagen de producto, otra estetica y otra paleta de luz), asi que
+ * no puede fijar el grading de las fotos B. La sustituye el rack de noche, que
+ * es una B de verdad y ya esta aprobada.
+ *
+ * Las gradaciones C e `ilustracion` no llevan ancla: son piezas sueltas, no
+ * series.
  */
 export const STYLE_ANCHORS = [
   "home-profile-conectado-independiente",
-  "home-iandrea-phone-plate",
+  "home-profile-especializado-proyecto",
 ] as const;
 
 export const images = {
@@ -197,36 +235,36 @@ export const images = {
     prompt: `A close night photograph of a well-organised server rack in the technical room of a small hotel, where most of the equipment is older and slightly dusty but perfectly cabled, and exactly one module in the middle is visibly newer, cleaner and brighter, with a row of electric cyan #009FE3 link lights. Everything else is deep navy and near-black, lit only by the equipment LEDs. The point of the photograph is that only one piece was replaced: the rest keeps working. No people, no labels, no lettering. This is the one image in the series with no person in it, and it should feel like the quiet inside of the building.`,
   },
 
-  "home-iandrea-phone-plate": {
-    key: "home-iandrea-phone-plate",
-    src: "/images/home/home-iandrea-phone-plate.webp",
-    alt: "",
-    width: 1600,
-    height: 1200,
-    usage: "Home / bloque iAndrea, columna derecha",
+  "home-iandrea-voice-ai": {
+    key: "home-iandrea-voice-ai",
+    src: "/images/home/home-iandrea-voice-ai.webp",
+    alt: "Recepción de hotel con la interfaz de voz de iAndrea atendiendo llamadas",
+    width: 1448,
+    height: 1086,
+    usage:
+      "Home / bloque iAndrea, columna derecha. Es la IMAGEN DE PRODUCTO de la sección que explica qué es iAndrea, así que va por gradación C y no por la serie fotográfica.",
     role: "mockup",
-    grading: "B",
-    plate: true,
+    grading: "C",
     safeArea:
-      "La pantalla del móvil, limpia, frontal y en navy plano: encima se compone la interfaz de voz real por CSS.",
+      "Ninguna zona reservada: no se compone nada encima por CSS. La generación final incluyó el wordmark \"iAndrea\" y la mascota bien renderizados —no era lo esperado, el prompt los prohibía por el riesgo de jerigonza, pero salieron correctos— así que no hace falta componer nada encima.",
     ready: true,
-    prompt: `A close night-time photograph of a modern smartphone lying face up and slightly angled on the wooden counter of a small hotel reception desk during the late shift, screen switched on but displaying nothing except one perfectly flat, evenly lit solid deep navy #003057 rectangle with absolutely no icons, no text, no interface elements and no status bar - a clean empty screen, because an interface will be composited onto it later. The phone screen must be sharp, unobstructed, rectangular and free of glare or reflections. Around it, the reception desk is dark: worn wood, a reception bell, the soft out-of-focus glow of a desk lamp behind, and a faint electric cyan #009FE3 rim light along the top edge of the phone. In the deep background, far out of focus and unrecognisable, the silhouette of someone sitting at the desk beyond. No hands touching the phone, no faces. Intimate, quiet, the hotel at one in the morning.`,
+    prompt: `A bright, modern, openly technological product image of an AI voice assistant working at the reception desk of a hotel, shot in landscape 4:3. The real, photographed half of the picture: an open laptop and a slim black IP desk phone standing on the pale stone reception counter in the lower right of the frame, and behind them, softly out of focus, the warm daylit lobby of a busy hotel with several guests waiting at the counter, reduced to gentle blurred shapes so that no face is identifiable and nobody is looking towards the camera. The graphic half, and this is the real subject: rising out of the laptop screen and floating in the air above the counter, a luminous electric cyan #009FE3 interface made of clean emissive geometry - a glowing cyan orb at its centre standing for the voice of the assistant, concentric voice rings radiating outward from it, a bright audio waveform curving across the screen, three or four rounded conversation bubbles floating at different depths, and thin bright connection lines fanning out from the orb to a handful of simple glowing outline icons that read unmistakably as a telephone handset, a calendar, a small clock and a globe. The interface elements are crisp, thin-stroked, softly glowing, arranged with generous empty space between them and clearly layered in front of the scene, like a premium enterprise software campaign visual. Deep navy #003057 fills the depth behind the graphics and pools in the shadows, cyan carries every glow and specular, the counter and the lobby stay warm off-white and neutral warm grey, the hardware is near-black. The image has to say, at a glance and with no caption at all: an artificial intelligence is answering this hotel's calls, in many languages, at the same time, while the front desk gets on with the guests in front of it. Absolutely no text, no lettering, no words, no numbers, no logos and no wordmarks anywhere, on the screens included. No chrome humanoid robot, no matrix code, no wireframe globe, no circuit-board wallpaper. Bright, confident, premium, optimistic.`,
   },
 
   "home-extension-qr-room": {
     key: "home-extension-qr-room",
     src: "/images/home/home-extension-qr-room.webp",
-    alt: "Mesilla de habitación de hotel con un pequeño soporte de sobremesa en blanco",
-    width: 2400,
-    height: 1350,
+    alt: "Mesilla de habitación de hotel con un soporte de sobremesa con código QR",
+    width: 2752,
+    height: 1536,
     usage:
       "Home / bloque Extensión Dinámica, cabecera de la columna visual. Ratio 16:9 para que la sección completa quepa en una pantalla.",
     role: "apoyo",
     grading: "A",
     safeArea:
-      "El soporte de la mesilla debe quedar limpio y sin ningún código impreso: el QR se compone después. Encuadre panorámico, no vertical.",
+      "El QR va IMPRESO en la tarjeta dentro de la propia foto (decisión de cliente, cambia el planteamiento anterior de componerlo por CSS). La cara de la tarjeta tiene que quedar frontal, plana, nítida y sin reflejos, y el código ocuparla casi entera. Encuadre panorámico, no vertical.",
     ready: true,
-    prompt: `A wide horizontal photograph of the bedside table of a calm, modest hotel room in the late afternoon, shot from a shallow angle just above the surface so the composition is panoramic rather than tall. On the table: a small blank white acrylic tent card standing upright, completely empty with no printing, no code and no lettering of any kind, because a graphic will be composited onto it later; beside it a smartphone lying face down, and a slim reading lamp casting warm light. Behind, the corner of a crisply made bed and a warm off-white wall. Soft golden daylight from a window out of frame on the left, deep navy in the shadows. The old room telephone sits at the far right edge of the frame, its cable unplugged and coiled beside it. Nobody in frame. Ordinary, well kept, real: a room in a working hotel, not a suite in a brochure.`,
+    prompt: `A wide horizontal photograph of the bedside table of a calm, modest hotel room in the late afternoon, shot from a shallow angle just above the surface so the composition is panoramic rather than tall. The subject of the photograph is a small white acrylic tent card standing upright on the table, turned so that its front face is square to the lens and fully visible, and on that face, printed large and perfectly flat, a black and white QR code: a dense square matrix of small black modules on white, with the three characteristic solid square finder patterns in its top-left, top-right and bottom-left corners and a clean white quiet zone around the edge. The code fills most of the card face and must be sharp, high in contrast, unblurred, undistorted and free of glare or reflections. It is printed on the card as ink on plastic - not glowing, not projected, not floating in the air. Beside the card a smartphone lies face down, and a slim reading lamp casts warm light. Behind, the corner of a crisply made bed and a warm off-white wall. Soft golden daylight from a window out of frame on the left, deep navy in the shadows. The old room telephone sits at the far right edge of the frame, its cable unplugged and coiled beside it. Nobody in frame. Ordinary, well kept, real: a room in a working hotel, not a suite in a brochure. One explicit exception to the house style rule that forbids graphics: this square black and white code pattern is required and must be clearly visible. Apart from it there is still absolutely no text, no lettering, no numbers, no logos and no watermarks anywhere in the image.`,
   },
 
   "home-differentials-engineer-hands": {
