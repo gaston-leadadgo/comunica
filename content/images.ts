@@ -160,7 +160,7 @@ export const images = {
     role: "hero",
     grading: "ilustracion",
     safeArea:
-      "Ya viene recortado (988x720 desde 1280x720, x=288). El recorte tiene dos límites que no se pueden mover sin romper algo: por la izquierda, el equipo de Comunica emite anillos concéntricos ANIMADOS que en su punto más ancho llegan a x=295 del original, así que cortar más adentro los parte por la mitad; por la derecha, la última columna del vídeo original es una línea oscura de 1px (artefacto del render) que hay que dejar fuera. Medido fotograma a fotograma sobre los 8 s.",
+      "Ya viene recortado (988x720 desde 1280x720, x=288). El recorte tiene dos límites que no se pueden mover sin romper algo: por la izquierda, el equipo de Comunica emite anillos concéntricos ANIMADOS que en su punto más ancho llegan a x=295 del original, así que cortar más adentro los parte por la mitad; por la derecha, la última columna del vídeo original es una línea oscura de 1px (artefacto del render) que hay que dejar fuera. Medido fotograma a fotograma sobre los 8 s. Por ABAJO no hay recorte posible: los anillos rebasan el borde inferior del material original, así que el archivo entregado lleva un fundido a blanco sobre las últimas 48 filas (smoothstep) que disuelve el corte. Si algún día se regenera el vídeo, pedir el mismo encuadre con aire por debajo del pulso y el fundido deja de hacer falta.",
     ready: true,
     prompt: "Ver docs/PROMPT-HERO-ISOMETRICO.md (generada con GPT Image, no con Nano Banana).",
   },

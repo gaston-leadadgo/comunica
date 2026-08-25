@@ -42,7 +42,16 @@ import { useBrandMotion } from "@/lib/gsap/use-brand-motion";
  * titular se renderiza en su estado final en el HTML y se anima con
  * `gsap.from()`, que es lo que permite que siga siendo el elemento LCP.
  */
-/** Bucle del hero. Sin pista de audio: se elimino al codificar, no se silencia. */
+/**
+ * Bucle del hero. Sin pista de audio: se elimino al codificar, no se silencia.
+ *
+ * El archivo lleva un fundido a blanco en el borde inferior, hecho al codificar.
+ * No es un efecto: los anillos del pulso rebasan el borde de abajo del material
+ * original, asi que sin el fundido el bucle se corta con un canto recto cada vez
+ * que el pulso llega a su maxima expansion. No se arregla con CSS ni dandole mas
+ * alto —esos pixeles no existen en el video— y por eso va en el propio asset:
+ * sobre blanco, con `mix-blend-multiply`, fundir a blanco ES fundir a nada.
+ */
 const HERO_VIDEO = "/video/home-hero-isometric.mp4";
 
 export function HeroCinematic() {
