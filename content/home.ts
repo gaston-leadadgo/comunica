@@ -174,7 +174,7 @@ export const home = {
 
   iandrea: {
     eyebrow:
-      "Una llamada que recepción no atiende puede ser una reserva que se pierde",
+      "Una llamada de recepción que no atiende puede ser una reserva que se pierde",
     title: "iAndrea",
     subtitle: "La voz con inteligencia artificial de Comunica para hoteles",
     /**
@@ -287,8 +287,17 @@ export const home = {
   },
 
   differentials: {
-    title:
-      "No necesitas un proveedor que sepa de telecomunicaciones. Necesitas uno que entienda tu hotel",
+    /**
+     * Tres frases, tres lineas. Vienen partidas desde el copy y no se dejan al
+     * navegador porque el corte ES el argumento: cada linea niega la anterior
+     * hasta llegar al nombre. Repartidas por ancho disponible, "Necesitas a
+     * Comunica" acabaria colgando de la linea de arriba y el remate se perderia.
+     */
+    titleLines: [
+      "No necesitas un proveedor que sepa de telecomunicaciones.",
+      "Necesitas uno que entienda tu hotel.",
+      "Necesitas a Comunica.",
+    ],
     items: [
       {
         title: "Especialización hotelera",
@@ -319,7 +328,14 @@ export const home = {
   },
 
   method: {
-    title: "Empezamos por entender tu hotel. No por venderte un paquete",
+    /**
+     * El titulo de seccion es la pregunta; la frase que antes hacia de titulo
+     * baja a subtitulo. Va a `text-display-2` como TODOS los titulares de
+     * seccion del sitio —regla explicita de cliente— y el subtitulo un escalon
+     * por debajo, que es el mismo patron del bloque de Extension Dinamica.
+     */
+    title: "¿Cómo trabajamos?",
+    subtitle: "Empezamos por entender tu hotel. No por venderte un paquete",
     steps: [
       {
         number: "1",

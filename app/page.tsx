@@ -47,7 +47,7 @@ export default function HomePage() {
       <ProfileAccordion />
       <InnovationIntro />
       <IandreaBlock />
-      <ExtensionBlock />
+      <ExtensionBlock content={home.extension} image="home-extension-qr-room" />
 
       {/* ACCION */}
       <DifferentialsBento />

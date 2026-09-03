@@ -2,7 +2,7 @@
 
 Generado automaticamente desde `content/images.ts`. **No editar a mano**: cambia el registro y vuelve a ejecutar `npm run images:doc`.
 
-**11 imagenes** en total.
+**14 imagenes** en total.
 
 ---
 
@@ -65,8 +65,11 @@ Nano Banana no escribe texto legible: un dashboard generado por IA con palabras 
 | 7 | `home-extension-qr-room` | Home | Apoyo de seccion | 16:9 | 2752x1536 | A |
 | 8 | `home-differentials-engineer-hands` | Home | Apoyo de seccion | 4:5 | 1400x1750 | A |
 | 9 | `home-catalog-keycard-still` | Home | Bodegon editorial | 4:5 | 1400x1750 | A |
-| 10 | `og-plate-dark` | Open Graph | Plancha Open Graph | 40:21 | 1200x630 | B |
-| 11 | `og-plate-light` | Open Graph | Plancha Open Graph | 40:21 | 1200x630 | A |
+| 10 | `soluciones-extension-desk-sin-telefono` | Soluciones | Apoyo de seccion | 16:9 | 2752x1536 | A |
+| 11 | `nosotros-trust-delegar` | Nosotros | Apoyo de seccion | 4:5 | 1400x1750 | A |
+| 12 | `nosotros-innovacion-preparado` | Nosotros | Apoyo de seccion | 4:3 | 1400x1050 | A |
+| 13 | `og-plate-dark` | Open Graph | Plancha Open Graph | 40:21 | 1200x630 | B |
+| 14 | `og-plate-light` | Open Graph | Plancha Open Graph | 40:21 | 1200x630 | A |
 
 ---
 
@@ -185,11 +188,11 @@ A bright, modern, openly technological product image of an AI voice assistant wo
 - **Rol:** Apoyo de seccion
 - **Tamano:** 2752 x 1536 px (16:9)
 - **Bloque de estilo:** A
-- **Zona segura:** El QR va IMPRESO en la tarjeta dentro de la propia foto (decisión de cliente, cambia el planteamiento anterior de componerlo por CSS). La cara de la tarjeta tiene que quedar frontal, plana, nítida y sin reflejos, y el código ocuparla casi entera. Encuadre panorámico, no vertical.
+- **Zona segura:** El QR va IMPRESO en la tarjeta dentro de la propia foto (decisión de cliente, cambia el planteamiento anterior de componerlo por CSS). La cara de la tarjeta tiene que quedar frontal, plana, nítida y sin reflejos, y el código ocuparla casi entera. Encuadre panorámico, no vertical. SIN teléfono de habitación en el encuadre: el archivo que hay hoy todavía lleva uno a la derecha y hay que regenerarlo, porque el producto existe precisamente para quitarlo.
 - **Alt (ya redactado):** Mesilla de habitación de hotel con un soporte de sobremesa con código QR
 
 ```text
-A wide horizontal photograph of the bedside table of a calm, modest hotel room in the late afternoon, shot from a shallow angle just above the surface so the composition is panoramic rather than tall. The subject of the photograph is a small white acrylic tent card standing upright on the table, turned so that its front face is square to the lens and fully visible, and on that face, printed large and perfectly flat, a black and white QR code: a dense square matrix of small black modules on white, with the three characteristic solid square finder patterns in its top-left, top-right and bottom-left corners and a clean white quiet zone around the edge. The code fills most of the card face and must be sharp, high in contrast, unblurred, undistorted and free of glare or reflections. It is printed on the card as ink on plastic - not glowing, not projected, not floating in the air. Beside the card a smartphone lies face down, and a slim reading lamp casts warm light. Behind, the corner of a crisply made bed and a warm off-white wall. Soft golden daylight from a window out of frame on the left, deep navy in the shadows. The old room telephone sits at the far right edge of the frame, its cable unplugged and coiled beside it. Nobody in frame. Ordinary, well kept, real: a room in a working hotel, not a suite in a brochure. One explicit exception to the house style rule that forbids graphics: this square black and white code pattern is required and must be clearly visible. Apart from it there is still absolutely no text, no lettering, no numbers, no logos and no watermarks anywhere in the image.
+A wide horizontal photograph of the bedside table of a calm, modest hotel room in the late afternoon, shot from a shallow angle just above the surface so the composition is panoramic rather than tall. The subject of the photograph is a small white acrylic tent card standing upright on the table, turned so that its front face is square to the lens and fully visible, and on that face, printed large and perfectly flat, a black and white QR code: a dense square matrix of small black modules on white, with the three characteristic solid square finder patterns in its top-left, top-right and bottom-left corners and a clean white quiet zone around the edge. The code fills most of the card face and must be sharp, high in contrast, unblurred, undistorted and free of glare or reflections. It is printed on the card as ink on plastic - not glowing, not projected, not floating in the air. Beside the card a smartphone lies face down, and a slim reading lamp casts warm light. Behind, the corner of a crisply made bed and a warm off-white wall. Soft golden daylight from a window out of frame on the left, deep navy in the shadows. There is NO room telephone anywhere in the picture: no desk phone, no handset, no cradle, no coiled telephone cable and no wall socket with a phone lead. The whole point of the product is that the room no longer needs one, so a telephone in shot contradicts the message. The surface where a phone would have stood is simply clear. Nobody in frame. Ordinary, well kept, real: a room in a working hotel, not a suite in a brochure. One explicit exception to the house style rule that forbids graphics: this square black and white code pattern is required and must be clearly visible. Apart from it there is still absolutely no text, no lettering, no numbers, no logos and no watermarks anywhere in the image.
 ```
 
 #### 8. `home-differentials-engineer-hands`
@@ -221,9 +224,58 @@ A vertical overhead still-life photograph on a seamless warm off-white #FAFAF8 p
 
 ---
 
+### Soluciones (1)
+
+#### 10. `soluciones-extension-desk-sin-telefono`
+
+- **Archivo:** `public/images/soluciones/soluciones-extension-desk-sin-telefono.webp`
+- **Donde va:** Soluciones / bloque Extensión Dinámica, cabecera de la columna visual. Mismo ratio 16:9 que la de la home porque comparten componente: cambiarlo movería el resto de la sección.
+- **Rol:** Apoyo de seccion
+- **Tamano:** 2752 x 1536 px (16:9)
+- **Bloque de estilo:** A
+- **Zona segura:** La cara de la tarjeta: frontal, plana, nítida y sin reflejos, con el código ocupándola casi entera. Y el escritorio VACÍO: ni teléfono, ni base, ni cable de teléfono. El hueco es el tema de la foto.
+- **Alt (ya redactado):** Escritorio de una habitación de hotel con una tarjeta con código QR y sin teléfono de sobremesa
+
+```text
+A wide horizontal photograph of the writing desk of a calm, modest hotel room in the morning, shot from a shallow angle just above the surface so the composition is panoramic rather than tall. The subject is twofold. First, a small white acrylic tent card standing upright on the desk, turned so that its front face is square to the lens and fully visible, and on that face, printed large and perfectly flat, a black and white QR code: a dense square matrix of small black modules on white, with the three characteristic solid square finder patterns in its top-left, top-right and bottom-left corners and a clean white quiet zone around the edge. The code fills most of the card face and must be sharp, high in contrast, unblurred, undistorted and free of glare or reflections. It is printed on the card as ink on plastic - not glowing, not projected, not floating in the air. Second, and just as important, the empty space beside it: the part of the desk where a hotel room telephone used to stand is now completely clear, with only a faint clean rectangle in the dust and one small unused socket on the skirting board behind to suggest that something was taken away. There must be NO telephone anywhere in the frame: no handset, no cradle, no coiled cable, no dock. On the rest of the desk, only a folded leather folio and a glass of water. Behind, a warm off-white wall and the edge of a window with clean morning daylight coming from the right, cooler than afternoon light, deep navy in the shadows. Nobody in frame. Ordinary, well kept, real: a room in a working hotel, not a suite in a brochure. One explicit exception to the house style rule that forbids graphics: this square black and white code pattern is required and must be clearly visible. Apart from it there is still absolutely no text, no lettering, no numbers, no logos and no watermarks anywhere in the image.
+```
+
+---
+
+### Nosotros (2)
+
+#### 11. `nosotros-trust-delegar`
+
+- **Archivo:** `public/images/nosotros/nosotros-trust-delegar.webp`
+- **Donde va:** Nosotros / bloque «Confiable no es una palabra bonita», columna derecha. Vertical 4:5, el mismo ratio que tenía la foto prestada, para no mover la columna.
+- **Rol:** Apoyo de seccion
+- **Tamano:** 1400 x 1750 px (4:5)
+- **Bloque de estilo:** A
+- **Zona segura:** Franja inferior del 20 % de tono uniforme.
+- **Alt (ya redactado):** La responsable de un hotel al teléfono en la oficina interna, tranquila, mientras al fondo se trabaja en la instalación
+
+```text
+A vertical photograph taken inside the small back office of an independent hotel, just behind reception. In the foreground, the hotel manager, a woman in her fifties in real working clothes, sits on the corner of the desk with a telephone handset held to her ear, relaxed, one arm across her body, mid-sentence and clearly listening rather than complaining - the posture of someone who has called a person she already knows and does not have to explain anything to. She is turned three-quarters away and her face is mostly out of view; she never looks at the camera. On the desk in front of her, a spread-out printed floor plan of the building, a mug, and a rack of room keys, with an open key cabinet on the wall behind. Deeper into the frame and softly out of focus through the open office door, the corridor beyond, where the door of a wall-mounted network cabinet stands open and a single link light glows electric cyan #009FE3 - the work is happening, but it is not her problem and it is not the subject of the photograph. Soft even daylight from a window on the left. The bottom fifth of the frame is out-of-focus desk surface with no detail, reserved for a caption. The photograph is about calm delegation: the argument is her posture, not the equipment.
+```
+
+#### 12. `nosotros-innovacion-preparado`
+
+- **Archivo:** `public/images/nosotros/nosotros-innovacion-preparado.webp`
+- **Donde va:** Nosotros / bloque de innovación, columna derecha. Ratio 4:3, el mismo que tenía la foto prestada.
+- **Rol:** Apoyo de seccion
+- **Tamano:** 1400 x 1050 px (4:3)
+- **Bloque de estilo:** A
+- **Alt (ya redactado):** Rellano de servicio de un hotel con una canalización nueva y ordenada junto al cableado antiguo ya retirado
+
+```text
+A photograph of a service stair landing in a working hotel, the part guests never see: painted breeze-block walls, a fire door, a mop bucket parked in the corner. The subject is a comparison that reads instantly and without any caption. Running up the wall, a brand new length of clean white cable trunking, its lid off at one end so that you can see the cables inside are combed straight and that there is deliberate empty room left beside them for more. Lying on the floor at its foot, a large coil of the old cable that has just been taken out: grey, dusty, tangled, tied off with a cable tie, finished with. Standing to one side and looking up at the new run rather than at the camera, the hotel's maintenance lead, a man in his fifties in a plain work polo with his sleeves pushed up, one hand still holding a screwdriver at his side, taking a moment to look at what has been left ready. His face is turned away. One small electric cyan #009FE3 status light glows on a compact device fixed at the top of the new run. Cool even daylight from a high window out of frame. Calm, ordinary, competent: nothing is being demonstrated to anyone, the work is simply finished and prepared for whatever comes next.
+```
+
+---
+
 ### Open Graph (2)
 
-#### 10. `og-plate-dark`
+#### 13. `og-plate-dark`
 
 - **Archivo:** `public/images/og/og-plate-dark.webp`
 - **Donde va:** Plancha de fondo para las Open Graph. El texto se compone en build con next/og, nunca se genera con IA.
@@ -236,7 +288,7 @@ A vertical overhead still-life photograph on a seamless warm off-white #FAFAF8 p
 A wide abstract background image, 1200 by 630 proportions. A very dark field of near-black #1D1D1B deepening into deep navy #003057 toward the lower right, with one single long elegant light trail in electric cyan #009FE3 entering from the bottom left corner and curving smoothly out through the right edge, thin and unbroken. Far behind it, barely perceptible, the out-of-focus silhouettes of urban architecture at night with a handful of tiny cool white lit windows. The entire left two thirds of the image must be extremely dark, flat and free of any detail so that a logo and a large headline can be placed on top with perfect legibility. No text, no lettering, no logos, no icons. Restrained, deep, elegant.
 ```
 
-#### 11. `og-plate-light`
+#### 14. `og-plate-light`
 
 - **Archivo:** `public/images/og/og-plate-light.webp`
 - **Donde va:** Plancha de fondo clara para las Open Graph de secciones claras.

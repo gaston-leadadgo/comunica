@@ -219,6 +219,67 @@ export const soluciones = {
     ],
   },
 
+  /**
+   * Extension Dinamica, version de Soluciones.
+   *
+   * NO es la de la home. Aqui el lector ya sabe que vende Comunica y esta
+   * comparando soluciones, asi que el copy de cliente cambia el enfoque: se
+   * salta la escena del telefono de la habitacion —que en la home hace de
+   * enganche— y va directo a las tres razones para plantearlo, cada una con su
+   * explicacion. De ahi que este bloque use `features` (titular + desarrollo) y
+   * el de la home `benefits` (etiquetas sueltas): no es un capricho de formato,
+   * es que el texto que dio el cliente para cada pagina tiene otra forma.
+   *
+   * Sin `eyebrow`: en la home hace falta anunciar de que va la seccion, aqui el
+   * propio titulo ya es el nombre del producto.
+   */
+  extension: {
+    title: "Extensión Dinámica",
+    subtitle: "La extensión de la habitación, en el móvil del huésped",
+    body: [
+      "Con la Extensión Dinámica de Comunica, el huésped escanea un código QR y puede utilizar su propio móvil como extensión de la habitación durante su estancia.",
+      "Una forma más flexible de plantear la telefonía hotelera, especialmente interesante en reformas, ampliaciones y nuevos proyectos.",
+    ],
+    features: [
+      {
+        title: "Menos hardware. Menos mantenimiento.",
+        description:
+          "Reduce la dependencia de terminales físicos, cableado específico y equipos que instalar, reparar o sustituir.",
+      },
+      {
+        title: "Una experiencia más mobile-first.",
+        description:
+          "El huésped utiliza el dispositivo que ya conoce y lleva consigo, sin necesidad de depender del teléfono de sobremesa de la habitación.",
+      },
+      {
+        title: "Integrada en el ecosistema del hotel.",
+        description:
+          "Puede formar parte de una arquitectura conjunta con WiFi, voz, iAndrea e integraciones, bajo un mismo proveedor.",
+      },
+    ],
+    closing:
+      "Menos infraestructura que gestionar. Más flexibilidad para comunicar.",
+    cta: {
+      label: "Quiero conocer la Extensión Dinámica",
+      href: `${routes.contacto}?intent=extension`,
+    } satisfies Cta,
+    /**
+     * El flujo QR es el mismo producto, asi que los rotulos del mockup no
+     * cambian entre paginas. Se repiten aqui a proposito y no se importan de
+     * `home`: este fichero es el copy de esta pagina, y un dia el cliente puede
+     * querer tocarlos solo aqui.
+     */
+    mockup: {
+      room: "Habitación 304",
+      guestStatus: "Huésped conectado",
+      qrLabel: "Código QR en la habitación",
+      qrAction: "Escanear al llegar",
+      phoneLabel: "Móvil del huésped",
+      extActive: "Ext. 304 Activa",
+      actions: ["Llamada directa a Recepción", "Room Service"],
+    },
+  },
+
   closing: {
     title: "¿No sabes qué solución necesitas?",
     body: [

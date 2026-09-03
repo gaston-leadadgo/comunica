@@ -262,9 +262,9 @@ export const images = {
     role: "apoyo",
     grading: "A",
     safeArea:
-      "El QR va IMPRESO en la tarjeta dentro de la propia foto (decisión de cliente, cambia el planteamiento anterior de componerlo por CSS). La cara de la tarjeta tiene que quedar frontal, plana, nítida y sin reflejos, y el código ocuparla casi entera. Encuadre panorámico, no vertical.",
+      "El QR va IMPRESO en la tarjeta dentro de la propia foto (decisión de cliente, cambia el planteamiento anterior de componerlo por CSS). La cara de la tarjeta tiene que quedar frontal, plana, nítida y sin reflejos, y el código ocuparla casi entera. Encuadre panorámico, no vertical. SIN teléfono de habitación en el encuadre: el archivo que hay hoy todavía lleva uno a la derecha y hay que regenerarlo, porque el producto existe precisamente para quitarlo.",
     ready: true,
-    prompt: `A wide horizontal photograph of the bedside table of a calm, modest hotel room in the late afternoon, shot from a shallow angle just above the surface so the composition is panoramic rather than tall. The subject of the photograph is a small white acrylic tent card standing upright on the table, turned so that its front face is square to the lens and fully visible, and on that face, printed large and perfectly flat, a black and white QR code: a dense square matrix of small black modules on white, with the three characteristic solid square finder patterns in its top-left, top-right and bottom-left corners and a clean white quiet zone around the edge. The code fills most of the card face and must be sharp, high in contrast, unblurred, undistorted and free of glare or reflections. It is printed on the card as ink on plastic - not glowing, not projected, not floating in the air. Beside the card a smartphone lies face down, and a slim reading lamp casts warm light. Behind, the corner of a crisply made bed and a warm off-white wall. Soft golden daylight from a window out of frame on the left, deep navy in the shadows. The old room telephone sits at the far right edge of the frame, its cable unplugged and coiled beside it. Nobody in frame. Ordinary, well kept, real: a room in a working hotel, not a suite in a brochure. One explicit exception to the house style rule that forbids graphics: this square black and white code pattern is required and must be clearly visible. Apart from it there is still absolutely no text, no lettering, no numbers, no logos and no watermarks anywhere in the image.`,
+    prompt: `A wide horizontal photograph of the bedside table of a calm, modest hotel room in the late afternoon, shot from a shallow angle just above the surface so the composition is panoramic rather than tall. The subject of the photograph is a small white acrylic tent card standing upright on the table, turned so that its front face is square to the lens and fully visible, and on that face, printed large and perfectly flat, a black and white QR code: a dense square matrix of small black modules on white, with the three characteristic solid square finder patterns in its top-left, top-right and bottom-left corners and a clean white quiet zone around the edge. The code fills most of the card face and must be sharp, high in contrast, unblurred, undistorted and free of glare or reflections. It is printed on the card as ink on plastic - not glowing, not projected, not floating in the air. Beside the card a smartphone lies face down, and a slim reading lamp casts warm light. Behind, the corner of a crisply made bed and a warm off-white wall. Soft golden daylight from a window out of frame on the left, deep navy in the shadows. There is NO room telephone anywhere in the picture: no desk phone, no handset, no cradle, no coiled telephone cable and no wall socket with a phone lead. The whole point of the product is that the room no longer needs one, so a telephone in shot contradicts the message. The surface where a phone would have stood is simply clear. Nobody in frame. Ordinary, well kept, real: a room in a working hotel, not a suite in a brochure. One explicit exception to the house style rule that forbids graphics: this square black and white code pattern is required and must be clearly visible. Apart from it there is still absolutely no text, no lettering, no numbers, no logos and no watermarks anywhere in the image.`,
   },
 
   "home-differentials-engineer-hands": {
@@ -295,6 +295,82 @@ export const images = {
   },
 
   // -------------------------------------------------------------------- OG
+  // ------------------------------------------------------------ SOLUCIONES
+  /**
+   * Extension Dinamica en Soluciones.
+   *
+   * Existe para que la seccion no sea la misma foto que en la home: el bloque ya
+   * trae copy distinto y compartir imagen lo delataba como copia. El concepto
+   * tambien cambia a proposito. La home ensena la tarjeta con el QR; esta ensena
+   * el HUECO: la mesa donde estaba el telefono de sobremesa, ahora vacia. Es el
+   * argumento de "menos hardware" contado sin rotulos, que es justo lo que
+   * encabeza el copy de esta pagina.
+   */
+  "soluciones-extension-desk-sin-telefono": {
+    key: "soluciones-extension-desk-sin-telefono",
+    src: "/images/soluciones/soluciones-extension-desk-sin-telefono.webp",
+    alt: "Escritorio de una habitación de hotel con una tarjeta con código QR y sin teléfono de sobremesa",
+    width: 2752,
+    height: 1536,
+    usage:
+      "Soluciones / bloque Extensión Dinámica, cabecera de la columna visual. Mismo ratio 16:9 que la de la home porque comparten componente: cambiarlo movería el resto de la sección.",
+    role: "apoyo",
+    grading: "A",
+    safeArea:
+      "La cara de la tarjeta: frontal, plana, nítida y sin reflejos, con el código ocupándola casi entera. Y el escritorio VACÍO: ni teléfono, ni base, ni cable de teléfono. El hueco es el tema de la foto.",
+    ready: false,
+    prompt: `A wide horizontal photograph of the writing desk of a calm, modest hotel room in the morning, shot from a shallow angle just above the surface so the composition is panoramic rather than tall. The subject is twofold. First, a small white acrylic tent card standing upright on the desk, turned so that its front face is square to the lens and fully visible, and on that face, printed large and perfectly flat, a black and white QR code: a dense square matrix of small black modules on white, with the three characteristic solid square finder patterns in its top-left, top-right and bottom-left corners and a clean white quiet zone around the edge. The code fills most of the card face and must be sharp, high in contrast, unblurred, undistorted and free of glare or reflections. It is printed on the card as ink on plastic - not glowing, not projected, not floating in the air. Second, and just as important, the empty space beside it: the part of the desk where a hotel room telephone used to stand is now completely clear, with only a faint clean rectangle in the dust and one small unused socket on the skirting board behind to suggest that something was taken away. There must be NO telephone anywhere in the frame: no handset, no cradle, no coiled cable, no dock. On the rest of the desk, only a folded leather folio and a glass of water. Behind, a warm off-white wall and the edge of a window with clean morning daylight coming from the right, cooler than afternoon light, deep navy in the shadows. Nobody in frame. Ordinary, well kept, real: a room in a working hotel, not a suite in a brochure. One explicit exception to the house style rule that forbids graphics: this square black and white code pattern is required and must be clearly visible. Apart from it there is still absolutely no text, no lettering, no numbers, no logos and no watermarks anywhere in the image.`,
+  },
+
+  // -------------------------------------------------------------- NOSOTROS
+  /**
+   * "Confiable no es una palabra bonita. Es una forma de trabajar".
+   *
+   * Antes esta seccion tomaba prestada la foto del bento de la home (el armario
+   * de red), asi que quien venia de Inicio veia la misma imagen dos veces. Esta
+   * es propia y cuenta otra cosa: la seccion no habla de reparar, habla de PODER
+   * DELEGAR. Por eso el sujeto no esta trabajando en la instalacion — esta al
+   * telefono, tranquila, mientras el trabajo sucede al fondo y sin ella.
+   */
+  "nosotros-trust-delegar": {
+    key: "nosotros-trust-delegar",
+    src: "/images/nosotros/nosotros-trust-delegar.webp",
+    alt: "La responsable de un hotel al teléfono en la oficina interna, tranquila, mientras al fondo se trabaja en la instalación",
+    width: 1400,
+    height: 1750,
+    usage:
+      "Nosotros / bloque «Confiable no es una palabra bonita», columna derecha. Vertical 4:5, el mismo ratio que tenía la foto prestada, para no mover la columna.",
+    role: "apoyo",
+    grading: "A",
+    safeArea: "Franja inferior del 20 % de tono uniforme.",
+    ready: false,
+    prompt: `A vertical photograph taken inside the small back office of an independent hotel, just behind reception. In the foreground, the hotel manager, a woman in her fifties in real working clothes, sits on the corner of the desk with a telephone handset held to her ear, relaxed, one arm across her body, mid-sentence and clearly listening rather than complaining - the posture of someone who has called a person she already knows and does not have to explain anything to. She is turned three-quarters away and her face is mostly out of view; she never looks at the camera. On the desk in front of her, a spread-out printed floor plan of the building, a mug, and a rack of room keys, with an open key cabinet on the wall behind. Deeper into the frame and softly out of focus through the open office door, the corridor beyond, where the door of a wall-mounted network cabinet stands open and a single link light glows electric cyan #009FE3 - the work is happening, but it is not her problem and it is not the subject of the photograph. Soft even daylight from a window on the left. The bottom fifth of the frame is out-of-focus desk surface with no detail, reserved for a caption. The photograph is about calm delegation: the argument is her posture, not the equipment.`,
+  },
+
+  /**
+   * "Hoy resolvemos. Manana nos anticipamos".
+   *
+   * Nueva por lo mismo: antes se traia la foto del pasillo del perfil "Hotel
+   * Gestionado", que ya sale en la home Y en Soluciones — la misma imagen en
+   * tres sitios. Ademas ilustraba mal, porque un pasillo no dice nada de
+   * anticiparse. Aqui el argumento se ve en un solo plano: lo viejo que se
+   * retira y lo nuevo dejado con holgura para lo que venga.
+   */
+  "nosotros-innovacion-preparado": {
+    key: "nosotros-innovacion-preparado",
+    src: "/images/nosotros/nosotros-innovacion-preparado.webp",
+    alt: "Rellano de servicio de un hotel con una canalización nueva y ordenada junto al cableado antiguo ya retirado",
+    width: 1400,
+    height: 1050,
+    usage:
+      "Nosotros / bloque de innovación, columna derecha. Ratio 4:3, el mismo que tenía la foto prestada.",
+    role: "apoyo",
+    grading: "A",
+    ready: false,
+    prompt: `A photograph of a service stair landing in a working hotel, the part guests never see: painted breeze-block walls, a fire door, a mop bucket parked in the corner. The subject is a comparison that reads instantly and without any caption. Running up the wall, a brand new length of clean white cable trunking, its lid off at one end so that you can see the cables inside are combed straight and that there is deliberate empty room left beside them for more. Lying on the floor at its foot, a large coil of the old cable that has just been taken out: grey, dusty, tangled, tied off with a cable tie, finished with. Standing to one side and looking up at the new run rather than at the camera, the hotel's maintenance lead, a man in his fifties in a plain work polo with his sleeves pushed up, one hand still holding a screwdriver at his side, taking a moment to look at what has been left ready. His face is turned away. One small electric cyan #009FE3 status light glows on a compact device fixed at the top of the new run. Cool even daylight from a high window out of frame. Calm, ordinary, competent: nothing is being demonstrated to anyone, the work is simply finished and prepared for whatever comes next.`,
+  },
+
+  // ------------------------------------------------------------ OPEN GRAPH
   "og-plate-dark": {
     key: "og-plate-dark",
     src: "/images/og/og-plate-dark.webp",

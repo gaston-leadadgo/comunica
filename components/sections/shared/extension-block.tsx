@@ -4,7 +4,8 @@ import { SIZES, SmartImage } from "@/components/media/smart-image";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/section";
 import { Icon } from "@/components/ui/icon";
-import { home } from "@/content/home";
+import type { ImageKey } from "@/content/images";
+import type { Cta } from "@/content/schema";
 import { useBrandMotion } from "@/lib/gsap/use-brand-motion";
 
 /**
@@ -27,10 +28,58 @@ import { useBrandMotion } from "@/lib/gsap/use-brand-motion";
  * Solo queda un movimiento: la tira de pasos entra una vez con stagger. Sin
  * scrub, porque la seccion completa cabe en pantalla y un scrub dejaria los
  * pasos a medio opacar sin nada de scroll que los complete.
+ *
+ * ---------------------------------------------------------------------------
+ * Por que recibe el contenido por props y no lo lee de `content/home`
+ *
+ * La seccion aparece en la home y en Soluciones, y el cliente escribio DOS
+ * textos distintos: en la home el bloque hace de enganche y va con etiquetas
+ * sueltas (`benefits`); en Soluciones el lector ya sabe que vende Comunica y el
+ * copy desarrolla cada razon (`features`, titular + explicacion). Antes las dos
+ * paginas pintaban literalmente lo mismo, que es justo lo que se pidio corregir.
+ *
+ * Los dos formatos conviven en el mismo componente porque el resto del bloque
+ * —foto, flujo QR, acciones, CTA— es identico. Se pinta uno u otro segun cual
+ * traiga el contenido; si algun dia llegan los dos, mandan las `features`, que
+ * son las que dicen mas.
  */
-export function ExtensionBlock() {
-  const { extension } = home;
-  const m = extension.mockup;
+
+type ExtensionFeature = {
+  readonly title: string;
+  readonly description: string;
+};
+
+export type ExtensionContent = {
+  /** Opcional: en Soluciones el titulo ya es el nombre del producto. */
+  readonly eyebrow?: string;
+  readonly title: string;
+  readonly subtitle: string;
+  readonly body: readonly string[];
+  /** Etiquetas sueltas (home). */
+  readonly benefits?: readonly string[];
+  /** Razones desarrolladas (Soluciones). Tienen prioridad sobre `benefits`. */
+  readonly features?: readonly ExtensionFeature[];
+  readonly closing: string;
+  readonly cta: Cta;
+  readonly mockup: {
+    readonly room: string;
+    readonly guestStatus: string;
+    readonly qrLabel: string;
+    readonly qrAction: string;
+    readonly phoneLabel: string;
+    readonly extActive: string;
+    readonly actions: readonly string[];
+  };
+};
+
+export function ExtensionBlock({
+  content,
+  image,
+}: {
+  content: ExtensionContent;
+  image: ImageKey;
+}) {
+  const m = content.mockup;
 
   const steps = [
     { key: "habitacion", label: m.room, detail: m.guestStatus, icon: "hotel" as const },
@@ -62,45 +111,70 @@ export function ExtensionBlock() {
         <div className="grid items-center gap-x-16 gap-y-10 lg:grid-cols-[0.9fr_1.1fr]">
           {/* Columna de texto */}
           <div className="min-w-0">
-            <p className="font-mono text-eyebrow tracking-[0.2em] text-cyan-ink-strong uppercase">
-              {extension.eyebrow}
-            </p>
-            <h2 className="mt-6 text-display-2">{extension.title}</h2>
+            {content.eyebrow ? (
+              <p className="font-mono text-eyebrow tracking-[0.2em] text-cyan-ink-strong uppercase">
+                {content.eyebrow}
+              </p>
+            ) : null}
+            <h2 className={content.eyebrow ? "mt-6 text-display-2" : "text-display-2"}>
+              {content.title}
+            </h2>
             <p className="mt-2 max-w-[24ch] text-display-3 text-navy text-balance">
-              {extension.subtitle}
+              {content.subtitle}
             </p>
 
             <div className="mt-6 flex flex-col gap-3">
-              {extension.body.map((p) => (
+              {content.body.map((p) => (
                 <p key={p} className="measure-body text-body-sm text-fg-muted">
                   {p}
                 </p>
               ))}
             </div>
 
-            <ul className="mt-6 flex flex-wrap gap-2">
-              {extension.benefits.map((b) => (
-                <li
-                  key={b}
-                  className="flex items-center gap-2 rounded-full border border-line px-3.5 py-1.5 font-mono text-[0.75rem] text-navy"
-                >
-                  <Icon name="check" size={13} className="text-positive" />
-                  {b}
-                </li>
-              ))}
-            </ul>
+            {/* Las razones desarrolladas. El titular de cada una va en negrita y
+                en la MISMA linea que su explicacion: son frases del copy, no
+                rotulos, y separarlas en dos renglones convertiria tres razones
+                en seis lineas sueltas. Se deja en caja baja a proposito aunque
+                el cliente las escribiera en mayusculas: en el sitio las
+                versalitas son solo para los eyebrows de 11px, y tres frases
+                enteras en caja alta a tamano de cuerpo se leen a gritos. */}
+            {content.features ? (
+              <ul className="mt-6 flex flex-col gap-4">
+                {content.features.map((f) => (
+                  <li
+                    key={f.title}
+                    className="measure-body border-l-2 border-cyan pl-5 text-body-sm text-fg-muted"
+                  >
+                    <strong className="font-semibold text-navy">{f.title}</strong>{" "}
+                    {f.description}
+                  </li>
+                ))}
+              </ul>
+            ) : content.benefits ? (
+              <ul className="mt-6 flex flex-wrap gap-2">
+                {content.benefits.map((b) => (
+                  <li
+                    key={b}
+                    className="flex items-center gap-2 rounded-full border border-line px-3.5 py-1.5 font-mono text-[0.75rem] text-navy"
+                  >
+                    <Icon name="check" size={13} className="text-positive" />
+                    {b}
+                  </li>
+                ))}
+              </ul>
+            ) : null}
 
             <p className="measure-body mt-6 text-small text-fg-muted">
-              {extension.closing}
+              {content.closing}
             </p>
 
             <div className="mt-7">
               <Button
-                href={extension.cta.href}
+                href={content.cta.href}
                 variant="navy"
                 iconRight={<Icon name="arrow-right" size={17} />}
               >
-                {extension.cta.label}
+                {content.cta.label}
               </Button>
             </div>
           </div>
@@ -117,10 +191,12 @@ export function ExtensionBlock() {
                 difusion no produce un QR escaneable, solo un patron que lo
                 parece. Sirve como fotografia de producto, no como codigo real;
                 si en algun momento hace falta que sea escaneable, hay que volver
-                al vector compuesto (`QrMotif` sigue en el repo). */}
+                al vector compuesto (`QrMotif` sigue en el repo).
+                La foto llega por props: cada pagina lleva la suya para que la
+                seccion no se lea dos veces igual. */}
             <div className="d-crop-r relative">
               <SmartImage
-                image="home-extension-qr-room"
+                image={image}
                 sizes={SIZES.heroSplit}
                 decorative
                 wrapperClassName="h-full"

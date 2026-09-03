@@ -123,12 +123,18 @@ export function DifferentialsBento() {
   return (
     <section data-tone="light" className="bg-paper-warm py-section">
       <Container width="wide">
-        {/* Medida ancha a proposito. Son 93 caracteres y contienen
-            "telecomunicaciones.", una palabra de 19: por debajo de ~1.240px el
-            corte natural cae antes de esa palabra y el titular se va a tres
-            lineas aunque geometricamente quepa en dos. */}
-        <h2 className="mx-auto max-w-[46ch] text-center text-display-2 text-balance">
-          <HotelText>{differentials.title}</HotelText>
+        {/* Tres frases, una por linea, partidas desde el copy.
+            La medida sigue siendo ancha (46ch) porque la primera linea son 57
+            caracteres y contiene "telecomunicaciones.", de 19: con una medida
+            corta esa palabra se iria sola a un renglon.
+            `text-balance` NO va aqui: reequilibraria cada linea por su cuenta y
+            volveria a partir la larga, que es justo lo que se quiere evitar. */}
+        <h2 className="mx-auto max-w-[46ch] text-center text-display-2">
+          {differentials.titleLines.map((line) => (
+            <span key={line} className="block">
+              <HotelText>{line}</HotelText>
+            </span>
+          ))}
         </h2>
 
         <div ref={scope}>

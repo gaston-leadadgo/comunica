@@ -71,9 +71,15 @@ export function MethodStack() {
       />
 
       <Container>
-        <h2 className="mx-auto max-w-[26ch] text-center text-display-2 text-balance">
-          <HotelText>{method.title}</HotelText>
-        </h2>
+        {/* La pregunta hace de titulo de seccion y va al mismo tamano que
+            todos los demas titulares del sitio, que es regla explicita de
+            cliente. La frase que antes ocupaba este sitio baja un escalon, a
+            `text-display-3`: sigue siendo lo mas grande despues del titulo y se
+            lee como su respuesta, no como otro titular compitiendo. */}
+        <h2 className="text-center text-display-2">{method.title}</h2>
+        <p className="mx-auto mt-3 max-w-[30ch] text-center text-display-3 text-navy text-balance">
+          <HotelText>{method.subtitle}</HotelText>
+        </p>
 
         <div ref={scope} className="mt-16 flex flex-col gap-6 lg:mt-24 lg:gap-0">
           {method.steps.map((step, i) => (
