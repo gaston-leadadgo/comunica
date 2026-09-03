@@ -2,7 +2,7 @@
 
 Generado automaticamente desde `content/images.ts`. **No editar a mano**: cambia el registro y vuelve a ejecutar `npm run images:doc`.
 
-**14 imagenes** en total.
+**13 imagenes** en total.
 
 ---
 
@@ -62,14 +62,13 @@ Nano Banana no escribe texto legible: un dashboard generado por IA con palabras 
 | 4 | `home-profile-gestionado-cadena` | Home | Apoyo de seccion | 4:3 | 1400x1050 | A |
 | 5 | `home-profile-especializado-proyecto` | Home | Apoyo de seccion | 4:3 | 1400x1050 | B |
 | 6 | `home-iandrea-voice-ai` | Home | Mockup de producto | 4:3 | 1448x1086 | C |
-| 7 | `home-extension-qr-room` | Home | Apoyo de seccion | 16:9 | 2752x1536 | A |
-| 8 | `home-differentials-engineer-hands` | Home | Apoyo de seccion | 4:5 | 1400x1750 | A |
-| 9 | `home-catalog-keycard-still` | Home | Bodegon editorial | 4:5 | 1400x1750 | A |
-| 10 | `soluciones-extension-desk-sin-telefono` | Soluciones | Apoyo de seccion | 16:9 | 2752x1536 | A |
-| 11 | `nosotros-trust-delegar` | Nosotros | Apoyo de seccion | 4:5 | 1400x1750 | A |
-| 12 | `nosotros-innovacion-preparado` | Nosotros | Apoyo de seccion | 4:3 | 1400x1050 | A |
-| 13 | `og-plate-dark` | Open Graph | Plancha Open Graph | 40:21 | 1200x630 | B |
-| 14 | `og-plate-light` | Open Graph | Plancha Open Graph | 40:21 | 1200x630 | A |
+| 7 | `home-differentials-engineer-hands` | Home | Apoyo de seccion | 4:5 | 1400x1750 | A |
+| 8 | `home-catalog-keycard-still` | Home | Bodegon editorial | 4:5 | 1400x1750 | A |
+| 9 | `soluciones-extension-desk-sin-telefono` | Soluciones | Apoyo de seccion | 16:9 | 2752x1536 | A |
+| 10 | `nosotros-trust-delegar` | Nosotros | Apoyo de seccion | 4:5 | 1400x1750 | A |
+| 11 | `nosotros-innovacion-preparado` | Nosotros | Apoyo de seccion | 4:3 | 1400x1050 | A |
+| 12 | `og-plate-dark` | Open Graph | Plancha Open Graph | 40:21 | 1200x630 | B |
+| 13 | `og-plate-light` | Open Graph | Plancha Open Graph | 40:21 | 1200x630 | A |
 
 ---
 
@@ -99,7 +98,7 @@ House style for this image, follow it exactly. This is the PRODUCT image of iAnd
 
 ## Fichas
 
-### Home (9)
+### Home (8)
 
 #### 1. `home-hero-lobby-umbral`
 
@@ -181,21 +180,7 @@ A close night photograph of a well-organised server rack in the technical room o
 A bright, modern, openly technological product image of an AI voice assistant working at the reception desk of a hotel, shot in landscape 4:3. The real, photographed half of the picture: an open laptop and a slim black IP desk phone standing on the pale stone reception counter in the lower right of the frame, and behind them, softly out of focus, the warm daylit lobby of a busy hotel with several guests waiting at the counter, reduced to gentle blurred shapes so that no face is identifiable and nobody is looking towards the camera. The graphic half, and this is the real subject: rising out of the laptop screen and floating in the air above the counter, a luminous electric cyan #009FE3 interface made of clean emissive geometry - a glowing cyan orb at its centre standing for the voice of the assistant, concentric voice rings radiating outward from it, a bright audio waveform curving across the screen, three or four rounded conversation bubbles floating at different depths, and thin bright connection lines fanning out from the orb to a handful of simple glowing outline icons that read unmistakably as a telephone handset, a calendar, a small clock and a globe. The interface elements are crisp, thin-stroked, softly glowing, arranged with generous empty space between them and clearly layered in front of the scene, like a premium enterprise software campaign visual. Deep navy #003057 fills the depth behind the graphics and pools in the shadows, cyan carries every glow and specular, the counter and the lobby stay warm off-white and neutral warm grey, the hardware is near-black. The image has to say, at a glance and with no caption at all: an artificial intelligence is answering this hotel's calls, in many languages, at the same time, while the front desk gets on with the guests in front of it. Absolutely no text, no lettering, no words, no numbers, no logos and no wordmarks anywhere, on the screens included. No chrome humanoid robot, no matrix code, no wireframe globe, no circuit-board wallpaper. Bright, confident, premium, optimistic.
 ```
 
-#### 7. `home-extension-qr-room`
-
-- **Archivo:** `public/images/home/home-extension-qr-room.webp`
-- **Donde va:** Home / bloque Extensión Dinámica, cabecera de la columna visual. Ratio 16:9 para que la sección completa quepa en una pantalla.
-- **Rol:** Apoyo de seccion
-- **Tamano:** 2752 x 1536 px (16:9)
-- **Bloque de estilo:** A
-- **Zona segura:** El QR va IMPRESO en la tarjeta dentro de la propia foto (decisión de cliente, cambia el planteamiento anterior de componerlo por CSS). La cara de la tarjeta tiene que quedar frontal, plana, nítida y sin reflejos, y el código ocuparla casi entera. Encuadre panorámico, no vertical. SIN teléfono de habitación en el encuadre: el archivo que hay hoy todavía lleva uno a la derecha y hay que regenerarlo, porque el producto existe precisamente para quitarlo.
-- **Alt (ya redactado):** Mesilla de habitación de hotel con un soporte de sobremesa con código QR
-
-```text
-A wide horizontal photograph of the bedside table of a calm, modest hotel room in the late afternoon, shot from a shallow angle just above the surface so the composition is panoramic rather than tall. The subject of the photograph is a small white acrylic tent card standing upright on the table, turned so that its front face is square to the lens and fully visible, and on that face, printed large and perfectly flat, a black and white QR code: a dense square matrix of small black modules on white, with the three characteristic solid square finder patterns in its top-left, top-right and bottom-left corners and a clean white quiet zone around the edge. The code fills most of the card face and must be sharp, high in contrast, unblurred, undistorted and free of glare or reflections. It is printed on the card as ink on plastic - not glowing, not projected, not floating in the air. Beside the card a smartphone lies face down, and a slim reading lamp casts warm light. Behind, the corner of a crisply made bed and a warm off-white wall. Soft golden daylight from a window out of frame on the left, deep navy in the shadows. There is NO room telephone anywhere in the picture: no desk phone, no handset, no cradle, no coiled telephone cable and no wall socket with a phone lead. The whole point of the product is that the room no longer needs one, so a telephone in shot contradicts the message. The surface where a phone would have stood is simply clear. Nobody in frame. Ordinary, well kept, real: a room in a working hotel, not a suite in a brochure. One explicit exception to the house style rule that forbids graphics: this square black and white code pattern is required and must be clearly visible. Apart from it there is still absolutely no text, no lettering, no numbers, no logos and no watermarks anywhere in the image.
-```
-
-#### 8. `home-differentials-engineer-hands`
+#### 7. `home-differentials-engineer-hands`
 
 - **Archivo:** `public/images/home/home-differentials-engineer-hands.webp`
 - **Donde va:** Home / bento de diferenciales, celda vertical a dos filas
@@ -209,7 +194,7 @@ A wide horizontal photograph of the bedside table of a calm, modest hotel room i
 A vertical photograph of two people standing together in front of an open wall-mounted network cabinet in a back corridor of a small hotel. On the left, a technician in his thirties in a plain dark work polo, one hand seating a network cable into a patch panel, sleeves pushed up, no gloves. On the right and half a step back, the hotel manager, a woman in her fifties in working clothes, arms loosely folded, watching what he is doing with the calm attention of someone who wants to understand it rather than approve it. Neither looks at the camera; we see them three-quarters from behind and to the side, faces partly turned away. Inside the cabinet the cables are combed into perfect parallel lines and one link light glows electric cyan #009FE3. Beyond them the corridor continues, with a housekeeping trolley parked against the wall, out of focus. Soft even daylight from the left. The bottom fifth of the frame is out-of-focus floor with no detail, reserved for a caption. The image is about two people who understand each other, not about equipment.
 ```
 
-#### 9. `home-catalog-keycard-still`
+#### 8. `home-catalog-keycard-still`
 
 - **Archivo:** `public/images/home/home-catalog-keycard-still.webp`
 - **Donde va:** Home / bento de valor, celda vertical a dos filas
@@ -226,10 +211,10 @@ A vertical overhead still-life photograph on a seamless warm off-white #FAFAF8 p
 
 ### Soluciones (1)
 
-#### 10. `soluciones-extension-desk-sin-telefono`
+#### 9. `soluciones-extension-desk-sin-telefono`
 
 - **Archivo:** `public/images/soluciones/soluciones-extension-desk-sin-telefono.webp`
-- **Donde va:** Soluciones / bloque Extensión Dinámica, cabecera de la columna visual. Mismo ratio 16:9 que la de la home porque comparten componente: cambiarlo movería el resto de la sección.
+- **Donde va:** Home Y Soluciones / bloque Extensión Dinámica, cabecera de la columna visual. Mismo ratio 16:9 en las dos paginas porque comparten componente.
 - **Rol:** Apoyo de seccion
 - **Tamano:** 2752 x 1536 px (16:9)
 - **Bloque de estilo:** A
@@ -244,7 +229,7 @@ A wide horizontal photograph of the writing desk of a calm, modest hotel room in
 
 ### Nosotros (2)
 
-#### 11. `nosotros-trust-delegar`
+#### 10. `nosotros-trust-delegar`
 
 - **Archivo:** `public/images/nosotros/nosotros-trust-delegar.webp`
 - **Donde va:** Nosotros / bloque «Confiable no es una palabra bonita», columna derecha. Vertical 4:5, el mismo ratio que tenía la foto prestada, para no mover la columna.
@@ -258,7 +243,7 @@ A wide horizontal photograph of the writing desk of a calm, modest hotel room in
 A vertical photograph taken inside the small back office of an independent hotel, just behind reception. In the foreground, the hotel manager, a woman in her fifties in real working clothes, sits on the corner of the desk with a telephone handset held to her ear, relaxed, one arm across her body, mid-sentence and clearly listening rather than complaining - the posture of someone who has called a person she already knows and does not have to explain anything to. She is turned three-quarters away and her face is mostly out of view; she never looks at the camera. On the desk in front of her, a spread-out printed floor plan of the building, a mug, and a rack of room keys, with an open key cabinet on the wall behind. Deeper into the frame and softly out of focus through the open office door, the corridor beyond, where the door of a wall-mounted network cabinet stands open and a single link light glows electric cyan #009FE3 - the work is happening, but it is not her problem and it is not the subject of the photograph. Soft even daylight from a window on the left. The bottom fifth of the frame is out-of-focus desk surface with no detail, reserved for a caption. The photograph is about calm delegation: the argument is her posture, not the equipment.
 ```
 
-#### 12. `nosotros-innovacion-preparado`
+#### 11. `nosotros-innovacion-preparado`
 
 - **Archivo:** `public/images/nosotros/nosotros-innovacion-preparado.webp`
 - **Donde va:** Nosotros / bloque de innovación, columna derecha. Ratio 4:3, el mismo que tenía la foto prestada.
@@ -275,7 +260,7 @@ A photograph of a service stair landing in a working hotel, the part guests neve
 
 ### Open Graph (2)
 
-#### 13. `og-plate-dark`
+#### 12. `og-plate-dark`
 
 - **Archivo:** `public/images/og/og-plate-dark.webp`
 - **Donde va:** Plancha de fondo para las Open Graph. El texto se compone en build con next/og, nunca se genera con IA.
@@ -288,7 +273,7 @@ A photograph of a service stair landing in a working hotel, the part guests neve
 A wide abstract background image, 1200 by 630 proportions. A very dark field of near-black #1D1D1B deepening into deep navy #003057 toward the lower right, with one single long elegant light trail in electric cyan #009FE3 entering from the bottom left corner and curving smoothly out through the right edge, thin and unbroken. Far behind it, barely perceptible, the out-of-focus silhouettes of urban architecture at night with a handful of tiny cool white lit windows. The entire left two thirds of the image must be extremely dark, flat and free of any detail so that a logo and a large headline can be placed on top with perfect legibility. No text, no lettering, no logos, no icons. Restrained, deep, elegant.
 ```
 
-#### 14. `og-plate-light`
+#### 13. `og-plate-light`
 
 - **Archivo:** `public/images/og/og-plate-light.webp`
 - **Donde va:** Plancha de fondo clara para las Open Graph de secciones claras.

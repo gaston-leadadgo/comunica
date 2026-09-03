@@ -251,22 +251,6 @@ export const images = {
     prompt: `A bright, modern, openly technological product image of an AI voice assistant working at the reception desk of a hotel, shot in landscape 4:3. The real, photographed half of the picture: an open laptop and a slim black IP desk phone standing on the pale stone reception counter in the lower right of the frame, and behind them, softly out of focus, the warm daylit lobby of a busy hotel with several guests waiting at the counter, reduced to gentle blurred shapes so that no face is identifiable and nobody is looking towards the camera. The graphic half, and this is the real subject: rising out of the laptop screen and floating in the air above the counter, a luminous electric cyan #009FE3 interface made of clean emissive geometry - a glowing cyan orb at its centre standing for the voice of the assistant, concentric voice rings radiating outward from it, a bright audio waveform curving across the screen, three or four rounded conversation bubbles floating at different depths, and thin bright connection lines fanning out from the orb to a handful of simple glowing outline icons that read unmistakably as a telephone handset, a calendar, a small clock and a globe. The interface elements are crisp, thin-stroked, softly glowing, arranged with generous empty space between them and clearly layered in front of the scene, like a premium enterprise software campaign visual. Deep navy #003057 fills the depth behind the graphics and pools in the shadows, cyan carries every glow and specular, the counter and the lobby stay warm off-white and neutral warm grey, the hardware is near-black. The image has to say, at a glance and with no caption at all: an artificial intelligence is answering this hotel's calls, in many languages, at the same time, while the front desk gets on with the guests in front of it. Absolutely no text, no lettering, no words, no numbers, no logos and no wordmarks anywhere, on the screens included. No chrome humanoid robot, no matrix code, no wireframe globe, no circuit-board wallpaper. Bright, confident, premium, optimistic.`,
   },
 
-  "home-extension-qr-room": {
-    key: "home-extension-qr-room",
-    src: "/images/home/home-extension-qr-room.webp",
-    alt: "Mesilla de habitación de hotel con un soporte de sobremesa con código QR",
-    width: 2752,
-    height: 1536,
-    usage:
-      "Home / bloque Extensión Dinámica, cabecera de la columna visual. Ratio 16:9 para que la sección completa quepa en una pantalla.",
-    role: "apoyo",
-    grading: "A",
-    safeArea:
-      "El QR va IMPRESO en la tarjeta dentro de la propia foto (decisión de cliente, cambia el planteamiento anterior de componerlo por CSS). La cara de la tarjeta tiene que quedar frontal, plana, nítida y sin reflejos, y el código ocuparla casi entera. Encuadre panorámico, no vertical. SIN teléfono de habitación en el encuadre: el archivo que hay hoy todavía lleva uno a la derecha y hay que regenerarlo, porque el producto existe precisamente para quitarlo.",
-    ready: true,
-    prompt: `A wide horizontal photograph of the bedside table of a calm, modest hotel room in the late afternoon, shot from a shallow angle just above the surface so the composition is panoramic rather than tall. The subject of the photograph is a small white acrylic tent card standing upright on the table, turned so that its front face is square to the lens and fully visible, and on that face, printed large and perfectly flat, a black and white QR code: a dense square matrix of small black modules on white, with the three characteristic solid square finder patterns in its top-left, top-right and bottom-left corners and a clean white quiet zone around the edge. The code fills most of the card face and must be sharp, high in contrast, unblurred, undistorted and free of glare or reflections. It is printed on the card as ink on plastic - not glowing, not projected, not floating in the air. Beside the card a smartphone lies face down, and a slim reading lamp casts warm light. Behind, the corner of a crisply made bed and a warm off-white wall. Soft golden daylight from a window out of frame on the left, deep navy in the shadows. There is NO room telephone anywhere in the picture: no desk phone, no handset, no cradle, no coiled telephone cable and no wall socket with a phone lead. The whole point of the product is that the room no longer needs one, so a telephone in shot contradicts the message. The surface where a phone would have stood is simply clear. Nobody in frame. Ordinary, well kept, real: a room in a working hotel, not a suite in a brochure. One explicit exception to the house style rule that forbids graphics: this square black and white code pattern is required and must be clearly visible. Apart from it there is still absolutely no text, no lettering, no numbers, no logos and no watermarks anywhere in the image.`,
-  },
-
   "home-differentials-engineer-hands": {
     key: "home-differentials-engineer-hands",
     src: "/images/home/home-differentials-engineer-hands.webp",
@@ -297,14 +281,18 @@ export const images = {
   // -------------------------------------------------------------------- OG
   // ------------------------------------------------------------ SOLUCIONES
   /**
-   * Extension Dinamica en Soluciones.
+   * Extension Dinamica: la foto del escritorio, compartida por Home y
+   * Soluciones.
    *
-   * Existe para que la seccion no sea la misma foto que en la home: el bloque ya
-   * trae copy distinto y compartir imagen lo delataba como copia. El concepto
-   * tambien cambia a proposito. La home ensena la tarjeta con el QR; esta ensena
-   * el HUECO: la mesa donde estaba el telefono de sobremesa, ahora vacia. Es el
-   * argumento de "menos hardware" contado sin rotulos, que es justo lo que
-   * encabeza el copy de esta pagina.
+   * Nacio para Soluciones (de ahi el nombre) mostrando el HUECO donde estaba el
+   * telefono de sobremesa —el argumento de "menos hardware" sin rotulos— y al
+   * principio se penso distinta de la de Home a proposito, para que compartir
+   * componente no se notara como copia. Se unifico despues: la foto que tenia
+   * Home (`home-extension-qr-room`, retirada del registro: quedo huerfana en cuanto
+   * el componente paso a usar esta clave) SI llevaba un telefono fisico
+   * en el encuadre, y eso contradice el propio producto —toda la seccion explica
+   * que ya no hace falta uno—. Ante esa contradiccion, unificar en la foto sin
+   * telefono importa mas que diferenciar las dos paginas visualmente.
    */
   "soluciones-extension-desk-sin-telefono": {
     key: "soluciones-extension-desk-sin-telefono",
@@ -313,12 +301,12 @@ export const images = {
     width: 2752,
     height: 1536,
     usage:
-      "Soluciones / bloque Extensión Dinámica, cabecera de la columna visual. Mismo ratio 16:9 que la de la home porque comparten componente: cambiarlo movería el resto de la sección.",
+      "Home Y Soluciones / bloque Extensión Dinámica, cabecera de la columna visual. Mismo ratio 16:9 en las dos paginas porque comparten componente.",
     role: "apoyo",
     grading: "A",
     safeArea:
       "La cara de la tarjeta: frontal, plana, nítida y sin reflejos, con el código ocupándola casi entera. Y el escritorio VACÍO: ni teléfono, ni base, ni cable de teléfono. El hueco es el tema de la foto.",
-    ready: false,
+    ready: true,
     prompt: `A wide horizontal photograph of the writing desk of a calm, modest hotel room in the morning, shot from a shallow angle just above the surface so the composition is panoramic rather than tall. The subject is twofold. First, a small white acrylic tent card standing upright on the desk, turned so that its front face is square to the lens and fully visible, and on that face, printed large and perfectly flat, a black and white QR code: a dense square matrix of small black modules on white, with the three characteristic solid square finder patterns in its top-left, top-right and bottom-left corners and a clean white quiet zone around the edge. The code fills most of the card face and must be sharp, high in contrast, unblurred, undistorted and free of glare or reflections. It is printed on the card as ink on plastic - not glowing, not projected, not floating in the air. Second, and just as important, the empty space beside it: the part of the desk where a hotel room telephone used to stand is now completely clear, with only a faint clean rectangle in the dust and one small unused socket on the skirting board behind to suggest that something was taken away. There must be NO telephone anywhere in the frame: no handset, no cradle, no coiled cable, no dock. On the rest of the desk, only a folded leather folio and a glass of water. Behind, a warm off-white wall and the edge of a window with clean morning daylight coming from the right, cooler than afternoon light, deep navy in the shadows. Nobody in frame. Ordinary, well kept, real: a room in a working hotel, not a suite in a brochure. One explicit exception to the house style rule that forbids graphics: this square black and white code pattern is required and must be clearly visible. Apart from it there is still absolutely no text, no lettering, no numbers, no logos and no watermarks anywhere in the image.`,
   },
 
@@ -343,7 +331,7 @@ export const images = {
     role: "apoyo",
     grading: "A",
     safeArea: "Franja inferior del 20 % de tono uniforme.",
-    ready: false,
+    ready: true,
     prompt: `A vertical photograph taken inside the small back office of an independent hotel, just behind reception. In the foreground, the hotel manager, a woman in her fifties in real working clothes, sits on the corner of the desk with a telephone handset held to her ear, relaxed, one arm across her body, mid-sentence and clearly listening rather than complaining - the posture of someone who has called a person she already knows and does not have to explain anything to. She is turned three-quarters away and her face is mostly out of view; she never looks at the camera. On the desk in front of her, a spread-out printed floor plan of the building, a mug, and a rack of room keys, with an open key cabinet on the wall behind. Deeper into the frame and softly out of focus through the open office door, the corridor beyond, where the door of a wall-mounted network cabinet stands open and a single link light glows electric cyan #009FE3 - the work is happening, but it is not her problem and it is not the subject of the photograph. Soft even daylight from a window on the left. The bottom fifth of the frame is out-of-focus desk surface with no detail, reserved for a caption. The photograph is about calm delegation: the argument is her posture, not the equipment.`,
   },
 
@@ -366,7 +354,7 @@ export const images = {
       "Nosotros / bloque de innovación, columna derecha. Ratio 4:3, el mismo que tenía la foto prestada.",
     role: "apoyo",
     grading: "A",
-    ready: false,
+    ready: true,
     prompt: `A photograph of a service stair landing in a working hotel, the part guests never see: painted breeze-block walls, a fire door, a mop bucket parked in the corner. The subject is a comparison that reads instantly and without any caption. Running up the wall, a brand new length of clean white cable trunking, its lid off at one end so that you can see the cables inside are combed straight and that there is deliberate empty room left beside them for more. Lying on the floor at its foot, a large coil of the old cable that has just been taken out: grey, dusty, tangled, tied off with a cable tie, finished with. Standing to one side and looking up at the new run rather than at the camera, the hotel's maintenance lead, a man in his fifties in a plain work polo with his sleeves pushed up, one hand still holding a screwdriver at his side, taking a moment to look at what has been left ready. His face is turned away. One small electric cyan #009FE3 status light glows on a compact device fixed at the top of the new run. Cool even daylight from a high window out of frame. Calm, ordinary, competent: nothing is being demonstrated to anyone, the work is simply finished and prepared for whatever comes next.`,
   },
 
