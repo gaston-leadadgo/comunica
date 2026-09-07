@@ -84,7 +84,9 @@ export default async function ContactoPage({
 
               <a
                 href={site.phone.href}
-                className="mt-5 flex items-center gap-3 font-mono text-display-3 text-cyan"
+                // `min-h-11`: es la accion principal de la pagina y con el
+                // alto natural de la linea se quedaba en 25px de diana.
+                className="mt-5 flex min-h-11 items-center gap-3 font-mono text-display-3 text-cyan"
                 data-tabular
               >
                 <Icon name="phone" size={20} className="shrink-0" />

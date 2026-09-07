@@ -205,13 +205,11 @@ export function HeroCinematic() {
             {/* `flex-wrap` + `shrink-0`, y no una fila rigida.
                 -------------------------------------------------------------
                 Los dos botones piden 636px de ancho y la columna de texto tiene
-                584: sin envolver, el primero encogia a 237px mientras su
-                etiqueta —que va en `whitespace-nowrap`— seguia midiendo 291.
-                Como la variante navy lleva `overflow-hidden` para el barrido
-                diagonal, el texto sobrante no desbordaba: se cortaba, y en
-                pantalla se leia "bla con un especialista hotelero".
-                Con `shrink-0` el boton conserva su ancho natural y, cuando los
-                dos no caben, el segundo baja a una linea nueva. */}
+                584. Sin envolver, el primero encogia a 237px con su etiqueta a
+                291 y la variante navy —que lleva `overflow-hidden` por el
+                barrido diagonal— la recortaba: se leia "bla con un especialista
+                hotelero". Con `shrink-0` cada boton conserva su ancho natural y,
+                cuando los dos no caben, el segundo baja a una linea nueva. */}
             <div
               data-ctas
               className="mt-[clamp(1.25rem,4vh,2.25rem)] flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center"
@@ -221,13 +219,7 @@ export function HeroCinematic() {
                 size="lg"
                 variant="navy"
                 iconRight={<Icon name="arrow-right" size={18} />}
-                // `whitespace-normal` en movil: el boton ocupa el ancho
-                // completo (327px utiles a 375) y la etiqueta mide ~340, asi
-                // que con el `whitespace-nowrap` del componente base el texto
-                // se salia de su caja y la variante navy —que lleva
-                // `overflow-hidden` por el barrido— lo recortaba. Envolviendo,
-                // cae en dos lineas y se lee entero.
-                className="w-full whitespace-normal sm:w-auto sm:shrink-0 sm:whitespace-nowrap"
+                className="w-full sm:w-auto sm:shrink-0"
               >
                 {hero.ctas[0].label}
               </Button>
@@ -235,13 +227,7 @@ export function HeroCinematic() {
                 href={hero.ctas[1].href}
                 size="lg"
                 variant="outline"
-                // `whitespace-normal` en movil: el boton ocupa el ancho
-                // completo (327px utiles a 375) y la etiqueta mide ~340, asi
-                // que con el `whitespace-nowrap` del componente base el texto
-                // se salia de su caja y la variante navy —que lleva
-                // `overflow-hidden` por el barrido— lo recortaba. Envolviendo,
-                // cae en dos lineas y se lee entero.
-                className="w-full whitespace-normal sm:w-auto sm:shrink-0 sm:whitespace-nowrap"
+                className="w-full sm:w-auto sm:shrink-0"
               >
                 <span className="inline-flex items-center gap-2">
                   <Icon name="file-text" size={17} />

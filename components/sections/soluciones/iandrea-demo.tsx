@@ -279,11 +279,15 @@ export function SolucionesIandreaDemo() {
                 </span>
               </div>
 
+              {/* Se apila en movil. En una fila los dos escenarios piden 366px
+                  y a 320 solo hay 236: el segundo —justo el de la llamada— caia
+                  fuera del `overflow-hidden` de la tarjeta y quedaba invisible e
+                  inalcanzable en el telefono. */}
               <div
                 role="tablist"
                 aria-label={demo.scenarioLabel}
                 onKeyDown={onTabKey}
-                className="flex gap-1 rounded-lg border border-white/12 bg-navy-deep p-1"
+                className="flex w-full flex-col gap-1 rounded-lg border border-white/12 bg-navy-deep p-1 sm:w-auto sm:flex-row"
               >
                 {demo.scenarios.map((s, i) => {
                   const selected = i === scenarioIndex;
@@ -296,7 +300,7 @@ export function SolucionesIandreaDemo() {
                       tabIndex={selected ? 0 : -1}
                       onClick={() => selectScenario(i)}
                       className={cn(
-                        "flex items-center gap-2 rounded-md px-3 py-2 text-body-sm font-semibold transition-colors",
+                        "flex min-h-11 items-center justify-center gap-2 rounded-md px-3 py-2 text-body-sm font-semibold transition-colors sm:min-h-0 sm:justify-start",
                         selected
                           ? "bg-cyan text-ink"
                           : "text-fg-inverse-muted hover:bg-white/5 hover:text-white",

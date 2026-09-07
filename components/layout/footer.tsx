@@ -101,7 +101,7 @@ export function Footer() {
               </span>
               <a
                 href={site.phone.href}
-                className="flex items-center gap-3 py-1 transition-colors hover:text-cyan-soft"
+                className="flex min-h-11 items-center gap-3 py-1 transition-colors hover:text-cyan-soft sm:min-h-0"
               >
                 <Icon name="phone" size={16} className="shrink-0 text-cyan" />
                 <span data-tabular className="font-mono text-data">
@@ -112,7 +112,7 @@ export function Footer() {
                 href={site.social.linkedin.href}
                 rel="noopener noreferrer"
                 target="_blank"
-                className="flex items-center gap-3 py-1 text-fg-inverse-muted transition-colors hover:text-white"
+                className="flex min-h-11 items-center gap-3 py-1 text-fg-inverse-muted transition-colors hover:text-white sm:min-h-0"
               >
                 <LinkedInGlyph size={15} className="shrink-0 text-cyan" />
                 LinkedIn

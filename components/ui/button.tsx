@@ -16,9 +16,32 @@ import { cn } from "@/lib/utils/cn";
 type ButtonVariant = "navy" | "cyan" | "white" | "outline" | "ghost";
 type ButtonSize = "sm" | "md" | "lg";
 
+/**
+ * Por que el boton NO lleva `whitespace-nowrap` ni altura fija.
+ *
+ * Las dos cosas juntas eran el origen de los botones roros en movil, y se
+ * repetian en todas las paginas porque estaban aqui, en la base:
+ *
+ * - Con `whitespace-nowrap`, una etiqueta larga en español —"Solicita una
+ *   revision de tu factura" son 36 caracteres— produce un ancho intrinseco
+ *   mayor que la pantalla. Si el contenedor no le deja encoger, el boton
+ *   SOBRESALE del viewport; si le deja, la variante `navy` lleva
+ *   `overflow-hidden` para su degradado y entonces RECORTA la etiqueta. Las dos
+ *   salidas son un defecto, y se han visto las dos.
+ * - Con altura fija (`h-11`), en el momento en que la etiqueta ocupa dos lineas
+ *   el texto se desborda de la caja por abajo.
+ *
+ * La solucion es `min-h-*` mas un relleno vertical deliberadamente CORTO: en una
+ * sola linea manda el `min-h` y el boton mide exactamente lo que media antes
+ * —44px en `md`, comprobado—, asi que ningun diseño existente se mueve. En dos
+ * lineas, la caja crece en lugar de recortar.
+ *
+ * `max-w-full` es el cinturon de seguridad: aunque un contenedor se descuide,
+ * el boton no puede ser mas ancho que el sitio que tiene.
+ */
 const BASE =
-  "group/btn relative inline-flex select-none items-center justify-center gap-2 " +
-  "font-sans font-semibold whitespace-nowrap rounded-full " +
+  "group/btn relative inline-flex max-w-full select-none items-center justify-center gap-2 " +
+  "font-sans font-semibold text-center rounded-full " +
   "transition-[color,background-color,border-color,transform] duration-200 " +
   "disabled:pointer-events-none disabled:opacity-50 " +
   "active:translate-y-px";
@@ -53,10 +76,23 @@ const VARIANT: Record<ButtonVariant, string> = {
     "[[data-tone=dark]_&]:text-cyan-soft [[data-tone=dark]_&]:hover:bg-white/10",
 };
 
+/**
+ * Alturas MINIMAS, no fijas, con el relleno vertical deliberadamente por debajo
+ * de lo que necesita el contenido para que en el caso normal gobierne el `min-h`
+ * y las medidas sean identicas a las de siempre: 36 / 44 / 52px.
+ *
+ * El margen que se deja no es caprichoso. Cuando la etiqueta trae un icono
+ * dentro —"Solicita una revision de tu factura" lo lleva— la caja de linea sube
+ * de 25,6 a 28px, y la variante `outline` suma 2px de borde. Con `py-3` en `lg`
+ * eso daba 54px: el boton del hero quedaba 2px mas alto que el de al lado, y
+ * antes, con la altura FIJA de 52, ese mismo contenido se desbordaba de su caja.
+ * Con `py-2.5` el peor caso son 48px y el `min-h` sigue mandando, asi que los
+ * dos botones de una fila miden lo mismo lleven icono o no.
+ */
 const SIZE: Record<ButtonSize, string> = {
-  sm: "h-9 px-4 text-small",
-  md: "h-11 px-5 text-body",
-  lg: "h-13 px-7 text-body",
+  sm: "min-h-9 px-4 py-1.5 text-small",
+  md: "min-h-11 px-5 py-2 text-body",
+  lg: "min-h-13 px-7 py-2.5 text-body",
 };
 
 type CommonProps = {

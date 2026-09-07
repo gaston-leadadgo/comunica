@@ -221,11 +221,16 @@ export function ExtensionBlock({
                   <span className="grid size-9 shrink-0 place-items-center rounded-md bg-navy/[0.06] text-navy">
                     <Icon name={s.icon} size={17} />
                   </span>
+                  {/* Sin `truncate`. Recortaba con puntos suspensivos rotulos
+                      que son copy —"Codigo QR en la habitacion" perdia 14px
+                      medidos a 320px— y un paso del flujo a medio leer no
+                      explica el flujo. Envolver hace crecer la celda, que es
+                      justo lo que sobra en la columna estrecha. */}
                   <span className="min-w-0">
-                    <span className="block truncate text-body-sm font-semibold">
+                    <span className="block text-body-sm font-semibold text-pretty">
                       {s.label}
                     </span>
-                    <span className="block truncate font-mono text-[0.6875rem] text-fg-muted">
+                    <span className="block font-mono text-[0.6875rem] text-fg-muted text-pretty">
                       {s.detail}
                     </span>
                   </span>
