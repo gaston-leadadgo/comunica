@@ -6,6 +6,7 @@ import { Container } from "@/components/ui/section";
 import { Icon } from "@/components/ui/icon";
 import { soluciones } from "@/content/soluciones";
 import { gsap, useBrandMotion } from "@/lib/gsap/use-brand-motion";
+import { useVoice } from "@/lib/voice/use-voice";
 import { cn } from "@/lib/utils/cn";
 
 /**
@@ -28,33 +29,67 @@ import { cn } from "@/lib/utils/cn";
  * - El indicador de "pensando" respeta `prefers-reduced-motion`: sin
  *   animaciones, los puntos se sustituyen por texto.
  *
- * El temporizador se guarda en un ref y se limpia al desmontar y al cambiar de
- * escenario. Sin eso, cambiar de pestana con una respuesta en vuelo inyecta el
- * turno del escenario anterior en el hilo del nuevo.
+ * ---------------------------------------------------------------------------
+ * MODO LLAMADA
+ *
+ * Los escenarios con `voice: true` no se presentan como un chat sino como una
+ * llamada de telefono, que es lo que iAndrea hace de verdad: coger el telefono y
+ * contestar con voz. Eso cambia tres cosas respecto al modo texto:
+ *
+ * 1. Hay que DESCOLGAR. El hilo arranca vacio y las preguntas estan bloqueadas
+ *    hasta que se pulsa "Llamar". No es ceremonia: la sintesis de voz solo puede
+ *    arrancar a partir de un gesto del usuario —Safari lo exige— y ademas nadie
+ *    debe encontrarse con una voz sonando por haber pasado por encima de la
+ *    seccion. El boton convierte ese requisito tecnico en el gesto que la
+ *    metafora ya pedia.
+ * 2. iAndrea SALUDA en voz alta al conectar, con un tono de llamada previo. El
+ *    saludo es la linea que mas suena a centralita, asi que perderla por
+ *    mostrarla ya escrita al entrar desaprovechaba lo mejor del guion.
+ * 3. El hilo de burbujas pasa a ser la TRANSCRIPCION de lo que suena. Sigue
+ *    estando, y completo, por tres motivos: quien silencia la voz puede seguir
+ *    la conversacion, un lector de pantalla la lee igual, y en una oficina con
+ *    gente delante la mayoria no va a poner sonido.
+ *
+ * El modo texto se queda exactamente como estaba.
+ *
+ * Los dos temporizadores —el tono de llamada y el "pensando"— comparten un unico
+ * ref y se limpian al desmontar y al cambiar de escenario. Sin eso, cambiar de
+ * pestana con una respuesta en vuelo inyecta el turno del escenario anterior en
+ * el hilo del nuevo.
  */
 
 type Turn = { speaker: "andrea" | "user"; text: string; id: number };
+type Phase = "idle" | "ringing" | "live";
 
 const THINKING_MS = 1400;
+/** Tono de llamada antes de que iAndrea descuelgue. */
+const RINGING_MS = 1600;
 
 export function SolucionesIandreaDemo() {
   const { demo } = soluciones;
-  const [scenarioIndex, setScenarioIndex] = useState(0);
-  const [turns, setTurns] = useState<Turn[]>([]);
-  const [thinking, setThinking] = useState(false);
-  const [started, setStarted] = useState(false);
-  const [asked, setAsked] = useState<number[]>([]);
 
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const threadRef = useRef<HTMLDivElement>(null);
-  const turnCounter = useRef(0);
 
+  /**
+   * Hilo inicial de un escenario.
+   *
+   * En modo llamada arranca VACIO: todavia no se ha descolgado, asi que no puede
+   * haber transcripcion. En modo texto arranca con el saludo, como hasta ahora.
+   */
+  const freshThread = (s: (typeof demo.scenarios)[number]): Turn[] =>
+    s.voice ? [] : [{ speaker: "andrea", text: s.greeting, id: 1 }];
+
+  const [scenarioIndex, setScenarioIndex] = useState(0);
+  const [turns, setTurns] = useState<Turn[]>(() => freshThread(demo.scenarios[0]));
+  const [thinking, setThinking] = useState(false);
+  const [phase, setPhase] = useState<Phase>("idle");
+  const [asked, setAsked] = useState<number[]>([]);
+  const [muted, setMuted] = useState(false);
+
+  const voice = useVoice();
   const scenario = demo.scenarios[scenarioIndex];
-
-  const nextId = () => {
-    turnCounter.current += 1;
-    return turnCounter.current;
-  };
+  const isCall = scenario.voice;
 
   const clearTimer = () => {
     if (timer.current) {
@@ -63,17 +98,18 @@ export function SolucionesIandreaDemo() {
     }
   };
 
-  // Al montar y al cambiar de escenario: hilo limpio con solo el saludo.
-  // `scenario.greeting` en las dependencias y no `scenarioIndex`: es el valor
-  // que de verdad se usa dentro, y asi el linter de hooks no pide silenciarlo.
-  useEffect(() => {
-    clearTimer();
-    turnCounter.current = 0;
-    setTurns([{ speaker: "andrea", text: scenario.greeting, id: nextId() }]);
-    setThinking(false);
-    setStarted(false);
-    setAsked([]);
-  }, [scenario.greeting]);
+  /**
+   * Anade un turno al hilo.
+   *
+   * El `id` se deriva de la longitud de la lista en lugar de un contador
+   * externo. Basta para lo que hace falta —una clave unica ENTRE HERMANOS— y
+   * evita el contador en un ref, que habria que leer durante el render para
+   * sembrar el hilo inicial. Que tras colgar los ids vuelvan a empezar en 1 no
+   * es un problema: el hilo se sustituye entero, no se mezcla con el anterior.
+   */
+  const append = (speaker: Turn["speaker"], text: string) => {
+    setTurns((prev) => [...prev, { speaker, text, id: prev.length + 1 }]);
+  };
 
   useEffect(() => clearTimer, []);
 
@@ -86,36 +122,77 @@ export function SolucionesIandreaDemo() {
     if (el) el.scrollTop = el.scrollHeight;
   }, [turns, thinking]);
 
+  /**
+   * Deja el escenario en su estado de partida.
+   *
+   * Va en los manejadores y no en un `useEffect` sobre `scenarioIndex` a
+   * proposito: el escenario solo cambia porque alguien pulsa una pestana, y
+   * cortar la voz desde un efecto obligaria a tocar estado dentro de el.
+   */
+  const resetScenario = (s: (typeof demo.scenarios)[number]) => {
+    clearTimer();
+    voice.stop();
+    setTurns(freshThread(s));
+    setThinking(false);
+    setPhase("idle");
+    setAsked([]);
+  };
+
+  const selectScenario = (i: number) => {
+    if (i === scenarioIndex) return;
+    setScenarioIndex(i);
+    resetScenario(demo.scenarios[i]);
+  };
+
+  /** Lee el turno de iAndrea, salvo que la llamada este silenciada. */
+  const say = (text: string) => {
+    if (!isCall || muted) return;
+    voice.speak(text);
+  };
+
+  /** Descolgar: tono de llamada y, al conectar, el saludo en voz alta. */
+  const call = () => {
+    clearTimer();
+    setTurns([]);
+    setAsked([]);
+    setThinking(false);
+    setPhase("ringing");
+
+    timer.current = setTimeout(() => {
+      setTurns([{ speaker: "andrea", text: scenario.greeting, id: 1 }]);
+      setPhase("live");
+      say(scenario.greeting);
+      timer.current = null;
+    }, RINGING_MS);
+  };
+
+  const hangUp = () => resetScenario(scenario);
+
   const ask = (optionIndex: number) => {
-    if (thinking) return;
+    if (thinking || voice.speaking) return;
+    if (isCall && phase !== "live") return;
+
     const option = scenario.options[optionIndex];
 
-    setStarted(true);
+    setPhase("live");
     setAsked((prev) => (prev.includes(optionIndex) ? prev : [...prev, optionIndex]));
-    setTurns((prev) => [
-      ...prev,
-      { speaker: "user", text: option.question, id: nextId() },
-    ]);
+    append("user", option.question);
     setThinking(true);
 
     clearTimer();
     timer.current = setTimeout(() => {
-      setTurns((prev) => [
-        ...prev,
-        { speaker: "andrea", text: option.answer, id: nextId() },
-      ]);
+      append("andrea", option.answer);
       setThinking(false);
+      say(option.answer);
       timer.current = null;
     }, THINKING_MS);
   };
 
-  const reset = () => {
-    clearTimer();
-    turnCounter.current = 0;
-    setTurns([{ speaker: "andrea", text: scenario.greeting, id: nextId() }]);
-    setThinking(false);
-    setStarted(false);
-    setAsked([]);
+  const toggleMute = () => {
+    // Silenciar tiene que callar lo que ya esta sonando. Si solo afectara al
+    // turno siguiente, el boton parece que no funciona.
+    if (!muted) voice.stop();
+    setMuted((prev) => !prev);
   };
 
   const onTabKey = (e: React.KeyboardEvent) => {
@@ -130,7 +207,7 @@ export function SolucionesIandreaDemo() {
     const next = map[e.key];
     if (next === undefined) return;
     e.preventDefault();
-    setScenarioIndex((next + demo.scenarios.length) % demo.scenarios.length);
+    selectScenario((next + demo.scenarios.length) % demo.scenarios.length);
   };
 
   const scope = useBrandMotion<HTMLDivElement>(({ gsap, scope, reduced }) => {
@@ -148,9 +225,19 @@ export function SolucionesIandreaDemo() {
 
   const status = thinking
     ? demo.statusThinking
-    : started
-      ? demo.statusLive
-      : demo.statusIdle;
+    : voice.speaking
+      ? demo.speakingLabel
+      : phase === "ringing"
+        ? demo.statusRingingCall
+        : phase === "live"
+          ? demo.statusLive
+          : isCall
+            ? demo.statusIdleCall
+            : demo.statusIdle;
+
+  const active = phase !== "idle";
+  const locked = isCall && phase !== "live";
+  const busy = thinking || voice.speaking || phase === "ringing";
 
   return (
     <section
@@ -207,7 +294,7 @@ export function SolucionesIandreaDemo() {
                       role="tab"
                       aria-selected={selected}
                       tabIndex={selected ? 0 : -1}
-                      onClick={() => setScenarioIndex(i)}
+                      onClick={() => selectScenario(i)}
                       className={cn(
                         "flex items-center gap-2 rounded-md px-3 py-2 text-body-sm font-semibold transition-colors",
                         selected
@@ -230,6 +317,33 @@ export function SolucionesIandreaDemo() {
                   {scenario.description}
                 </p>
 
+                {/* Descolgar y colgar. Solo en modo llamada: en modo texto el
+                    hilo ya esta abierto desde el principio. */}
+                {isCall ? (
+                  <div className="mt-7">
+                    {active ? (
+                      <button
+                        type="button"
+                        onClick={hangUp}
+                        className="inline-flex items-center gap-2.5 rounded-full bg-white/10 px-5 py-3 text-body-sm font-semibold text-white transition-colors hover:bg-white/16"
+                      >
+                        <Icon name="phone-off" size={16} />
+                        {demo.hangUpLabel}
+                        {phase === "live" ? <CallTimer /> : null}
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={call}
+                        className="inline-flex items-center gap-2.5 rounded-full bg-cyan px-5 py-3 text-body-sm font-semibold text-ink transition-colors hover:bg-cyan-soft"
+                      >
+                        <Icon name="phone-call" size={16} />
+                        {demo.callLabel}
+                      </button>
+                    )}
+                  </div>
+                ) : null}
+
                 <p className="mt-8 font-mono text-eyebrow tracking-[0.2em] text-cyan uppercase">
                   {demo.optionsLabel}
                 </p>
@@ -240,7 +354,7 @@ export function SolucionesIandreaDemo() {
                       <button
                         type="button"
                         onClick={() => ask(i)}
-                        disabled={thinking}
+                        disabled={busy || locked}
                         className={cn(
                           "group flex w-full items-center justify-between gap-3 rounded-lg border px-4 py-3 text-left text-body-sm transition-colors",
                           "disabled:cursor-not-allowed disabled:opacity-50",
@@ -251,7 +365,7 @@ export function SolucionesIandreaDemo() {
                       >
                         <span className="min-w-0">{o.label}</span>
                         <Icon
-                          name="message-square"
+                          name={isCall ? "phone" : "message-square"}
                           size={15}
                           className="shrink-0 text-cyan"
                         />
@@ -260,26 +374,41 @@ export function SolucionesIandreaDemo() {
                   ))}
                 </ul>
 
-                <button
-                  type="button"
-                  onClick={reset}
-                  className="mt-5 inline-flex items-center gap-2 rounded-full text-small text-fg-inverse-muted transition-colors hover:text-white"
-                >
-                  <Icon name="refresh-cw" size={13} />
-                  {demo.resetLabel}
-                </button>
+                {/* Por que estan bloqueadas. Sin esta linea, tres botones
+                    apagados parecen una averia y no un paso previo. */}
+                {locked ? (
+                  <p className="mt-4 flex items-start gap-2 text-small text-fg-inverse-muted">
+                    <Icon name="info" size={13} className="mt-0.5 shrink-0 text-cyan" />
+                    {demo.lockedHint}
+                  </p>
+                ) : null}
+
+                {!isCall ? (
+                  <button
+                    type="button"
+                    onClick={hangUp}
+                    className="mt-5 inline-flex items-center gap-2 rounded-full text-small text-fg-inverse-muted transition-colors hover:text-white"
+                  >
+                    <Icon name="refresh-cw" size={13} />
+                    {demo.resetLabel}
+                  </button>
+                ) : null}
               </div>
 
               {/* Columna de conversacion */}
               <div className="flex min-w-0 flex-col p-6 lg:p-8">
-                <div className="flex items-center gap-2.5 border-b border-white/10 pb-4">
+                {/* Se apila en movil. Con el boton de sonido en la misma linea,
+                    a 375px el estado se quedaba en una columna de 89px y se
+                    partia en tres renglones —medido— mientras el boton se partia
+                    en dos. */}
+                <div className="flex flex-wrap items-center gap-x-2.5 gap-y-3 border-b border-white/10 pb-4">
                   <span
                     aria-hidden="true"
                     className={cn(
                       "size-2.5 shrink-0 rounded-full",
-                      thinking
+                      thinking || voice.speaking || phase === "ringing"
                         ? "animate-blip bg-cyan"
-                        : started
+                        : phase === "live"
                           ? "bg-positive-soft"
                           : "bg-white/30",
                     )}
@@ -289,6 +418,20 @@ export function SolucionesIandreaDemo() {
                   <span className="font-mono text-[0.6875rem] tracking-[0.1em] text-fg-inverse-muted uppercase">
                     {status}
                   </span>
+
+                  {isCall ? (
+                    <button
+                      type="button"
+                      onClick={toggleMute}
+                      aria-pressed={muted}
+                      // `min-h-11` son los 44px de objetivo tactil que pide el
+                      // sistema: con el relleno solo se quedaba en 31px.
+                      className="inline-flex min-h-11 w-full shrink-0 items-center justify-center gap-2 rounded-full border border-white/15 px-3 py-1.5 font-mono text-[0.6875rem] tracking-[0.08em] text-fg-inverse-muted uppercase transition-colors hover:border-cyan hover:text-white sm:ml-auto sm:min-h-0 sm:w-auto sm:justify-start"
+                    >
+                      <Icon name={muted ? "volume-x" : "volume-2"} size={13} />
+                      {muted ? demo.unmuteLabel : demo.muteLabel}
+                    </button>
+                  ) : null}
                 </div>
 
                 <div
@@ -339,12 +482,30 @@ export function SolucionesIandreaDemo() {
                   })}
 
                   {thinking ? <ThinkingBubble /> : null}
+                  {phase === "ringing" ? (
+                    <p className="m-auto font-mono text-small text-fg-inverse-muted">
+                      {demo.statusRingingCall}
+                    </p>
+                  ) : null}
                 </div>
 
                 <p className="mt-5 flex items-start gap-2 border-t border-white/10 pt-4 font-mono text-[0.6875rem] leading-relaxed text-fg-inverse-muted">
                   <Icon name="info" size={13} className="mt-px shrink-0 text-cyan" />
-                  {demo.disclaimer}
+                  {isCall ? demo.voiceDisclaimer : demo.disclaimer}
                 </p>
+
+                {/* Solo aparece si de verdad ha fallado: no hay forma de saber
+                    antes de intentarlo si el sistema tiene voz en español. */}
+                {isCall && voice.unavailable ? (
+                  <p className="mt-3 flex items-start gap-2 rounded-lg border border-white/10 bg-white/[0.04] p-3 text-small text-fg-inverse-muted">
+                    <Icon
+                      name="volume-x"
+                      size={14}
+                      className="mt-0.5 shrink-0 text-cyan"
+                    />
+                    {demo.voiceUnavailable}
+                  </p>
+                ) : null}
               </div>
             </div>
           </div>
@@ -359,6 +520,31 @@ export function SolucionesIandreaDemo() {
         </div>
       </Container>
     </section>
+  );
+}
+
+/**
+ * Contador de duracion de la llamada.
+ *
+ * Componente aparte y no estado del simulador porque avanza cada segundo: dentro
+ * del componente grande obligaria a repintar el hilo entero sesenta veces por
+ * minuto para mover dos digitos.
+ */
+function CallTimer() {
+  const [seconds, setSeconds] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => setSeconds((s) => s + 1), 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  const mm = String(Math.floor(seconds / 60)).padStart(2, "0");
+  const ss = String(seconds % 60).padStart(2, "0");
+
+  return (
+    <span className="font-mono text-[0.6875rem] text-fg-inverse-muted" data-tabular>
+      {mm}:{ss}
+    </span>
   );
 }
 

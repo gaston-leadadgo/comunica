@@ -149,6 +149,33 @@ export const soluciones = {
     optionsLabel: "Elige qué preguntarle:",
     resetLabel: "Reiniciar la llamada",
     scenarioLabel: "Escenario",
+
+    /**
+     * Etiquetas del modo llamada, el de los escenarios con `voice: true`.
+     *
+     * Ahi el simulador no se presenta como un chat sino como una llamada: hay
+     * que descolgar, iAndrea saluda en voz alta y el hilo de burbujas pasa a ser
+     * la transcripcion de lo que suena. El vocabulario acompaña ese cambio
+     * ("Colgar", no "Reiniciar").
+     */
+    callLabel: "Llamar a iAndrea",
+    hangUpLabel: "Colgar",
+    statusRingingCall: "Llamando…",
+    statusIdleCall: "Descuelga para escucharla",
+    speakingLabel: "iAndrea está hablando",
+    muteLabel: "Silenciar la voz",
+    unmuteLabel: "Activar la voz",
+    lockedHint: "Llama primero: iAndrea responde en voz alta.",
+    /**
+     * La aclaracion mas importante de todo el bloque, y va deliberadamente junto
+     * al reproductor. La voz que suena es la que trae instalada el navegador de
+     * quien visita, no la voz del producto: si no se dice, un director de hotel
+     * juzga a iAndrea por el timbre del sintetizador de su portatil.
+     */
+    voiceDisclaimer:
+      "Simulación con respuestas guionizadas. La voz es la que trae tu navegador, no la de iAndrea en producción, donde además consulta tus sistemas reales.",
+    voiceUnavailable:
+      "Tu navegador no tiene instalada ninguna voz en español, así que la llamada continúa solo en texto.",
     footerNote:
       "Se integra con tu centralita actual. La puesta en marcha se mide en días, no en meses.",
     scenarios: [
@@ -156,6 +183,13 @@ export const soluciones = {
         id: "recepcion",
         name: "Recepción del hotel",
         icon: "hotel",
+        /**
+         * Este escenario tambien es una llamada (el huesped marca desde la 304),
+         * asi que podria ir con voz. Se deja en texto porque la peticion de
+         * cliente fue habilitar la voz solo en "Llamada de reserva"; cambiar esto
+         * a `true` es todo lo que hace falta para que suene tambien aqui.
+         */
+        voice: false,
         subtitle: "Integrada con el PMS",
         description:
           "iAndrea atiende al huésped alojado: horarios, servicios y peticiones sencillas que hoy interrumpen a recepción.",
@@ -188,6 +222,8 @@ export const soluciones = {
         id: "reservas",
         name: "Llamada de reserva",
         icon: "calendar-range",
+        /** Con voz: es la llamada que hoy se pierde, y suena. */
+        voice: true,
         subtitle: "En hora punta",
         description:
           "La llamada que hoy se pierde porque recepción está atendiendo a alguien delante. iAndrea la coge y la deja cerrada.",
