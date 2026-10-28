@@ -378,7 +378,7 @@ export const images = {
     role: "apoyo",
     grading: "B",
     safeArea: "El punto de acceso y su luz de estado, nitidos y en el tercio superior.",
-    ready: false,
+    ready: true,
     prompt: `A photograph of the upstairs guest corridor of a small, well kept European hotel late at night, lit only by warm low wall sconces between the room doors, long carpeted floor running away from the camera. In the near middle ground a technician in a plain dark work polo stands on a short folding stepladder, arms raised, fixing a slim round white WiFi access point flush to the ceiling; the access point's single small status light glows electric cyan #009FE3 and is the brightest point in the frame. A second identical access point is already installed further down the corridor, its cyan light small in the distance, so the spacing between them reads as deliberate. We see the technician from behind and slightly to the side, face turned up toward the ceiling and away from the camera. A closed toolbag on the carpet at the foot of the ladder. The room doors stay shut; no guests. Quiet, careful work done at the hour that disturbs nobody.`,
   },
 
@@ -400,7 +400,7 @@ export const images = {
     role: "apoyo",
     grading: "A",
     safeArea: "Ninguna pantalla visible de frente: la tableta se ve de canto o por detras.",
-    ready: false,
+    ready: true,
     prompt: `A photograph of the breakfast room of a small independent hotel in the quiet mid-morning after service, tables already cleared and reset, chairs tucked in. A technician in a plain navy work polo walks slowly between the tables holding a small tablet and a compact handheld wireless survey meter with a short antenna, looking down at the meter while he measures; the tablet's screen faces away from the camera so that only its back is visible. A step behind him the hotel manager, a woman in her fifties in real working clothes, points toward the far corner of the room by the windows, explaining where guests usually sit with their laptops. Neither looks at the camera; faces are partly turned away. On the ceiling, out of focus, one existing older access point. Soft daylight from tall windows on the left. The photograph is about listening and measuring before deciding, two people walking the building together.`,
   },
 

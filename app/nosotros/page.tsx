@@ -29,7 +29,7 @@ export const metadata: Metadata = {
  */
 export default function NosotrosPage() {
   return (
-    <main id="main" className="w-full max-w-full overflow-x-hidden">
+    <main id="main" className="w-full max-w-full overflow-x-clip">
       <NosotrosHero />
       <NosotrosKnowledge />
       <NosotrosScale />

@@ -261,7 +261,7 @@ export function ContactForm({ intent }: { intent: ContactIntent }) {
           <p className="flex items-center gap-2 text-body-sm font-semibold text-navy">
             <Icon name="file-text" size={16} className="text-cyan-ink" />
             {contacto.form.invoice.label}
-            <span className="font-mono text-[0.6875rem] font-normal text-fg-muted uppercase">
+            <span className="font-mono text-[0.75rem] font-normal text-fg-muted uppercase">
               {contacto.form.invoice.optional}
             </span>
           </p>
@@ -315,7 +315,7 @@ export function ContactForm({ intent }: { intent: ContactIntent }) {
       </div>
 
       <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
-        <p className="font-mono text-[0.6875rem] text-fg-muted uppercase">
+        <p className="font-mono text-[0.75rem] text-fg-muted uppercase">
           {c.requiredNote}
         </p>
         <SubmitButton />

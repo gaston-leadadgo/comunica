@@ -131,7 +131,7 @@ export function SolucionesProfileTabs() {
                   <span className="block text-card-title">{p.name}</span>
                   <span
                     className={cn(
-                      "mt-1 block font-mono text-[0.6875rem]",
+                      "mt-1 block font-mono text-[0.75rem]",
                       selected ? "text-cyan" : "text-fg-muted",
                     )}
                     data-tabular
@@ -174,12 +174,16 @@ export function SolucionesProfileTabs() {
                   {profile.headline}
                 </p>
               </div>
-              <span className="rounded-full border border-line px-4 py-2 font-mono text-[0.6875rem] tracking-[0.08em] text-navy uppercase">
+              <span className="rounded-full border border-line px-4 py-2 font-mono text-[0.75rem] tracking-[0.08em] text-navy uppercase">
                 {profile.audience}
               </span>
             </div>
 
-            <div className="mt-8 grid gap-x-12 gap-y-8 lg:grid-cols-[1.15fr_0.85fr]">
+            {/* Texto y foto en paralelo solo desde 1280. Entre 1024 y 1279, con
+                la columna de pestañas al lado, el texto se quedaba en ~345px y
+                la rejilla de servicios incluidos, partida en dos dentro, dejaba
+                99px a cada descripcion. Ahi la foto baja bajo el texto. */}
+            <div className="mt-8 grid gap-x-12 gap-y-8 xl:grid-cols-[1.15fr_0.85fr]">
               <div className="min-w-0">
                 <div className="flex flex-col gap-4">
                   {profile.body.map((p, i) => (

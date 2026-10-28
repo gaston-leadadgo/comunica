@@ -138,9 +138,12 @@ export function Header() {
           {/* Indicador de credibilidad. La cifra en display 700 da
               protagonismo al 350; la unidad va en mono para que el conjunto se
               lea como instrumentacion y no como un adorno. */}
+          {/* Visible en tableta (sin menu, hay sitio) y desde 1280. Entre 1024
+              y 1279 aparecen los cuatro enlaces y no cabe todo en una fila: se
+              oculta, y las cifras siguen en la banda de justo debajo del hero. */}
           <p
             className={cn(
-              "hidden shrink-0 items-baseline gap-1.5 border-l pl-4 md:flex",
+              "hidden shrink-0 items-baseline gap-1.5 border-l pl-4 md:flex lg:hidden xl:flex",
               inverted ? "border-white/25" : "border-line",
             )}
           >
@@ -157,7 +160,7 @@ export function Header() {
                 lector de pantalla anuncia "350hoteles". */}
             <span
               className={cn(
-                "font-mono text-[0.6875rem] tracking-[0.12em] whitespace-nowrap uppercase",
+                "font-mono text-[0.75rem] tracking-[0.12em] whitespace-nowrap uppercase",
                 inverted ? "text-fg-inverse-muted" : "text-fg-muted",
               )}
             >
@@ -183,7 +186,7 @@ export function Header() {
               href={item.href}
               aria-current={isActive(item.href) ? "page" : undefined}
               className={cn(
-                "relative rounded-full px-4 py-2 text-body-sm font-semibold transition-colors",
+                "relative rounded-full px-3 py-2 text-body-sm font-semibold whitespace-nowrap transition-colors xl:px-4",
                 // Sobre navy, el cyan de marca (4,53:1) y el blanco (13,46:1)
                 // pasan AA; el `cyan-ink` de fondo claro se hundiria en el azul.
                 inverted
@@ -210,7 +213,10 @@ export function Header() {
           <Link
             href={headerCtas.secondary.href}
             className={cn(
-              "hidden items-center gap-2 rounded-full border px-4 py-2 text-body-sm font-semibold transition-colors lg:inline-flex",
+              // Solo desde 1280: entre 1024 y 1279 no cabe en la fila sin
+              // partir los botones. La revision de factura sigue a mano en el
+              // hero y en el menu.
+              "hidden shrink-0 items-center gap-2 rounded-full border px-4 py-2 text-body-sm font-semibold whitespace-nowrap transition-colors xl:inline-flex",
               inverted
                 ? "border-white/35 text-white hover:border-white hover:bg-white hover:text-navy"
                 : "border-line text-navy hover:border-navy hover:bg-navy hover:text-white",
@@ -223,7 +229,9 @@ export function Header() {
           <Button
             href={headerCtas.primary.href}
             size="sm"
-            className="hidden sm:inline-flex"
+            // La cabecera es una sola fila: aqui el boton no debe partirse
+            // nunca (a 1024 llegaba a tres renglones y 93px de alto).
+            className="hidden shrink-0 whitespace-nowrap sm:inline-flex"
           >
             {headerCtas.primary.label}
           </Button>

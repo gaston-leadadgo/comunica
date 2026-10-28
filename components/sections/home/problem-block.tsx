@@ -68,7 +68,11 @@ export function ProblemBlock() {
               <article
                 key={s.text}
                 data-cell
-                className="group/cell relative flex min-w-0 flex-col justify-between gap-8 bg-paper p-7 transition-colors hover:bg-paper-warm lg:col-span-2"
+                // `sm:max-lg:last:col-span-2`: tres tarjetas en las dos
+                // columnas de tableta dejaban una celda vacia; la ultima ocupa
+                // la fila. En movil, menos aire: cada tarjeta era casi un
+                // cuarto de pantalla para una sola frase.
+                className="group/cell relative flex min-w-0 flex-col justify-between gap-5 bg-paper p-5 transition-colors hover:bg-paper-warm sm:gap-8 sm:p-7 sm:max-lg:last:col-span-2 lg:col-span-2"
               >
                 <div className="flex items-center justify-between gap-4">
                   <span className="grid size-11 place-items-center rounded-md bg-critical/[0.07] text-critical">
@@ -152,7 +156,7 @@ export function ProblemBlock() {
             {problem.questions.map((q, i) => (
               <li
                 key={q}
-                className="flex min-w-0 flex-col gap-5 bg-paper-warm p-6 transition-colors hover:bg-paper"
+                className="flex min-w-0 flex-col gap-3 bg-paper-warm p-5 transition-colors hover:bg-paper sm:gap-5 sm:p-6"
               >
                 <span
                   className="font-mono text-data text-cyan-ink-strong"

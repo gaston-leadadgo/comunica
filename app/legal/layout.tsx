@@ -10,7 +10,7 @@ export default function LegalLayout({ children }: { children: ReactNode }) {
   return (
     <main
       id="main"
-      className="w-full max-w-full overflow-x-hidden bg-paper pt-[calc(var(--header-h)+clamp(2.5rem,6vw,4rem))] pb-section"
+      className="w-full max-w-full overflow-x-clip bg-paper pt-[calc(var(--header-h)+clamp(2.5rem,6vw,4rem))] pb-section"
     >
       <Container width="narrow">
         <div className="legal-prose">{children}</div>

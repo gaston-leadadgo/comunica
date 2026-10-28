@@ -206,20 +206,25 @@ export function ExtensionBlock({
             {/* Los tres pasos, en tira horizontal */}
             <ol className="grid grid-cols-1 gap-px overflow-hidden rounded-lg bg-line sm:grid-cols-3">
               {steps.map((s, i) => (
+                // En una columna (movil) va todo en fila. En tres columnas, el
+                // numero y el icono suben a su propia linea: en la misma fila
+                // dejaban al texto 119px a 768 de ancho, medidos.
                 <li
                   key={s.key}
                   data-step
-                  className="flex min-w-0 items-center gap-3 bg-paper-warm p-4"
+                  className="flex min-w-0 items-center gap-3 bg-paper-warm p-4 sm:flex-col sm:items-start"
                 >
-                  <span
-                    className="font-mono text-card-title text-cyan-ink-strong"
-                    data-tabular
-                    aria-hidden="true"
-                  >
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="grid size-9 shrink-0 place-items-center rounded-md bg-navy/[0.06] text-navy">
-                    <Icon name={s.icon} size={17} />
+                  <span className="flex shrink-0 items-center gap-3">
+                    <span
+                      className="font-mono text-card-title text-cyan-ink-strong"
+                      data-tabular
+                      aria-hidden="true"
+                    >
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="grid size-9 shrink-0 place-items-center rounded-md bg-navy/[0.06] text-navy">
+                      <Icon name={s.icon} size={17} />
+                    </span>
                   </span>
                   {/* Sin `truncate`. Recortaba con puntos suspensivos rotulos
                       que son copy —"Codigo QR en la habitacion" perdia 14px
@@ -230,7 +235,7 @@ export function ExtensionBlock({
                     <span className="block text-body-sm font-semibold text-pretty">
                       {s.label}
                     </span>
-                    <span className="block font-mono text-[0.6875rem] text-fg-muted text-pretty">
+                    <span className="block font-mono text-[0.75rem] text-fg-muted text-pretty">
                       {s.detail}
                     </span>
                   </span>

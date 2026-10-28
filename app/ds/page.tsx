@@ -274,13 +274,13 @@ export default function DesignSystemPage() {
                 <p className="text-card-title">
                   {c.name}
                   {c.brand ? (
-                    <span className="ml-2 font-mono text-[10px] tracking-[0.14em] text-cyan-ink-strong uppercase">
+                    <span className="ml-2 font-mono text-[0.75rem] tracking-[0.14em] text-cyan-ink-strong uppercase">
                       marca
                     </span>
                   ) : null}
                 </p>
                 <p className="mt-1 font-mono text-data text-fg-muted">{c.hex}</p>
-                <p className="font-mono text-[11px] text-fg-muted">{c.token}</p>
+                <p className="font-mono text-[0.75rem] text-fg-muted">{c.token}</p>
               </div>
             </div>
           ))}

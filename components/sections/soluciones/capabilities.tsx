@@ -48,7 +48,7 @@ export function SolucionesCapabilities() {
               data-row
               className="group/row border-b border-line transition-colors hover:bg-paper-warm"
             >
-              <div className="grid items-baseline gap-x-8 gap-y-3 px-2 py-7 transition-transform duration-300 ease-out-expo group-hover/row:translate-x-2 sm:grid-cols-[3.5rem_1fr] lg:grid-cols-[3.5rem_16rem_1fr] lg:px-4">
+              <div className="grid items-baseline gap-x-8 gap-y-2 px-2 py-5 sm:gap-y-3 sm:py-7 transition-transform duration-300 ease-out-expo group-hover/row:translate-x-2 sm:grid-cols-[3.5rem_1fr] lg:grid-cols-[3.5rem_16rem_1fr] lg:px-4">
                 <span
                   className="font-mono text-data text-fg-muted transition-colors group-hover/row:text-cyan-ink-strong"
                   data-tabular
@@ -66,7 +66,10 @@ export function SolucionesCapabilities() {
                   {c.title}
                 </h3>
 
-                <p className="measure-body text-body-sm text-fg-muted lg:col-start-3">
+                {/* `sm:col-start-2`: entre 640 y 1023px la rejilla tiene dos
+                    columnas (numero | titulo) y la descripcion, sin colocar,
+                    caia en la del numero: 56px de ancho para un parrafo. */}
+                <p className="measure-body text-body-sm text-fg-muted sm:col-start-2 lg:col-start-3">
                   {c.description}
                 </p>
               </div>

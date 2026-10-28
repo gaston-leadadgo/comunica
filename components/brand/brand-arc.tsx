@@ -92,6 +92,13 @@ export function BrandArc({
         "pointer-events-none absolute",
         flip && "-scale-x-100",
         className,
+        // En movil el arco `edge` se estrecha hasta caber en el margen lateral.
+        // Cada seccion le da un ancho minimo de 70px pensado para escritorio,
+        // donde cae en el margen; con 20px de margen en movil, la curva barria
+        // por debajo de la columna de texto y cruzaba titulares y parrafos. A
+        // 12px sigue siendo el arco de marca, pero nunca toca el contenido.
+        // Va despues de `className` y con `!` para ganar a ese ancho.
+        placement === "edge" && "max-lg:!w-3",
       )}
       style={{ opacity: resolvedOpacity }}
       data-brand-arc={placement}

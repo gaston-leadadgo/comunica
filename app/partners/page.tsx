@@ -28,7 +28,7 @@ export const metadata: Metadata = {
  */
 export default function PartnersPage() {
   return (
-    <main id="main" className="w-full max-w-full overflow-x-hidden">
+    <main id="main" className="w-full max-w-full overflow-x-clip">
       <PartnersHero />
       <PartnersModels />
       <PartnersBenefitsAndStart />

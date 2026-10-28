@@ -32,9 +32,14 @@ import { ValueBento } from "@/components/sections/home/value-bento";
  */
 export default function HomePage() {
   return (
-    // overflow-x-hidden: cinturon de seguridad contra desbordes de las
+    // overflow-x-clip: cinturon de seguridad contra desbordes de las
     // animaciones de entrada, que se desplazan desde fuera del viewport.
-    <main id="main" className="w-full max-w-full overflow-x-hidden">
+    // `clip` y NO `hidden`: `overflow-x: hidden` obliga al eje vertical a
+    // `auto` y convierte `main` en contenedor de scroll; todos los `sticky`
+    // de dentro (el resultado de la calculadora, la metodologia apilada) se
+    // pegaban a `main`, que no se desplaza, y no se pegaban nunca. Igual en
+    // el resto de paginas.
+    <main id="main" className="w-full max-w-full overflow-x-clip">
       {/* ATENCION */}
       <HeroCinematic />
       <CredibilityBand />

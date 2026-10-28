@@ -56,7 +56,11 @@ export function SavingsCalculator() {
     <section
       id="calculadora"
       data-tone="dark"
-      className="relative isolate overflow-hidden bg-abyss py-section text-fg-inverse"
+      // `overflow-clip` y no `overflow-hidden`: los dos recortan el arco
+      // decorativo, pero `hidden` convierte la seccion en contenedor de scroll,
+      // y un `sticky` dentro de ella se pega a ESE contenedor, no a la
+      // pantalla. Por eso el resultado no acompañaba al hacer scroll.
+      className="relative isolate overflow-clip bg-abyss py-section text-fg-inverse"
     >
       <div
         aria-hidden="true"
@@ -79,10 +83,10 @@ export function SavingsCalculator() {
           <p className="mt-6 text-display-3 text-cyan">{c.highlight}</p>
         </div>
 
-        <div data-reveal className="mt-16 grid gap-px overflow-hidden rounded-xl bg-white/12 lg:grid-cols-2">
+        <div data-reveal className="mt-16 grid gap-px overflow-clip rounded-xl bg-white/12 lg:grid-cols-2">
           {/* Controles */}
           <div className="min-w-0 bg-abyss/80 p-6 sm:p-8 lg:p-12">
-            <div className="flex flex-col gap-9">
+            <div className="flex flex-col gap-7 lg:gap-8">
               <Slider
                 label={c.roomsLabel}
                 display={String(rooms)}
@@ -136,14 +140,42 @@ export function SavingsCalculator() {
             <p className="mt-10 measure-body text-body-sm text-fg-inverse-muted">
               {c.sliderHint}
             </p>
+
+            {/* Resultado pegado abajo, solo en movil.
+                -----------------------------------------------------------
+                En movil las columnas se apilan y el resultado queda DEBAJO de
+                los cinco deslizadores: se movia uno y la cifra estaba una
+                pantalla mas abajo. `sticky bottom` la mantiene a la vista
+                mientras se recorren los controles y, al llegar al final, se
+                queda en su sitio justo encima de la tarjeta completa.
+                El `bottom` deja libre la barra fija de contacto (72px mas la
+                zona segura del iPhone). `aria-hidden`: la tarjeta de abajo ya
+                anuncia el resultado; dos regiones vivas lo leerian dos veces. */}
+            <div
+              aria-hidden="true"
+              // Por debajo de 360px no caben etiqueta y cifra en una linea (a 320
+              // quedan 232px y piden ~267): envuelve, centrado, en dos.
+              className="sticky bottom-[calc(5rem+env(safe-area-inset-bottom))] z-10 mt-8 flex flex-wrap items-center justify-between gap-x-3 gap-y-0.5 rounded-full border border-cyan/40 bg-navy/95 px-5 py-2.5 shadow-lg backdrop-blur-md max-[359px]:justify-center max-[359px]:rounded-2xl lg:hidden"
+            >
+              <span className="font-mono text-[0.75rem] tracking-[0.08em] whitespace-nowrap text-fg-inverse-muted uppercase">
+                {c.mobileBarLabel}
+              </span>
+              <span className="font-mono text-body font-semibold whitespace-nowrap text-cyan" data-tabular>
+                {eur.format(minMonthly)} - {eur.format(maxMonthly)}
+              </span>
+            </div>
           </div>
 
           {/* Resultado */}
           {/* Con cinco deslizadores la columna de controles es mucho mas alta
               que el resultado. `sticky` mantiene la cifra a la vista mientras
               se mueven los de abajo: si no, el usuario ajusta a ciegas. */}
-          <div className="flex min-w-0 flex-col justify-between bg-navy p-8 lg:p-12">
-            <div className="lg:sticky lg:top-[calc(var(--header-h)+2rem)]">
+          <div className="min-w-0 bg-navy p-6 sm:p-8 lg:p-12">
+            {/* La tarjeta entera es la que se pega, aviso incluido: si el
+                aviso se quedara fuera, al bajar la tarjeta se le montaria
+                encima. El `top` libra la cabecera flotante, que se separa
+                1rem del borde y mide 72px. */}
+            <div className="lg:sticky lg:top-[calc(var(--header-h)+2.5rem)]">
               <p className="font-mono text-eyebrow tracking-[0.2em] text-cyan uppercase">
                 {c.resultLabel}
               </p>
@@ -178,15 +210,15 @@ export function SavingsCalculator() {
                 </span>{" "}
                 {c.perMonth}
               </p>
-            </div>
 
-            <div className="mt-12 border-t border-white/12 pt-8">
-              <p className="measure-body text-body-sm text-fg-inverse-muted">
-                {c.disclaimer}
-              </p>
-              <p className="mt-2 measure-body text-[13px] text-fg-inverse-muted/80">
-                {c.disclaimerDetail}
-              </p>
+              <div className="mt-8 border-t border-white/12 pt-6">
+                <p className="measure-body text-body-sm text-fg-inverse-muted">
+                  {c.disclaimer}
+                </p>
+                <p className="mt-2 measure-body text-[13px] text-fg-inverse-muted/80">
+                  {c.disclaimerDetail}
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -269,9 +301,12 @@ function Slider({
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
         aria-valuetext={valueText}
-        className="mt-4 w-full accent-cyan"
+        // `h-11`: el range nativo mide 16px de alto y en movil esa era toda la
+        // superficie que respondia al dedo. Con 44px el pulgar del control se
+        // sigue pintando igual, centrado, pero se agarra desde mas lejos.
+        className="mt-1 h-11 w-full cursor-pointer accent-cyan"
       />
-      <div className="mt-2 flex justify-between font-mono text-[11px] text-fg-inverse-muted">
+      <div className="flex justify-between font-mono text-[0.75rem] text-fg-inverse-muted">
         {ticks.map((t) => (
           <span key={t}>{t}</span>
         ))}

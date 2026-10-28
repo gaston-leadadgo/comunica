@@ -135,7 +135,9 @@
   --text-small: 0.8125rem;
   --text-small--line-height: 1.55;
 
-  --text-eyebrow: 0.6875rem;
+  /* 12px y no 11: en movil, 11px en mayusculas espaciadas se leia con
+     esfuerzo, y los rotulos van en todas las secciones. */
+  --text-eyebrow: 0.75rem;
   --text-eyebrow--line-height: 1;
   --text-eyebrow--letter-spacing: 0.18em;
   --text-eyebrow--font-weight: 600;

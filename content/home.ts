@@ -43,11 +43,15 @@ export const home = {
   credibility: {
     label: "Comunica en cifras",
     stats: [
-      { value: site.claims.hotels, label: "hoteles" },
-      { value: site.claims.countries, label: "países" },
-      { value: site.claims.interlocutors, label: "interlocutor para todos tus servicios" },
-    ],
-    support: "Soporte que te conoce",
+      { value: site.claims.hotels, label: "hoteles en los que hemos trabajado", icon: "hotel" },
+      { value: site.claims.countries, label: "países con soporte especializado", icon: "globe" },
+      { value: site.claims.interlocutors, label: "interlocutor para todos tus servicios", icon: "user" },
+    ] satisfies readonly { value: string; label: string; icon: IconName }[],
+    support: {
+      title: "Soporte que te conoce",
+      detail: "Personas que saben qué tienes instalado antes de que se lo expliques.",
+      icon: "headphones",
+    } satisfies { title: string; detail: string; icon: IconName },
   },
 
   problem: {
@@ -155,6 +159,8 @@ export const home = {
     sliderHint:
       "Ajusta los deslizadores según la dimensión aproximada de tu establecimiento.",
     resultLabel: "Potencial de optimización estimado",
+    /** Version corta para la barra fija de movil. */
+    mobileBarLabel: "Ahorro / mes",
     perMonth: "/ mes",
     perYear: "/ año",
     disclaimer:

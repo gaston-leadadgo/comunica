@@ -45,7 +45,7 @@ export default async function ContactoPage({
   return (
     <main
       id="main"
-      className="relative isolate w-full max-w-full overflow-x-hidden bg-paper-warm pt-[calc(var(--header-h)+clamp(2.5rem,6vw,4rem))] pb-section"
+      className="relative isolate w-full max-w-full overflow-x-clip bg-paper-warm pt-[calc(var(--header-h)+clamp(2.5rem,6vw,4rem))] pb-section"
     >
       <div aria-hidden="true" className="bg-radial-wash absolute inset-0 -z-10" />
       <BrandArc
@@ -121,7 +121,7 @@ export default async function ContactoPage({
               <div className="mt-6 border-t border-white/12 pt-6">
                 <a
                   href={`mailto:${site.email}`}
-                  className="inline-flex items-center gap-2.5 py-1 text-body-sm text-cyan-soft"
+                  className="inline-flex min-h-11 items-center gap-2.5 py-1 text-body-sm text-cyan-soft sm:min-h-0"
                 >
                   <Icon name="mail" size={16} className="shrink-0" />
                   {site.email}

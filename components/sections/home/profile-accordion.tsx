@@ -135,7 +135,10 @@ export function ProfileAccordion() {
                   hidden={!isOpen}
                   className="min-w-0 grow overflow-y-auto p-6 lg:p-10"
                 >
-                  <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+                  {/* Dos columnas solo desde 1280. A 1024 el panel abierto mide
+                      ~460px y partido en dos dejaba 192px al texto y 157 a la
+                      foto: todo el perfil estrujado y el boton en dos lineas. */}
+                  <div className="grid gap-8 xl:grid-cols-[1.1fr_0.9fr]">
                     <div className="min-w-0">
                       <p className="font-mono text-eyebrow tracking-[0.18em] text-cyan-ink-strong uppercase">
                         {p.audience}
@@ -163,7 +166,9 @@ export function ProfileAccordion() {
                       </div>
                     </div>
 
-                    <div className="min-w-0">
+                    {/* Entre 1024 y 1279 la foto se oculta: apilada bajo el
+                        texto obligaria a hacer scroll dentro del panel. */}
+                    <div className="min-w-0 lg:max-xl:hidden">
                       <SmartImage
                         image={PROFILE_IMAGE[p.id]}
                         sizes={SIZES.grid3}

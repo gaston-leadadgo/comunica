@@ -205,19 +205,27 @@ export function IandreaBlock() {
                 key={c.title}
                 data-cap
                 className={cn(
-                  "flex min-w-0 flex-col bg-navy p-6 transition-colors hover:bg-navy-deep",
+                  // Movil: icono a la izquierda y texto al lado. Con el icono en
+                  // su propia fila, cada celda medía ~220px y las siete apiladas
+                  // alargaban la seccion a 3,3 pantallas.
+                  "grid min-w-0 grid-cols-[2.5rem_1fr] items-start gap-x-4 bg-navy p-5 transition-colors hover:bg-navy-deep sm:flex sm:flex-col sm:p-6",
                   // 2+2+2 | 3+3 | 3+3 = tres filas exactas de 6 para 7 items.
                   // Cero celdas muertas.
                   i < 3 ? "lg:col-span-2" : "lg:col-span-3",
+                  // En tableta (2 columnas) el septimo quedaba solo junto a una
+                  // celda vacia: ocupa la fila.
+                  "sm:max-lg:last:col-span-2",
                 )}
               >
                 <span className="grid size-10 shrink-0 place-items-center rounded-md bg-cyan/12 text-cyan">
                   <Icon name={c.icon} size={18} />
                 </span>
-                <h3 className="mt-4 text-card-title text-white">{c.title}</h3>
-                <p className="mt-2 text-small text-fg-inverse-muted">
-                  {c.description}
-                </p>
+                <div className="min-w-0 sm:mt-4">
+                  <h3 className="text-card-title text-white">{c.title}</h3>
+                  <p className="mt-1.5 text-small text-fg-inverse-muted sm:mt-2">
+                    {c.description}
+                  </p>
+                </div>
               </li>
             ))}
           </ul>

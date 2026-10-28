@@ -70,7 +70,7 @@ export function SmartImage({
           className="inset-y-0 right-0 h-full w-16"
         />
         <div className="relative w-full p-4">
-          <p className="font-mono text-[11px] leading-relaxed text-fg-muted">
+          <p className="font-mono text-[0.75rem] leading-relaxed text-fg-muted">
             <span className="block tracking-[0.14em] uppercase opacity-60">
               imagen pendiente
             </span>

@@ -161,10 +161,10 @@ export function WifiBlock({
           {content.features ? (
             <ul
               data-reveal
-              className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-xl bg-line sm:grid-cols-2"
+              className="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-xl bg-line sm:mt-14 sm:grid-cols-2"
             >
               {content.features.map((f) => (
-                <li key={f.title} className="min-w-0 bg-paper p-7">
+                <li key={f.title} className="min-w-0 bg-paper p-5 sm:p-7">
                   <h3 className="flex items-start gap-2.5 text-card-title text-navy">
                     <Icon name="check" size={16} className="mt-1 shrink-0 text-positive" />
                     {f.title}

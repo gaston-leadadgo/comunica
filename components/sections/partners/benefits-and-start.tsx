@@ -63,15 +63,20 @@ export function PartnersBenefitsAndStart() {
             <article
               key={b.title}
               data-cell
-              className="flex min-w-0 flex-col bg-paper p-7 transition-colors hover:bg-paper-warm lg:col-span-2"
+              // Movil: icono a la izquierda y texto al lado, como el resto de
+              // rejillas de tarjetas del sitio; apiladas con el icono en su
+              // propia fila, cada una se comia media pantalla.
+              className="grid min-w-0 grid-cols-[2.75rem_1fr] items-start gap-x-4 bg-paper p-5 transition-colors hover:bg-paper-warm sm:flex sm:flex-col sm:p-7 lg:col-span-2"
             >
               <span className="grid size-11 place-items-center rounded-md bg-navy/[0.06] text-navy">
                 <Icon name={b.icon} size={19} />
               </span>
-              <h3 className="mt-5 measure-card text-display-3">{b.title}</h3>
-              <p className="measure-body mt-3 text-body-sm text-fg-muted">
-                {b.description}
-              </p>
+              <div className="min-w-0 sm:mt-5">
+                <h3 className="measure-card text-display-3">{b.title}</h3>
+                <p className="measure-body mt-2 text-body-sm text-fg-muted sm:mt-3">
+                  {b.description}
+                </p>
+              </div>
             </article>
           ))}
         </div>

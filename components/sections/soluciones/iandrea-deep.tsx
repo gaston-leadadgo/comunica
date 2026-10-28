@@ -174,14 +174,23 @@ export function SolucionesIandrea() {
         {/* Las ocho capacidades: 4x2 exacto */}
         <ul className="mt-16 grid grid-cols-1 gap-px overflow-hidden rounded-xl bg-white/12 sm:grid-cols-2 lg:grid-cols-4">
           {iandrea.features.map((f) => (
-            <li key={f.title} data-feature className="min-w-0 bg-navy p-7">
+            // Movil: icono a la izquierda y texto al lado. Apiladas con el
+            // icono en su propia fila, las ocho medían 1.700px: mas de dos
+            // pantallas solo para esta lista.
+            <li
+              key={f.title}
+              data-feature
+              className="grid min-w-0 grid-cols-[2.5rem_1fr] items-start gap-x-4 bg-navy p-5 sm:block sm:p-7"
+            >
               <span className="grid size-10 place-items-center rounded-md bg-white/[0.06] text-cyan">
                 <Icon name={f.icon} size={18} />
               </span>
-              <h3 className="mt-5 text-card-title text-white">{f.title}</h3>
-              <p className="mt-3 text-small text-fg-inverse-muted">
-                {f.description}
-              </p>
+              <div className="min-w-0 sm:mt-5">
+                <h3 className="text-card-title text-white">{f.title}</h3>
+                <p className="mt-1.5 text-small text-fg-inverse-muted sm:mt-3">
+                  {f.description}
+                </p>
+              </div>
             </li>
           ))}
         </ul>

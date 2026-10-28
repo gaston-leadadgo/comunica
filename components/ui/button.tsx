@@ -90,7 +90,9 @@ const VARIANT: Record<ButtonVariant, string> = {
  * dos botones de una fila miden lo mismo lleven icono o no.
  */
 const SIZE: Record<ButtonSize, string> = {
-  sm: "min-h-9 px-4 py-1.5 text-small",
+  // En movil, `sm` sube a 44px: es la diana minima comoda para el dedo, y los
+  // botones `sm` son los CTA de cada perfil. Desde 640px vuelve a 36.
+  sm: "min-h-11 px-4 py-1.5 text-small sm:min-h-9",
   md: "min-h-11 px-5 py-2 text-body",
   lg: "min-h-13 px-7 py-2.5 text-body",
 };

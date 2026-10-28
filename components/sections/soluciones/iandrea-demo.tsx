@@ -273,7 +273,7 @@ export function SolucionesIandreaDemo() {
                   <span className="block text-card-title text-white">
                     iAndrea
                   </span>
-                  <span className="block font-mono text-[0.6875rem] text-fg-inverse-muted">
+                  <span className="block font-mono text-[0.75rem] text-fg-inverse-muted">
                     {scenario.subtitle}
                   </span>
                 </span>
@@ -391,7 +391,7 @@ export function SolucionesIandreaDemo() {
                   <button
                     type="button"
                     onClick={hangUp}
-                    className="mt-5 inline-flex items-center gap-2 rounded-full text-small text-fg-inverse-muted transition-colors hover:text-white"
+                    className="mt-3 inline-flex min-h-11 items-center gap-2 rounded-full text-small text-fg-inverse-muted transition-colors hover:text-white"
                   >
                     <Icon name="refresh-cw" size={13} />
                     {demo.resetLabel}
@@ -419,7 +419,7 @@ export function SolucionesIandreaDemo() {
                   />
                   {/* El estado va tambien como texto, no solo como color: es la
                       unica forma de que se entienda sin ver el punto. */}
-                  <span className="font-mono text-[0.6875rem] tracking-[0.1em] text-fg-inverse-muted uppercase">
+                  <span className="font-mono text-[0.75rem] tracking-[0.1em] text-fg-inverse-muted uppercase">
                     {status}
                   </span>
 
@@ -430,7 +430,7 @@ export function SolucionesIandreaDemo() {
                       aria-pressed={muted}
                       // `min-h-11` son los 44px de objetivo tactil que pide el
                       // sistema: con el relleno solo se quedaba en 31px.
-                      className="inline-flex min-h-11 w-full shrink-0 items-center justify-center gap-2 rounded-full border border-white/15 px-3 py-1.5 font-mono text-[0.6875rem] tracking-[0.08em] text-fg-inverse-muted uppercase transition-colors hover:border-cyan hover:text-white sm:ml-auto sm:min-h-0 sm:w-auto sm:justify-start"
+                      className="inline-flex min-h-11 w-full shrink-0 items-center justify-center gap-2 rounded-full border border-white/15 px-3 py-1.5 font-mono text-[0.75rem] tracking-[0.08em] text-fg-inverse-muted uppercase transition-colors hover:border-cyan hover:text-white sm:ml-auto sm:min-h-0 sm:w-auto sm:justify-start"
                     >
                       <Icon name={muted ? "volume-x" : "volume-2"} size={13} />
                       {muted ? demo.unmuteLabel : demo.muteLabel}
@@ -493,7 +493,7 @@ export function SolucionesIandreaDemo() {
                   ) : null}
                 </div>
 
-                <p className="mt-5 flex items-start gap-2 border-t border-white/10 pt-4 font-mono text-[0.6875rem] leading-relaxed text-fg-inverse-muted">
+                <p className="mt-5 flex items-start gap-2 border-t border-white/10 pt-4 font-mono text-[0.75rem] leading-relaxed text-fg-inverse-muted">
                   <Icon name="info" size={13} className="mt-px shrink-0 text-cyan" />
                   {isCall ? demo.voiceDisclaimer : demo.disclaimer}
                 </p>
@@ -546,7 +546,7 @@ function CallTimer() {
   const ss = String(seconds % 60).padStart(2, "0");
 
   return (
-    <span className="font-mono text-[0.6875rem] text-fg-inverse-muted" data-tabular>
+    <span className="font-mono text-[0.75rem] text-fg-inverse-muted" data-tabular>
       {mm}:{ss}
     </span>
   );

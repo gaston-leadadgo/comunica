@@ -43,7 +43,7 @@ export function NosotrosKnowledge() {
                   className="flex items-start gap-4 border-b border-line py-4 first:border-t"
                 >
                   <span
-                    className="mt-1 shrink-0 font-mono text-[0.6875rem] text-cyan-ink-strong"
+                    className="mt-1 shrink-0 font-mono text-[0.75rem] text-cyan-ink-strong"
                     data-tabular
                     aria-hidden="true"
                   >
