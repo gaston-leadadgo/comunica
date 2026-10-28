@@ -301,73 +301,91 @@ ID CSS del contenedor de la seccion (Avanzado → ID CSS): `capacidades`
                 - **Contenedor** · clases: `cm-9l`
                     - **Editor de texto** · clases: `cm-9m is-tabular`
                         Texto: `01`
-                    - **Titulo** · clases: `cm-9n` · etiqueta `h3`
-                        Titulo: `<svg aria-hidden="true" class="lucide lucide-radio shrink-0 text-cyan-ink" fill="none" focusable="false" height="19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24" width="19" xmlns="http://www.w3.org/2000/svg"><path d="M16.247 7.761a6 6 0 0 1 0 8.478"></path><path d="M19.075 4.933a10 10 0 0 1 0 14.134"></path><path d="M4.925 19.067a10 10 0 0 1 0-14.134"></path><path d="M7.753 16.239a6 6 0 0 1 0-8.478"></path><circle cx="12" cy="12" r="2"></circle></svg>Conectividad`
-                    - **Editor de texto** · clases: `cm-9o`
+                    - **Contenedor** · clases: `cm-9n`
+                        - **Icono** · clases: `cm-9o` · Icono: `radio.svg`
+                        - **Titulo** · clases: `(ninguna)` · etiqueta `h3`
+                            Titulo: `Conectividad`
+                    - **Editor de texto** · clases: `cm-9p`
                         Texto: `Internet de alta capacidad, multicobertura y sistemas de respaldo adaptados a las necesidades de cada establecimiento.`
             - **Contenedor** · clases: `cm-9k group/row m-row`
                 - **Contenedor** · clases: `cm-9l`
                     - **Editor de texto** · clases: `cm-9m is-tabular`
                         Texto: `02`
-                    - **Titulo** · clases: `cm-9n` · etiqueta `h3`
-                        Titulo: `<svg aria-hidden="true" class="lucide lucide-phone-call shrink-0 text-cyan-ink" fill="none" focusable="false" height="19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24" width="19" xmlns="http://www.w3.org/2000/svg"><path d="M13 2a9 9 0 0 1 9 9"></path><path d="M13 6a5 5 0 0 1 5 5"></path><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"></path></svg>Voz fija y centralita virtual`
-                    - **Editor de texto** · clases: `cm-9o`
+                    - **Contenedor** · clases: `cm-9n`
+                        - **Icono** · clases: `cm-9o` · Icono: `phone-call.svg`
+                        - **Titulo** · clases: `(ninguna)` · etiqueta `h3`
+                            Titulo: `Voz fija y centralita virtual`
+                    - **Editor de texto** · clases: `cm-9p`
                         Texto: `Centralitas virtuales, soluciones multi-sede, SIP Trunk, numeración, colas y comunicaciones adaptadas a la operativa hotelera.`
             - **Contenedor** · clases: `cm-9k group/row m-row`
                 - **Contenedor** · clases: `cm-9l`
                     - **Editor de texto** · clases: `cm-9m is-tabular`
                         Texto: `03`
-                    - **Titulo** · clases: `cm-9n` · etiqueta `h3`
-                        Titulo: `<svg aria-hidden="true" class="lucide lucide-smartphone shrink-0 text-cyan-ink" fill="none" focusable="false" height="19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24" width="19" xmlns="http://www.w3.org/2000/svg"><rect height="20" rx="2" ry="2" width="14" x="5" y="2"></rect><path d="M12 18h.01"></path></svg>Móvil`
-                    - **Editor de texto** · clases: `cm-9o`
+                    - **Contenedor** · clases: `cm-9n`
+                        - **Icono** · clases: `cm-9o` · Icono: `smartphone.svg`
+                        - **Titulo** · clases: `(ninguna)` · etiqueta `h3`
+                            Titulo: `Móvil`
+                    - **Editor de texto** · clases: `cm-9p`
                         Texto: `Móvil de empresa sin sorpresas en la factura, con tarifas flexibles y una única gestión junto al resto de servicios del hotel.`
             - **Contenedor** · clases: `cm-9k group/row m-row`
                 - **Contenedor** · clases: `cm-9l`
                     - **Editor de texto** · clases: `cm-9m is-tabular`
                         Texto: `04`
-                    - **Titulo** · clases: `cm-9n` · etiqueta `h3`
-                        Titulo: `<svg aria-hidden="true" class="lucide lucide-wifi shrink-0 text-cyan-ink" fill="none" focusable="false" height="19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24" width="19" xmlns="http://www.w3.org/2000/svg"><path d="M12 20h.01"></path><path d="M2 8.82a15 15 0 0 1 20 0"></path><path d="M5 12.859a10 10 0 0 1 14 0"></path><path d="M8.5 16.429a5 5 0 0 1 7 0"></path></svg>WiFi`
-                    - **Editor de texto** · clases: `cm-9o`
+                    - **Contenedor** · clases: `cm-9n`
+                        - **Icono** · clases: `cm-9o` · Icono: `wifi.svg`
+                        - **Titulo** · clases: `(ninguna)` · etiqueta `h3`
+                            Titulo: `WiFi`
+                    - **Editor de texto** · clases: `cm-9p`
                         Texto: `Redes gestionadas para empleados y huéspedes, cobertura, segmentación y portales cautivos.`
             - **Contenedor** · clases: `cm-9k group/row m-row`
                 - **Contenedor** · clases: `cm-9l`
                     - **Editor de texto** · clases: `cm-9m is-tabular`
                         Texto: `05`
-                    - **Titulo** · clases: `cm-9n` · etiqueta `h3`
-                        Titulo: `<svg aria-hidden="true" class="lucide lucide-tv shrink-0 text-cyan-ink" fill="none" focusable="false" height="19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24" width="19" xmlns="http://www.w3.org/2000/svg"><path d="m17 2-5 5-5-5"></path><rect height="15" rx="2" width="20" x="2" y="7"></rect></svg>IPTV`
-                    - **Editor de texto** · clases: `cm-9o`
+                    - **Contenedor** · clases: `cm-9n`
+                        - **Icono** · clases: `cm-9o` · Icono: `tv.svg`
+                        - **Titulo** · clases: `(ninguna)` · etiqueta `h3`
+                            Titulo: `IPTV`
+                    - **Editor de texto** · clases: `cm-9p`
                         Texto: `Televisión e información del hotel integradas en la experiencia de la habitación.`
             - **Contenedor** · clases: `cm-9k group/row m-row`
                 - **Contenedor** · clases: `cm-9l`
                     - **Editor de texto** · clases: `cm-9m is-tabular`
                         Texto: `06`
-                    - **Titulo** · clases: `cm-9n` · etiqueta `h3`
-                        Titulo: `<svg aria-hidden="true" class="lucide lucide-workflow shrink-0 text-cyan-ink" fill="none" focusable="false" height="19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24" width="19" xmlns="http://www.w3.org/2000/svg"><rect height="8" rx="2" width="8" x="3" y="3"></rect><path d="M7 11v4a2 2 0 0 0 2 2h4"></path><rect height="8" rx="2" width="8" x="13" y="13"></rect></svg>Integraciones`
-                    - **Editor de texto** · clases: `cm-9o`
+                    - **Contenedor** · clases: `cm-9n`
+                        - **Icono** · clases: `cm-9o` · Icono: `workflow.svg`
+                        - **Titulo** · clases: `(ninguna)` · etiqueta `h3`
+                            Titulo: `Integraciones`
+                    - **Editor de texto** · clases: `cm-9p`
                         Texto: `Conexión entre comunicaciones y sistemas hoteleros para reducir tareas manuales y mejorar la operación.`
             - **Contenedor** · clases: `cm-9k group/row m-row`
                 - **Contenedor** · clases: `cm-9l`
                     - **Editor de texto** · clases: `cm-9m is-tabular`
                         Texto: `07`
-                    - **Titulo** · clases: `cm-9n` · etiqueta `h3`
-                        Titulo: `<svg aria-hidden="true" class="lucide lucide-sparkles shrink-0 text-cyan-ink" fill="none" focusable="false" height="19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24" width="19" xmlns="http://www.w3.org/2000/svg"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"></path><path d="M20 2v4"></path><path d="M22 4h-4"></path><circle cx="4" cy="20" r="2"></circle></svg>iAndrea`
-                    - **Editor de texto** · clases: `cm-9o`
+                    - **Contenedor** · clases: `cm-9n`
+                        - **Icono** · clases: `cm-9o` · Icono: `sparkles.svg`
+                        - **Titulo** · clases: `(ninguna)` · etiqueta `h3`
+                            Titulo: `iAndrea`
+                    - **Editor de texto** · clases: `cm-9p`
                         Texto: `Inteligencia artificial aplicada a la atención telefónica del hotel.`
             - **Contenedor** · clases: `cm-9k group/row m-row`
                 - **Contenedor** · clases: `cm-9l`
                     - **Editor de texto** · clases: `cm-9m is-tabular`
                         Texto: `08`
-                    - **Titulo** · clases: `cm-9n` · etiqueta `h3`
-                        Titulo: `<svg aria-hidden="true" class="lucide lucide-monitor-smartphone shrink-0 text-cyan-ink" fill="none" focusable="false" height="19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24" width="19" xmlns="http://www.w3.org/2000/svg"><path d="M18 8V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h8"></path><path d="M10 19v-3.96 3.15"></path><path d="M7 19h5"></path><rect height="10" rx="2" width="6" x="16" y="12"></rect></svg>Terminales, accesorios y equipamiento`
-                    - **Editor de texto** · clases: `cm-9o`
+                    - **Contenedor** · clases: `cm-9n`
+                        - **Icono** · clases: `cm-9o` · Icono: `monitor-smartphone.svg`
+                        - **Titulo** · clases: `(ninguna)` · etiqueta `h3`
+                            Titulo: `Terminales, accesorios y equipamiento`
+                    - **Editor de texto** · clases: `cm-9p`
                         Texto: `El equipamiento de comunicaciones del hotel, desde el móvil hasta el PC o la pantalla, suministrado por quien ya gestiona tus servicios.`
             - **Contenedor** · clases: `cm-9k group/row m-row`
                 - **Contenedor** · clases: `cm-9l`
                     - **Editor de texto** · clases: `cm-9m is-tabular`
                         Texto: `09`
-                    - **Titulo** · clases: `cm-9n` · etiqueta `h3`
-                        Titulo: `<svg aria-hidden="true" class="lucide lucide-headphones shrink-0 text-cyan-ink" fill="none" focusable="false" height="19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24" width="19" xmlns="http://www.w3.org/2000/svg"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"></path></svg>Soporte`
-                    - **Editor de texto** · clases: `cm-9o`
+                    - **Contenedor** · clases: `cm-9n`
+                        - **Icono** · clases: `cm-9o` · Icono: `headphones.svg`
+                        - **Titulo** · clases: `(ninguna)` · etiqueta `h3`
+                            Titulo: `Soporte`
+                    - **Editor de texto** · clases: `cm-9p`
                         Texto: `Personas que conocen la instalación y entienden el contexto en el que se produce cada incidencia. Profesionales que realizan consultoría y análisis de lo que tienes.`
 
 ## 4. Seccion `cierre`
@@ -403,7 +421,7 @@ ID CSS del contenedor de la seccion (Avanzado → ID CSS): `capacidades`
                         Texto: `Con la Extensión Dinámica de Comunica, el huésped escanea un código QR y puede utilizar su propio móvil como extensión de la habitación durante su estancia.`
                     - **Editor de texto** · clases: `cm-46`
                         Texto: `Una forma más flexible de plantear la telefonía hotelera, especialmente interesante en reformas, ampliaciones y nuevos proyectos.`
-                - **Lista de iconos** · clases: `cm-9p`
+                - **Lista de iconos** · clases: `cm-9q`
                     - `<strong class="font-semibold text-navy">Menos hardware. Menos mantenimiento.</strong> Reduce la dependencia de terminales físicos, cableado específico y equipos que instalar, reparar o sustituir.`
                     - `<strong class="font-semibold text-navy">Una experiencia más mobile-first.</strong> El huésped utiliza el dispositivo que ya conoce y lleva consigo, sin necesidad de depender del teléfono de sobremesa de la habitación.`
                     - `<strong class="font-semibold text-navy">Integrada en el ecosistema del hotel.</strong> Puede formar parte de una arquitectura conjunta con WiFi, voz fija y centralita virtual, móvil, iAndrea e integraciones, bajo un mismo proveedor.`
@@ -446,14 +464,14 @@ ID CSS del contenedor de la seccion (Avanzado → ID CSS): `capacidades`
 
 ID CSS del contenedor de la seccion (Avanzado → ID CSS): `wifi`
 
-- **Contenedor** `<section>` · clases: `cm-9q tone-light ms-wifi`
+- **Contenedor** `<section>` · clases: `cm-9r tone-light ms-wifi`
     - **Contenedor** · clases: `cm-3`
         - **Contenedor** · clases: `(ninguna)`
             - **Contenedor** · clases: `cm-42`
                 - **Contenedor** · clases: `cm-4k m-reveal`
-                    - **Editor de texto** · clases: `cm-9r`
+                    - **Editor de texto** · clases: `cm-9s`
                         Texto: `WiFi hotelero`
-                    - **Titulo** · clases: `cm-9s` · etiqueta `h2`
+                    - **Titulo** · clases: `cm-9t` · etiqueta `h2`
                         Titulo: `WiFi seguro y gestionado, diseñado para tu hotel`
                     - **Contenedor** · clases: `cm-4o`
                         - **Editor de texto** · clases: `cm-46`
@@ -467,51 +485,59 @@ ID CSS del contenedor de la seccion (Avanzado → ID CSS): `wifi`
                 - **Contenedor** · clases: `cm-4r m-reveal`
                     - **Imagen** · clases: `cm-4s`
                         Imagen: `/wp-content/uploads/comunica/images/soluciones/soluciones-wifi-medicion.webp` · Texto alternativo: «» (decorativa: dejar vacio)
-            - **Contenedor** · clases: `cm-9t m-reveal`
-                - **Contenedor** · clases: `cm-9u`
-                    - **Titulo** · clases: `cm-9v` · etiqueta `h3`
-                        Titulo: `<svg aria-hidden="true" class="lucide lucide-check mt-1 shrink-0 text-positive" fill="none" focusable="false" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5"></path></svg>Cobertura medida`
-                    - **Editor de texto** · clases: `cm-9w`
+            - **Contenedor** · clases: `cm-9u m-reveal`
+                - **Contenedor** · clases: `cm-9v`
+                    - **Contenedor** · clases: `cm-9w`
+                        - **Icono** · clases: `cm-9x` · Icono: `check.svg`
+                        - **Titulo** · clases: `(ninguna)` · etiqueta `h3`
+                            Titulo: `Cobertura medida`
+                    - **Editor de texto** · clases: `cm-9y`
                         Texto: `Analizamos la cobertura in situ para definir cuántos puntos de acceso necesita el hotel y dónde deben colocarse.`
-                - **Contenedor** · clases: `cm-9u`
-                    - **Titulo** · clases: `cm-9v` · etiqueta `h3`
-                        Titulo: `<svg aria-hidden="true" class="lucide lucide-check mt-1 shrink-0 text-positive" fill="none" focusable="false" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5"></path></svg>El equipamiento adecuado para cada proyecto`
-                    - **Editor de texto** · clases: `cm-9w`
+                - **Contenedor** · clases: `cm-9v`
+                    - **Contenedor** · clases: `cm-9w`
+                        - **Icono** · clases: `cm-9x` · Icono: `check.svg`
+                        - **Titulo** · clases: `(ninguna)` · etiqueta `h3`
+                            Titulo: `El equipamiento adecuado para cada proyecto`
+                    - **Editor de texto** · clases: `cm-9y`
                         Texto: `Trabajamos con fabricantes especializados y seleccionamos la tecnología que mejor se adapta al edificio y a la operativa del hotel.`
-                - **Contenedor** · clases: `cm-9u`
-                    - **Titulo** · clases: `cm-9v` · etiqueta `h3`
-                        Titulo: `<svg aria-hidden="true" class="lucide lucide-check mt-1 shrink-0 text-positive" fill="none" focusable="false" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5"></path></svg>Portal cautivo integrado`
-                    - **Editor de texto** · clases: `cm-9w`
+                - **Contenedor** · clases: `cm-9v`
+                    - **Contenedor** · clases: `cm-9w`
+                        - **Icono** · clases: `cm-9x` · Icono: `check.svg`
+                        - **Titulo** · clases: `(ninguna)` · etiqueta `h3`
+                            Titulo: `Portal cautivo integrado`
+                    - **Editor de texto** · clases: `cm-9y`
                         Texto: `Portal personalizado con la marca del hotel, disponible en varios idiomas y con posibilidad de integración con el PMS. Además, permite gestionar consentimientos y datos del huésped conforme al RGPD.`
-                - **Contenedor** · clases: `cm-9u`
-                    - **Titulo** · clases: `cm-9v` · etiqueta `h3`
-                        Titulo: `<svg aria-hidden="true" class="lucide lucide-check mt-1 shrink-0 text-positive" fill="none" focusable="false" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M20 6 9 17l-5-5"></path></svg>Y si quieres, también nos encargamos de gestionarlo`
-                    - **Editor de texto** · clases: `cm-9w`
+                - **Contenedor** · clases: `cm-9v`
+                    - **Contenedor** · clases: `cm-9w`
+                        - **Icono** · clases: `cm-9x` · Icono: `check.svg`
+                        - **Titulo** · clases: `(ninguna)` · etiqueta `h3`
+                            Titulo: `Y si quieres, también nos encargamos de gestionarlo`
+                    - **Editor de texto** · clases: `cm-9y`
                         Texto: `No tenemos por qué desaparecer cuando termina la instalación. Podemos gestionar la red para ayudar a mantenerla operativa y disponible y convertirnos en un único interlocutor para el proyecto.`
-            - **Contenedor** · clases: `cm-9x m-reveal`
-                - **Contenedor** · clases: `cm-9y`
+            - **Contenedor** · clases: `cm-9z m-reveal`
+                - **Contenedor** · clases: `cm-a0`
                     - **Editor de texto** · clases: `cm-1y is-tabular`
                         Texto: `01`
-                    - **Editor de texto** · clases: `cm-9z`
+                    - **Editor de texto** · clases: `cm-a1`
                         Texto: `Medimos`
-                    - **Editor de texto** · clases: `cm-a0`
+                    - **Editor de texto** · clases: `cm-a2`
                         Texto: `Analizamos la cobertura y las necesidades reales del hotel.`
-                - **Contenedor** · clases: `cm-9y`
+                - **Contenedor** · clases: `cm-a0`
                     - **Editor de texto** · clases: `cm-1y is-tabular`
                         Texto: `02`
-                    - **Editor de texto** · clases: `cm-9z`
+                    - **Editor de texto** · clases: `cm-a1`
                         Texto: `Diseñamos e implantamos`
-                    - **Editor de texto** · clases: `cm-a0`
+                    - **Editor de texto** · clases: `cm-a2`
                         Texto: `Ponemos en marcha equipamiento, red, portal y registro.`
-                - **Contenedor** · clases: `cm-9y`
+                - **Contenedor** · clases: `cm-a0`
                     - **Editor de texto** · clases: `cm-1y is-tabular`
                         Texto: `03`
-                    - **Editor de texto** · clases: `cm-9z`
+                    - **Editor de texto** · clases: `cm-a1`
                         Texto: `Gestionamos`
-                    - **Editor de texto** · clases: `cm-a0`
+                    - **Editor de texto** · clases: `cm-a2`
                         Texto: `Si lo necesitas, nos hacemos cargo de la operativa de la red.`
-            - **Contenedor** · clases: `cm-a1 m-reveal`
-                - **Editor de texto** · clases: `cm-a2`
+            - **Contenedor** · clases: `cm-a3 m-reveal`
+                - **Editor de texto** · clases: `cm-a4`
                     Texto: `Menos preocupación por el WiFi. Más atención a tus huéspedes.`
                 - **Boton** · clases: `cm-s cm-btn is-btn-marca is-icono-despues group/btn`
                     Texto: «Quiero mejorar el WiFi de mi hotel» · Enlace: `/contacto?intent=wifi` · Icono: `arrow-right.svg` (despues)
@@ -525,122 +551,122 @@ ID CSS del contenedor de la seccion (Avanzado → ID CSS): `iandrea`
         Por que HTML: SVG decorativo (arco de marca, logotipo o motivo): no es contenido editable.
     - **Contenedor** · clases: `cm-3`
         - **Contenedor** · clases: `(ninguna)`
-            - **Contenedor** · clases: `cm-a3`
+            - **Contenedor** · clases: `cm-a5`
                 - **Contenedor** · clases: `cm-o`
-                    - **Titulo** · clases: `cm-a4 m-reveal-l` · etiqueta `h2`
+                    - **Titulo** · clases: `cm-a6 m-reveal-l` · etiqueta `h2`
                         Titulo: `iAndrea`
-                    - **Editor de texto** · clases: `cm-a5 m-reveal-l`
+                    - **Editor de texto** · clases: `cm-a7 m-reveal-l`
                         Texto: `Tu solución cuando el hotel recibe más llamadas de las que tu equipo puede atender`
                     - **Contenedor** · clases: `cm-5y m-reveal-l`
                         - **Editor de texto** · clases: `cm-3m`
                             Texto: `iAndrea es el agente virtual de voz con inteligencia artificial de Comunica.`
                         - **Editor de texto** · clases: `cm-1h`
                             Texto: `Puede atender llamadas entrantes y salientes, conversar con el cliente y realizar tareas durante la conversación.`
-                    - **Contenedor** · clases: `cm-a6 m-reveal-l`
+                    - **Contenedor** · clases: `cm-a8 m-reveal-l`
                         - **Boton** · clases: `cm-2t cm-btn is-btn-marca is-icono-despues group/btn`
                             Texto: «Quiero conocer iAndrea» · Enlace: `/contacto?intent=iandrea` · Icono: `arrow-right.svg` (despues)
                 - **Contenedor** · clases: `cm-o`
-                    - **Contenedor** · clases: `cm-a7`
-                        - **Contenedor** · clases: `cm-a8 m-call`
-                            - **Icono** · clases: `cm-a9` · Icono: `phone-call.svg`
+                    - **Contenedor** · clases: `cm-a9`
+                        - **Contenedor** · clases: `cm-aa m-call`
+                            - **Icono** · clases: `cm-ab` · Icono: `phone-call.svg`
                             - **Editor de texto** · clases: `cm-8k`
                                 Texto: `Un huésped llama para preguntar por un servicio.`
-                        - **Contenedor** · clases: `cm-a8 m-call`
-                            - **Icono** · clases: `cm-a9` · Icono: `phone-call.svg`
+                        - **Contenedor** · clases: `cm-aa m-call`
+                            - **Icono** · clases: `cm-ab` · Icono: `phone-call.svg`
                             - **Editor de texto** · clases: `cm-8k`
                                 Texto: `Otro quiere hacer una reserva.`
-                        - **Contenedor** · clases: `cm-a8 m-call`
-                            - **Icono** · clases: `cm-a9` · Icono: `phone-call.svg`
+                        - **Contenedor** · clases: `cm-aa m-call`
+                            - **Icono** · clases: `cm-ab` · Icono: `phone-call.svg`
                             - **Editor de texto** · clases: `cm-8k`
                                 Texto: `Otro necesita información.`
-                        - **Contenedor** · clases: `cm-a8 m-call`
-                            - **Icono** · clases: `cm-a9` · Icono: `phone-call.svg`
+                        - **Contenedor** · clases: `cm-aa m-call`
+                            - **Icono** · clases: `cm-ab` · Icono: `phone-call.svg`
                             - **Editor de texto** · clases: `cm-8k`
                                 Texto: `Otro llama mientras recepción está atendiendo a quien acaba de llegar.`
-                    - **Editor de texto** · clases: `cm-aa m-problem`
+                    - **Editor de texto** · clases: `cm-ac m-problem`
                         Texto: `El problema no es que el teléfono suene. El problema es lo que ocurre cuando nadie puede responder.`
-            - **Contenedor** · clases: `cm-ab`
-                - **Contenedor** · clases: `cm-ac m-feature`
-                    - **Icono** · clases: `cm-ad` · Icono: `clock.svg`
+            - **Contenedor** · clases: `cm-ad`
+                - **Contenedor** · clases: `cm-ae m-feature`
+                    - **Icono** · clases: `cm-af` · Icono: `clock.svg`
                     - **Contenedor** · clases: `cm-7w`
                         - **Titulo** · clases: `cm-3y` · etiqueta `h3`
                             Titulo: `Atiende 24/7`
-                        - **Editor de texto** · clases: `cm-ae`
+                        - **Editor de texto** · clases: `cm-ag`
                             Texto: `La atención telefónica puede continuar cuando el equipo no está disponible.`
-                - **Contenedor** · clases: `cm-ac m-feature`
-                    - **Icono** · clases: `cm-ad` · Icono: `calendar-range.svg`
+                - **Contenedor** · clases: `cm-ae m-feature`
+                    - **Icono** · clases: `cm-af` · Icono: `calendar-range.svg`
                     - **Contenedor** · clases: `cm-7w`
                         - **Titulo** · clases: `cm-3y` · etiqueta `h3`
                             Titulo: `Gestiona reservas`
-                        - **Editor de texto** · clases: `cm-ae`
+                        - **Editor de texto** · clases: `cm-ag`
                             Texto: `Puede atender solicitudes y conectarse con sistemas externos para realizar acciones durante la conversación.`
-                - **Contenedor** · clases: `cm-ac m-feature`
-                    - **Icono** · clases: `cm-ad` · Icono: `circle-question-mark.svg`
+                - **Contenedor** · clases: `cm-ae m-feature`
+                    - **Icono** · clases: `cm-af` · Icono: `circle-question-mark.svg`
                     - **Contenedor** · clases: `cm-7w`
                         - **Titulo** · clases: `cm-3y` · etiqueta `h3`
                             Titulo: `Responde preguntas frecuentes`
-                        - **Editor de texto** · clases: `cm-ae`
+                        - **Editor de texto** · clases: `cm-ag`
                             Texto: `Horarios, servicios, información del establecimiento y otras consultas repetitivas pueden resolverse sin interrumpir al equipo.`
-                - **Contenedor** · clases: `cm-ac m-feature`
-                    - **Icono** · clases: `cm-ad` · Icono: `layers.svg`
+                - **Contenedor** · clases: `cm-ae m-feature`
+                    - **Icono** · clases: `cm-af` · Icono: `layers.svg`
                     - **Contenedor** · clases: `cm-7w`
                         - **Titulo** · clases: `cm-3y` · etiqueta `h3`
                             Titulo: `Atiende varias llamadas a la vez`
-                        - **Editor de texto** · clases: `cm-ae`
+                        - **Editor de texto** · clases: `cm-ag`
                             Texto: `La capacidad de atención deja de depender de que haya una persona disponible justo en ese momento.`
-                - **Contenedor** · clases: `cm-ac m-feature`
-                    - **Icono** · clases: `cm-ad` · Icono: `globe.svg`
+                - **Contenedor** · clases: `cm-ae m-feature`
+                    - **Icono** · clases: `cm-af` · Icono: `globe.svg`
                     - **Contenedor** · clases: `cm-7w`
                         - **Titulo** · clases: `cm-3y` · etiqueta `h3`
                             Titulo: `Se configura en más de 15 idiomas`
-                        - **Editor de texto** · clases: `cm-ae`
+                        - **Editor de texto** · clases: `cm-ag`
                             Texto: `Una ventaja especialmente relevante para hoteles con huéspedes internacionales.`
-                - **Contenedor** · clases: `cm-ac m-feature`
-                    - **Icono** · clases: `cm-ad` · Icono: `database.svg`
+                - **Contenedor** · clases: `cm-ae m-feature`
+                    - **Icono** · clases: `cm-af` · Icono: `database.svg`
                     - **Contenedor** · clases: `cm-7w`
                         - **Titulo** · clases: `cm-3y` · etiqueta `h3`
                             Titulo: `Recoge y cualifica información`
-                        - **Editor de texto** · clases: `cm-ae`
+                        - **Editor de texto** · clases: `cm-ag`
                             Texto: `Puede obtener datos durante la conversación, clasificar oportunidades y registrar información para su seguimiento.`
-                - **Contenedor** · clases: `cm-ac m-feature`
-                    - **Icono** · clases: `cm-ad` · Icono: `split.svg`
+                - **Contenedor** · clases: `cm-ae m-feature`
+                    - **Icono** · clases: `cm-af` · Icono: `split.svg`
                     - **Contenedor** · clases: `cm-7w`
                         - **Titulo** · clases: `cm-3y` · etiqueta `h3`
                             Titulo: `Deriva cuando hace falta una persona`
-                        - **Editor de texto** · clases: `cm-ae`
+                        - **Editor de texto** · clases: `cm-ag`
                             Texto: `Automatiza aquello que puede resolverse de forma sencilla y pasa la conversación al equipo cuando necesita intervención humana.`
-                - **Contenedor** · clases: `cm-ac m-feature`
-                    - **Icono** · clases: `cm-ad` · Icono: `workflow.svg`
+                - **Contenedor** · clases: `cm-ae m-feature`
+                    - **Icono** · clases: `cm-af` · Icono: `workflow.svg`
                     - **Contenedor** · clases: `cm-7w`
                         - **Titulo** · clases: `cm-3y` · etiqueta `h3`
                             Titulo: `Se integra con tus sistemas`
-                        - **Editor de texto** · clases: `cm-ae`
+                        - **Editor de texto** · clases: `cm-ag`
                             Texto: `Puede conectarse con CRM, software de reservas, ERP y centralitas IP para consultar información o realizar acciones durante la conversación.`
-            - **Contenedor** · clases: `cm-af`
+            - **Contenedor** · clases: `cm-ah`
                 - **Contenedor** · clases: `cm-97 m-reveal-close`
                     - **Editor de texto** · clases: `cm-1h`
                         Texto: `La IA no debería darte más trabajo. Añadir una herramienta más que tu equipo tenga que aprender, alimentar y vigilar no resuelve demasiado.`
                     - **Editor de texto** · clases: `cm-1h`
                         Texto: `Por eso el valor de iAndrea no está simplemente en utilizar inteligencia artificial. Está en quitar tareas repetitivas de encima de las personas para que puedan dedicar su tiempo a aquellas conversaciones y situaciones en las que sí hacen falta.`
-                - **Editor de texto** · clases: `cm-ag m-reveal-close`
+                - **Editor de texto** · clases: `cm-ai m-reveal-close`
                     Texto: `Automatiza lo repetitivo. Mantén a las personas donde aportan valor.`
 
 ## 8. Seccion `simulador`
 
 ID CSS del contenedor de la seccion (Avanzado → ID CSS): `iandrea-demo`
 
-- **Contenedor** `<section>` · clases: `cm-ah tone-dark ms-simulador`
+- **Contenedor** `<section>` · clases: `cm-aj tone-dark ms-simulador`
     - **Contenedor** · clases: `cm-77`
     - **Contenedor** · clases: `cm-3`
         - **Contenedor** · clases: `(ninguna)`
             - **Contenedor** · clases: `cm-4 m-reveal`
                 - **Editor de texto** · clases: `cm-3t`
                     Texto: `Pruébalo`
-                - **Titulo** · clases: `cm-ai` · etiqueta `h2`
+                - **Titulo** · clases: `cm-ak` · etiqueta `h2`
                     Titulo: `Escucha cómo responde iAndrea`
-                - **Editor de texto** · clases: `cm-aj`
+                - **Editor de texto** · clases: `cm-al`
                     Texto: `Elige un escenario y una pregunta. Verás la conversación tal y como la resolvería en tu hotel, sin pasar por recepción.`
             - **HTML** · clases: `dl-flat` · pegar `html/soluciones-simulador.html`
                 Por que HTML: Simulador de iAndrea: es una aplicacion (pestanas, conversacion, voz sintetica). El guion editable va en un bloque de datos al principio del HTML.
-            - **Lista de iconos** · clases: `cm-ak m-reveal cm-solo`
+            - **Lista de iconos** · clases: `cm-am m-reveal cm-solo`
                 - [`zap.svg`] `Se integra con tu centralita actual. La puesta en marcha se mide en días, no en meses.`
