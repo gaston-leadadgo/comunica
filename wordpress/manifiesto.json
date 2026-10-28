@@ -14,6 +14,10 @@
    "dest": "css/03-clases.css"
   },
   {
+   "repo": "css/comunica.min.css",
+   "dest": "css/comunica.min.css"
+  },
+  {
    "repo": "css/estilos-cf7.css",
    "dest": "css/estilos-cf7.css"
   },

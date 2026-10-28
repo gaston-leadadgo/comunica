@@ -386,15 +386,12 @@
   }
 
   var MOTION = {
+    // La entrada del hero va en CSS (02-adaptador, seccion 12): empieza sin
+    // esperar al JS. Aqui solo queda el desplazamiento del video al hacer scroll.
     hero: function (gs, s) {
-      gs.from($$(".m-line", s), { opacity: 0, y: 24, duration: 0.75, ease: "power3.out", immediateRender: true, stagger: 0.09 });
-      gs.from($$(".m-lead, .m-ctas", s), { opacity: 0, y: 16, duration: 0.6, delay: 0.2, ease: "power3.out", immediateRender: true, stagger: 0.08 });
       var art = s.querySelector(".m-art");
-      if (art) {
-        gs.from(art, { opacity: 0, y: 26, scale: 0.985, duration: 0.9, delay: 0.25, ease: "power3.out", immediateRender: true });
-        if (window.ScrollTrigger) {
-          gs.to(art, { yPercent: -8, ease: "none", scrollTrigger: { trigger: s, start: "top top", end: "bottom top", scrub: 0.5 } });
-        }
+      if (art && window.ScrollTrigger) {
+        gs.to(art, { yPercent: -8, ease: "none", scrollTrigger: { trigger: s, start: "top top", end: "bottom top", scrub: 0.5 } });
       }
     },
     cifras: function (gs, s) {
@@ -441,7 +438,7 @@
     "cta-final": function (gs, s) { revelar(gs, s, ".m-reveal", { stagger: 0.1, start: "top 82%" }); },
     cierre: function (gs, s) { revelar(gs, s, ".m-reveal", { stagger: 0.1, start: "top 85%" }); },
 
-    "sol-hero": function (gs, s) { entrada(gs, s, ".m-reveal", { y: 24, duration: 0.7, stagger: 0.1, inmediato: true }); },
+    "sol-hero": function () {}, // entrada en CSS
     "sol-perfiles": function (gs, s) {
       gs.from(s.querySelector(".js-tab") ? s.querySelector(".js-tab").closest(".e-con.e-child").parentElement : s,
         { opacity: 0, y: 24, duration: 0.6, ease: "power3.out", immediateRender: true, scrollTrigger: { trigger: s, start: "top 82%", once: true } });
@@ -458,7 +455,7 @@
     },
     simulador: function (gs, s) { entrada(gs, s, ".m-reveal", { y: 22, duration: 0.6, stagger: 0.1, start: "top 80%" }); },
 
-    "nos-hero": function (gs, s) { entrada(gs, s, ".m-reveal", { y: 24, duration: 0.7, stagger: 0.1, inmediato: true }); },
+    "nos-hero": function () {}, // entrada en CSS
     "nos-conocimiento": function (gs, s) { revelar(gs, s, ".m-reveal", { stagger: 0.12, start: "top 80%" }); },
     "nos-escala": function (gs, s) {
       $$(".m-count", s).forEach(function (el) { contar(gs, el, { trigger: s, duration: 1.2 }); });
@@ -473,7 +470,7 @@
       });
     },
 
-    "par-hero": function (gs, s) { entrada(gs, s, ".m-reveal", { y: 24, duration: 0.7, stagger: 0.1, inmediato: true }); },
+    "par-hero": function () {}, // entrada en CSS
     "par-modelos": function (gs, s) {
       entrada(gs, s, ".m-reveal", { y: 22, duration: 0.6, stagger: 0.1, start: "top 82%" });
       entrada(gs, s, ".m-door", { y: 18, duration: 0.5, ease: "power2.out", stagger: 0.08, start: "top 85%", trigger: ".m-door" });
@@ -484,7 +481,7 @@
       gs.from(s.querySelector(".e-con") || s, { opacity: 0, y: 20, duration: 0.55, ease: "power3.out", immediateRender: true,
         scrollTrigger: { trigger: s, start: "top 85%", once: true } });
     },
-    contacto: function (gs, s) { entrada(gs, s, ".m-reveal", { y: 24, duration: 0.7, stagger: 0.12, inmediato: true }); }
+    contacto: function () {} // entrada en CSS
   };
 
   function animaciones() {

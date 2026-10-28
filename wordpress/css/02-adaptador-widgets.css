@@ -296,3 +296,38 @@ body[data-sticky-cta="true"] {
 @media (min-width: 1024px) {
   body[data-sticky-cta="true"] { padding-bottom: 0; }
 }
+
+
+/* === 12 · ENTRADA DE LOS HEROS, EN CSS =================================== */
+/* La primera animacion de cada pagina no espera al JavaScript: empieza en
+   cuanto llega esta hoja. Con GSAP habia que esperar a jQuery, Elementor,
+   GSAP y comunica.js (todos al final de la pagina), y durante esa espera el
+   titular se veia, desaparecia y volvia a entrar. Mismos tiempos y la misma
+   curva que la web original (power3.out). Solo se anima desde la posicion de
+   partida: el final es el estado normal del elemento. */
+@keyframes cm-entra {
+  from { opacity: 0; translate: 0 var(--cm-y, 24px); }
+}
+@keyframes cm-entra-arte {
+  from { opacity: 0; translate: 0 26px; scale: 0.985; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .dl-landing .ms-hero .m-line { animation: cm-entra 0.75s cubic-bezier(.215, .61, .355, 1) both; }
+  .dl-landing .ms-hero .m-line:nth-of-type(2) { animation-delay: 0.09s; }
+  .dl-landing .ms-hero :is(.m-lead, .m-ctas) {
+    --cm-y: 16px;
+    animation: cm-entra 0.6s cubic-bezier(.215, .61, .355, 1) 0.2s both;
+  }
+  .dl-landing .ms-hero .m-ctas { animation-delay: 0.28s; }
+  .dl-landing .ms-hero .m-art { animation: cm-entra-arte 0.9s cubic-bezier(.215, .61, .355, 1) 0.25s both; }
+
+  .dl-landing :is(.ms-sol-hero, .ms-nos-hero, .ms-par-hero, .ms-contacto) .m-reveal {
+    animation: cm-entra 0.7s cubic-bezier(.215, .61, .355, 1) both;
+  }
+  .dl-landing :is(.ms-sol-hero, .ms-nos-hero, .ms-par-hero) .m-reveal:nth-child(2) { animation-delay: 0.1s; }
+  .dl-landing :is(.ms-sol-hero, .ms-nos-hero, .ms-par-hero) .m-reveal:nth-child(3) { animation-delay: 0.2s; }
+  .dl-landing :is(.ms-sol-hero, .ms-nos-hero, .ms-par-hero) .m-reveal:nth-child(4) { animation-delay: 0.3s; }
+  .dl-landing :is(.ms-sol-hero, .ms-nos-hero, .ms-par-hero) .m-reveal:nth-child(5) { animation-delay: 0.4s; }
+  .dl-landing .ms-contacto .m-reveal:nth-child(2) { animation-delay: 0.12s; }
+  .dl-landing .ms-contacto .m-reveal:nth-child(3) { animation-delay: 0.24s; }
+}
