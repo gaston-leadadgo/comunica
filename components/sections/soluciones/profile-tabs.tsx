@@ -203,7 +203,14 @@ export function SolucionesProfileTabs() {
 
                 <ul className="mt-4 grid grid-cols-1 gap-px overflow-hidden rounded-lg bg-line sm:grid-cols-2">
                   {profile.includes.map((item) => (
-                    <li key={item.title} className="min-w-0 bg-paper-warm p-5">
+                    // `last:odd:col-span-2`: con el movil añadido, tres perfiles
+                    // tienen cinco servicios y en dos columnas el quinto dejaba
+                    // una celda vacia en gris. El ultimo, si queda impar, ocupa
+                    // la fila entera.
+                    <li
+                      key={item.title}
+                      className="min-w-0 bg-paper-warm p-5 sm:last:odd:col-span-2"
+                    >
                       <p className="flex items-start gap-2.5 text-card-title">
                         <Icon
                           name="check"

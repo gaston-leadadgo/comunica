@@ -1,4 +1,4 @@
-import { routes } from "./site";
+import { routes, site } from "./site";
 import type { Cta } from "./schema";
 
 /**
@@ -20,7 +20,7 @@ export const nosotros = {
     titleLine1: "No somos un operador que también trabaja con hoteles.",
     titleLine2: "Somos especialistas en tecnología hotelera",
     kicker: "Y la diferencia importa",
-    lead: "Porque para resolver correctamente la tecnología de un hotel no basta con saber de redes, telefonía o WiFi. Hay que entender qué ocurre dentro del hotel cuando esa tecnología falla.",
+    lead: "Porque para resolver correctamente la tecnología de un hotel no basta con saber de redes, telefonía fija y móvil o WiFi. Hay que entender qué ocurre dentro del hotel cuando esa tecnología falla.",
   },
 
   knowledge: {
@@ -50,8 +50,10 @@ export const nosotros = {
   },
 
   scale: {
-    /** PENDIENTE DE CONFIRMACION DEL CLIENTE: cifras de portada. */
-    claim: "350 hoteles. 13 países",
+    /** Mismas cifras que la banda de la home: salen de `site.claims`. */
+    claim: `${site.claims.hotels} hoteles. ${site.claims.countries} países`,
+    /** El tercer dato de autoridad de la home, que no es una cifra. */
+    support: "Soporte que te conoce",
     body: [
       "Nuestra especialización no nace de una declaración de intenciones. Nace de haber trabajado con cientos de hoteles y haber tenido que resolver problemas reales dentro de ellos.",
       "Cada proyecto nos permite entender mejor qué necesita un establecimiento, qué cambia cuando hablamos de una cadena y dónde una solución aparentemente correcta puede fallar cuando llega a la operativa real.",
@@ -78,7 +80,7 @@ export const nosotros = {
   team: {
     title: "Un equipo. Muchas capacidades",
     body: [
-      "Hay empresas excelentes en conectividad. Otras en WiFi. Otras en IPTV. Otras en voz. Y otras se especializan en inteligencia artificial.",
+      "Hay empresas excelentes en conectividad. Otras en WiFi. Otras en IPTV. Otras en voz fija y móvil. Y otras se especializan en inteligencia artificial.",
       "Nuestra fortaleza es poder entender el conjunto. Y hacernos cargo de la complejidad que aparece cuando todas esas piezas tienen que funcionar juntas.",
     ],
     cases: [

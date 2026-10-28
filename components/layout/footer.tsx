@@ -81,23 +81,10 @@ export function Footer() {
               </Link>
             </div>
 
-            <Link
-              href={footer.invoiceLink.href}
-              className="mt-5 inline-flex items-start gap-2.5 py-1 text-body-sm text-fg-inverse-muted transition-colors hover:text-white"
-            >
-              <Icon name="file-text" size={16} className="mt-0.5 shrink-0 text-cyan" />
-              {footer.invoiceLink.label}
-            </Link>
-
             <address className="mt-8 flex flex-col gap-3 text-body-sm not-italic">
               <span className="flex items-start gap-3">
                 <Icon name="map-pin" size={16} className="mt-0.5 shrink-0 text-cyan" />
-                <span className="text-fg-inverse-muted">
-                  {site.address.street}
-                  <br />
-                  {site.address.postalCode} {site.address.city},{" "}
-                  {site.address.country}
-                </span>
+                <span className="text-fg-inverse-muted">{site.address.street}</span>
               </span>
               <a
                 href={site.phone.href}
@@ -107,6 +94,13 @@ export function Footer() {
                 <span data-tabular className="font-mono text-data">
                   {site.phone.international}
                 </span>
+              </a>
+              <a
+                href={`mailto:${site.email}`}
+                className="flex min-h-11 items-center gap-3 py-1 break-all transition-colors hover:text-cyan-soft sm:min-h-0"
+              >
+                <Icon name="mail" size={16} className="shrink-0 text-cyan" />
+                {site.email}
               </a>
               <a
                 href={site.social.linkedin.href}
@@ -129,7 +123,8 @@ export function Footer() {
 
         <div className="mt-10 flex flex-col gap-4 text-body-sm text-fg-inverse-muted md:flex-row md:items-center md:justify-between">
           <p>
-            &copy; {year} {site.legalName}. Todos los derechos reservados.
+            {/* Sin punto tras el nombre: "S.L." ya termina en punto. */}
+            &copy; {year} {site.legalName} Todos los derechos reservados.
           </p>
           <nav aria-label="Enlaces legales">
             <ul className="flex flex-wrap items-center gap-x-6 gap-y-2">

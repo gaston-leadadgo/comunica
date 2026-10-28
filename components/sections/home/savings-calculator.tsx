@@ -7,14 +7,16 @@ import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/section";
 import { Icon } from "@/components/ui/icon";
 import { calculator, home } from "@/content/home";
+import { estimateSavings } from "@/lib/calculator/estimate";
 import { revealOnScroll, useBrandMotion } from "@/lib/gsap/use-brand-motion";
 
 /**
  * Calculadora de potencial de optimizacion.
  *
- * La formula es la de la demo aprobada: 18 % a 35 % del gasto mensual declarado.
- * Vive en `content/home.ts` para que el rango se cambie en un solo sitio y para
- * que la pagina de contacto pueda recalcular exactamente lo mismo.
+ * Cinco datos del hotel: habitaciones, gasto, plantas, salones y areas de
+ * servicio, y extensiones de personal. La formula vive en
+ * `lib/calculator/estimate.ts` y sus coeficientes en `content/home.ts`; ahi esta
+ * explicado por que cada dato mueve el resultado.
  *
  * Accesibilidad de los deslizadores: `<input type="range">` nativo con label
  * visible y `aria-valuetext` en unidades humanas ("60 habitaciones", "1.500 euros
@@ -29,14 +31,21 @@ const eur = new Intl.NumberFormat("es-ES", {
 
 export function SavingsCalculator() {
   const c = home.calculator;
-  const roomsId = useId();
-  const spendId = useId();
-
   const [rooms, setRooms] = useState<number>(calculator.rooms.default);
   const [spend, setSpend] = useState<number>(calculator.spend.default);
+  const [floors, setFloors] = useState<number>(calculator.floors.default);
+  const [areas, setAreas] = useState<number>(calculator.areas.default);
+  const [extensions, setExtensions] = useState<number>(
+    calculator.extensions.default,
+  );
 
-  const minMonthly = Math.round(spend * calculator.minRatio);
-  const maxMonthly = Math.round(spend * calculator.maxRatio);
+  const { benchmark, minMonthly, maxMonthly } = estimateSavings({
+    rooms,
+    spend,
+    floors,
+    areas,
+    extensions,
+  });
 
   const scope = useBrandMotion<HTMLDivElement>(({ gsap, scope, reduced }) => {
     if (reduced) return;
@@ -72,70 +81,56 @@ export function SavingsCalculator() {
 
         <div data-reveal className="mt-16 grid gap-px overflow-hidden rounded-xl bg-white/12 lg:grid-cols-2">
           {/* Controles */}
-          <div className="min-w-0 bg-abyss/80 p-8 lg:p-12">
-            <div>
-              <label
-                htmlFor={roomsId}
-                className="flex items-baseline justify-between gap-4"
-              >
-                <span className="text-card-title text-white">{c.roomsLabel}</span>
-                <span
-                  className="font-mono text-display-3 text-cyan"
-                  data-tabular
-                >
-                  {rooms}
-                </span>
-              </label>
-              <input
-                id={roomsId}
-                type="range"
-                min={calculator.rooms.min}
-                max={calculator.rooms.max}
-                step={calculator.rooms.step}
+          <div className="min-w-0 bg-abyss/80 p-6 sm:p-8 lg:p-12">
+            <div className="flex flex-col gap-9">
+              <Slider
+                label={c.roomsLabel}
+                display={String(rooms)}
+                range={calculator.rooms}
                 value={rooms}
-                onChange={(e) => setRooms(Number(e.target.value))}
-                aria-valuetext={`${rooms} habitaciones`}
-                className="mt-5 w-full accent-cyan"
+                onChange={setRooms}
+                valueText={`${rooms} habitaciones`}
+                ticks={c.roomsTicks}
               />
-              <div className="mt-2 flex justify-between font-mono text-[11px] text-fg-inverse-muted">
-                {c.roomsTicks.map((t) => (
-                  <span key={t}>{t}</span>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-12">
-              <label
-                htmlFor={spendId}
-                className="flex items-baseline justify-between gap-4"
-              >
-                <span className="text-card-title text-white">{c.spendLabel}</span>
-                <span
-                  className="font-mono text-display-3 text-cyan whitespace-nowrap"
-                  data-tabular
-                >
-                  {eur.format(spend)}
-                </span>
-              </label>
-              <p className="mt-1 font-mono text-data text-fg-inverse-muted">
-                {c.spendHint}
-              </p>
-              <input
-                id={spendId}
-                type="range"
-                min={calculator.spend.min}
-                max={calculator.spend.max}
-                step={calculator.spend.step}
+              <Slider
+                label={c.spendLabel}
+                hint={c.spendHint}
+                display={eur.format(spend)}
+                range={calculator.spend}
                 value={spend}
-                onChange={(e) => setSpend(Number(e.target.value))}
-                aria-valuetext={`${spend} euros al mes`}
-                className="mt-5 w-full accent-cyan"
+                onChange={setSpend}
+                valueText={`${spend} euros al mes`}
+                ticks={c.spendTicks}
               />
-              <div className="mt-2 flex justify-between font-mono text-[11px] text-fg-inverse-muted">
-                {c.spendTicks.map((t) => (
-                  <span key={t}>{t}</span>
-                ))}
-              </div>
+              <Slider
+                label={c.floorsLabel}
+                display={String(floors)}
+                range={calculator.floors}
+                value={floors}
+                onChange={setFloors}
+                valueText={`${floors} plantas`}
+                ticks={c.floorsTicks}
+              />
+              <Slider
+                label={c.areasLabel}
+                hint={c.areasHint}
+                display={String(areas)}
+                range={calculator.areas}
+                value={areas}
+                onChange={setAreas}
+                valueText={`${areas} salones y áreas de servicio`}
+                ticks={c.areasTicks}
+              />
+              <Slider
+                label={c.extensionsLabel}
+                hint={c.extensionsHint}
+                display={String(extensions)}
+                range={calculator.extensions}
+                value={extensions}
+                onChange={setExtensions}
+                valueText={`${extensions} extensiones`}
+                ticks={c.extensionsTicks}
+              />
             </div>
 
             <p className="mt-10 measure-body text-body-sm text-fg-inverse-muted">
@@ -144,8 +139,11 @@ export function SavingsCalculator() {
           </div>
 
           {/* Resultado */}
+          {/* Con cinco deslizadores la columna de controles es mucho mas alta
+              que el resultado. `sticky` mantiene la cifra a la vista mientras
+              se mueven los de abajo: si no, el usuario ajusta a ciegas. */}
           <div className="flex min-w-0 flex-col justify-between bg-navy p-8 lg:p-12">
-            <div>
+            <div className="lg:sticky lg:top-[calc(var(--header-h)+2rem)]">
               <p className="font-mono text-eyebrow tracking-[0.2em] text-cyan uppercase">
                 {c.resultLabel}
               </p>
@@ -169,6 +167,17 @@ export function SavingsCalculator() {
                   {c.perYear}
                 </span>
               </p>
+
+              {/* La referencia se enseña: es lo que hace creible la cifra de
+                  arriba. Sin ella, el resultado parece un porcentaje sacado de
+                  la manga. */}
+              <p className="mt-8 border-t border-white/12 pt-6 text-body-sm text-fg-inverse-muted">
+                {c.benchmarkLabel}:{" "}
+                <span className="font-mono text-white" data-tabular>
+                  {eur.format(benchmark)}
+                </span>{" "}
+                {c.perMonth}
+              </p>
             </div>
 
             <div className="mt-12 border-t border-white/12 pt-8">
@@ -191,7 +200,7 @@ export function SavingsCalculator() {
             {c.ctaLead}
           </p>
           <Button
-            href={`${c.cta.href}&habitaciones=${rooms}&gasto=${spend}`}
+            href={`${c.cta.href}&habitaciones=${rooms}&gasto=${spend}&plantas=${floors}&areas=${areas}&extensiones=${extensions}`}
             variant="cyan"
             size="lg"
             iconRight={<Icon name="arrow-right" size={18} />}
@@ -202,5 +211,71 @@ export function SavingsCalculator() {
       </div>
       </Container>
     </section>
+  );
+}
+
+/**
+ * Un deslizador con su etiqueta, su valor y sus marcas.
+ *
+ * `<input type="range">` nativo con label visible y `aria-valuetext` en unidades
+ * humanas: un range sin `aria-valuetext` anuncia solo el numero pelado.
+ */
+function Slider({
+  label,
+  hint,
+  display,
+  range,
+  value,
+  onChange,
+  valueText,
+  ticks,
+}: {
+  label: string;
+  hint?: string;
+  display: string;
+  range: { min: number; max: number; step: number };
+  value: number;
+  onChange: (v: number) => void;
+  valueText: string;
+  ticks: readonly string[];
+}) {
+  const id = useId();
+  return (
+    <div>
+      {/* `flex-wrap`: en movil "Gasto mensual actual en telecomunicaciones"
+          ocupa todo el ancho —"telecomunicaciones" no se puede partir— y sin
+          envolver la cifra se salia de la columna. Asi baja a su propia linea. */}
+      <label
+        htmlFor={id}
+        className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1"
+      >
+        <span className="text-card-title text-white">{label}</span>
+        <span
+          className="font-mono text-display-3 whitespace-nowrap text-cyan"
+          data-tabular
+        >
+          {display}
+        </span>
+      </label>
+      {hint ? (
+        <p className="mt-1 font-mono text-data text-fg-inverse-muted">{hint}</p>
+      ) : null}
+      <input
+        id={id}
+        type="range"
+        min={range.min}
+        max={range.max}
+        step={range.step}
+        value={value}
+        onChange={(e) => onChange(Number(e.target.value))}
+        aria-valuetext={valueText}
+        className="mt-4 w-full accent-cyan"
+      />
+      <div className="mt-2 flex justify-between font-mono text-[11px] text-fg-inverse-muted">
+        {ticks.map((t) => (
+          <span key={t}>{t}</span>
+        ))}
+      </div>
+    </div>
   );
 }

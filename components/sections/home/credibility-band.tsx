@@ -1,105 +1,87 @@
 "use client";
 
-import { BrandSymbol } from "@/components/brand/logo";
 import { Container } from "@/components/ui/section";
+import { Icon } from "@/components/ui/icon";
 import { home } from "@/content/home";
 import { revealOnScroll, useBrandMotion } from "@/lib/gsap/use-brand-motion";
 
 /**
- * Banda de credibilidad + marquee de grupos hoteleros.
+ * Banda de autoridad.
  *
  * Va aqui y no dentro del hero: meter cifras crudas en el hero lo carga y le
  * quita aire. Como bloque propio, la cifra golpea mas.
  *
- * El marquee duplica la lista en el markup y desplaza un -50 %, que es la unica
- * forma de que el bucle sea continuo sin salto. El segundo juego va
- * `aria-hidden` para que un lector de pantalla no lea veinte nombres. Esa cinta
- * ya se mueve sola por CSS; lo que le faltaba era la entrada de la cifra.
+ * Antes la banda era una frase con las cifras y, debajo, un marquee de grupos
+ * hoteleros ("Ya confian en Comunica"). El marquee se retira por decision de
+ * cliente: eran marcas de terceros. Para que la banda no pierda peso, las cifras
+ * dejan de ser una frase y pasan a ser datos, cada uno con su tamaño propio, y
+ * entran contando desde cero.
  *
- * Fondo en navy 540 C (el azul del manual) y no en Process Black: es la banda
- * que sostiene la prueba de cartera, y el azul corporativo la ata a la marca
- * mejor que un negro neutro. El blanco sobre navy da 13,46:1 y el cyan 4,53:1,
- * asi que ambos siguen pasando AA.
+ * Los contadores: el numero se renderiza ya en su valor final en el HTML y GSAP
+ * lo anima desde cero al entrar en pantalla. Si el JS no llega, se lee 482.
+ * Nunca al reves.
  *
- * ATENCION: los nombres son marcas de terceros y afirmaciones de cartera de
- * cliente. No se publican sin autorizacion por escrito (ver content/home.ts).
+ * Fondo en navy 540 C (el azul del manual): el blanco sobre navy da 13,46:1 y el
+ * cyan 4,53:1, asi que ambos pasan AA.
  */
 export function CredibilityBand() {
   const { credibility } = home;
 
   const scope = useBrandMotion<HTMLDivElement>(({ gsap, scope, reduced }) => {
     if (reduced) return;
-    revealOnScroll(gsap, scope, "[data-claim],[data-marquee]", {
-      stagger: 0.14,
-      start: "top 85%",
+
+    revealOnScroll(gsap, scope, "[data-stat]", { stagger: 0.1, start: "top 85%" });
+
+    gsap.utils.toArray<HTMLElement>("[data-count]", scope).forEach((el) => {
+      const target = Number(el.dataset.count);
+      if (!Number.isFinite(target) || target < 2) return;
+      const obj = { v: 0 };
+      gsap.to(obj, {
+        v: target,
+        duration: 1.2,
+        ease: "power2.out",
+        immediateRender: true,
+        onUpdate: () => {
+          el.textContent = String(Math.round(obj.v));
+        },
+        scrollTrigger: { trigger: scope, start: "top 85%", once: true },
+      });
     });
   });
 
   return (
     <section
       data-tone="dark"
+      aria-label={credibility.label}
       className="relative isolate overflow-hidden bg-navy py-section-sm text-fg-inverse"
     >
       <Container width="wide" className="relative">
-        <div ref={scope} className="flex flex-col items-center gap-10">
-          <p
-            data-claim
-            className="max-w-[26ch] text-center text-display-3 text-balance sm:max-w-none"
-          >
-            {credibility.claim.split(" · ").map((part, i, arr) => (
-              <span key={part}>
-                <span className={i === 2 ? "text-cyan" : undefined} data-tabular>
-                  {part}
-                </span>
-                {i < arr.length - 1 ? (
-                  <span aria-hidden="true" className="mx-3 text-white/25">
-                    /
-                  </span>
-                ) : null}
-              </span>
-            ))}
-          </p>
-
-          <div data-marquee className="w-full">
-            <p className="text-center font-mono text-eyebrow tracking-[0.2em] text-cyan uppercase">
-              {credibility.logosLabel}
-            </p>
-
-            <div
-              className="relative mt-6 overflow-hidden"
-              style={{
-                maskImage:
-                  "linear-gradient(to right, transparent, black 12%, black 88%, transparent)",
-                WebkitMaskImage:
-                  "linear-gradient(to right, transparent, black 12%, black 88%, transparent)",
-              }}
-            >
-              <div className="animate-marquee flex w-max items-center">
-                {[false, true].map((isClone) => (
-                  <ul
-                    key={String(isClone)}
-                    aria-hidden={isClone || undefined}
-                    className="flex shrink-0 items-center"
-                  >
-                    {credibility.logos.map((name) => (
-                      <li
-                        key={name}
-                        className="flex items-center gap-3 border-r border-white/10 px-8"
-                      >
-                        <BrandSymbol
-                          gradient={false}
-                          size={16}
-                          className="shrink-0 text-cyan/70"
-                        />
-                        <span className="text-body-sm font-medium whitespace-nowrap text-white/80">
-                          {name}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                ))}
-              </div>
+        {/* Cuatro celdas: 2 x 2 en movil, una fila en escritorio. Las tres
+            primeras son cifras; la cuarta, "Soporte que te conoce", no es un
+            numero y por eso lleva icono en lugar de contador, y el cyan que
+            antes tenia en la frase. */}
+        <div
+          ref={scope}
+          className="grid grid-cols-2 gap-px overflow-hidden rounded-xl bg-white/12 lg:grid-cols-4"
+        >
+          {credibility.stats.map((s) => (
+            // `p-5` en movil: con `p-6` a 320px a cada celda le quedaban 92px
+            // y "interlocutor", en mono, mide 94.
+            <div key={s.label} data-stat className="min-w-0 bg-navy p-5 sm:p-8">
+              <p className="text-metric text-white" data-tabular>
+                <span data-count={s.value}>{s.value}</span>
+              </p>
+              <p className="mt-2 font-mono text-data text-fg-inverse-muted text-pretty">
+                {s.label}
+              </p>
             </div>
+          ))}
+
+          <div data-stat className="flex min-w-0 flex-col justify-between bg-navy p-5 sm:p-8">
+            <Icon name="headphones" size={28} className="text-cyan" />
+            <p className="mt-4 text-display-3 text-cyan text-pretty">
+              {credibility.support}
+            </p>
           </div>
         </div>
       </Container>

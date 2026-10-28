@@ -2,21 +2,22 @@
 
 import { BrandArc } from "@/components/brand/brand-arc";
 import { Container } from "@/components/ui/section";
+import { Icon } from "@/components/ui/icon";
 import { nosotros } from "@/content/nosotros";
 import { site } from "@/content/site";
 import { useBrandMotion } from "@/lib/gsap/use-brand-motion";
 
 /**
- * La cifra: 350 hoteles, 13 paises.
+ * La cifra: hoteles y paises, de `site.claims` (hoy 482 y 17).
  *
- * Los 13 paises NO son un mapa. Un planisferio con puntos y arcos es el cliche
- * exacto del genero telco y le serviria igual a cualquier competidor. Aqui son 13
+ * Los paises NO son un mapa. Un planisferio con puntos y arcos es el cliche
+ * exacto del genero telco y le serviria igual a cualquier competidor. Aqui son
  * tarjetas llave alineadas en cuadricula: el objeto que solo existe en un hotel,
  * repetido tantas veces como paises. Una de ellas va en cyan, que es el unico
  * acento de la seccion.
  *
  * Los contadores: el numero se renderiza ya en su valor final en el HTML y GSAP lo
- * anima desde cero al entrar en pantalla. Si el JS no llega, se lee 350. Nunca al
+ * anima desde cero al entrar en pantalla. Si el JS no llega, se lee la cifra final. Nunca al
  * contrario.
  */
 export function NosotrosScale() {
@@ -88,12 +89,20 @@ export function NosotrosScale() {
                     {site.claims.countries}
                   </span>
                   <span className="ml-3 align-baseline font-mono text-data text-fg-inverse-muted">
-                    paises
+                    países
                   </span>
                 </p>
               </div>
 
-              {/* Las 13 tarjetas llave: una por pais, sin mapa */}
+              {/* El tercer dato de autoridad de la home. No es una cifra, asi
+                  que no compite con los contadores: va debajo, en el cyan del
+                  segundo numero. */}
+              <p className="mt-6 flex items-center gap-3 text-display-3 text-cyan">
+                <Icon name="headphones" size={22} className="shrink-0" />
+                {nosotros.scale.support}
+              </p>
+
+              {/* Una tarjeta llave por pais, sin mapa */}
               <ul
                 aria-hidden="true"
                 className="mt-10 flex max-w-[22rem] flex-wrap gap-2"

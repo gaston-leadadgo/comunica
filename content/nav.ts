@@ -20,11 +20,11 @@ export const headerNav = [
  * tipografia. Con la cadena entera ("350 hoteles") no se puede jerarquizar.
  */
 export const headerClaim = {
-  count: "350",
+  count: site.claims.hotels,
   unit: "hoteles",
-  countries: "13 países",
+  countries: `${site.claims.countries} países`,
   /** Version en una linea, para el panel movil y sitios sin espacio. */
-  inline: "350 hoteles · 13 países",
+  inline: `${site.claims.hotels} hoteles · ${site.claims.countries} países`,
 } as const;
 
 export const headerCtas = {
@@ -54,8 +54,11 @@ export const stickyCta = {
 
 export const footer = {
   tagline:
-    "Tecnología y telecomunicaciones para hoteles. Conectividad, voz, WiFi, IPTV e inteligencia artificial integradas y gestionadas por un equipo que entiende la operativa hotelera.",
-  facts: ["Experiencia en 350 hoteles", "13 países con soporte especializado"],
+    "Tecnología y telecomunicaciones para hoteles. Conectividad, voz fija y móvil, WiFi, IPTV e inteligencia artificial integradas y gestionadas por un equipo que entiende la operativa hotelera.",
+  facts: [
+    `Experiencia en ${site.claims.hotels} hoteles`,
+    `${site.claims.countries} países con soporte especializado`,
+  ],
   navTitle: "Navegación",
   nav: [
     { label: "Inicio", href: routes.home },
@@ -66,10 +69,6 @@ export const footer = {
   partnersTitle: "Partners y contacto",
   partnerPrompt: "¿Ya eres partner de Comunica?",
   partnerLink: { label: "Acceder al portal de partners", href: `${routes.partners}#portal` },
-  invoiceLink: {
-    label: "Solicita una revisión de tu factura sin compromiso",
-    href: `${routes.contacto}?intent=factura`,
-  },
   legal: [
     { label: "Aviso legal", href: routes.avisoLegal },
     { label: "Política de privacidad", href: routes.privacidad },

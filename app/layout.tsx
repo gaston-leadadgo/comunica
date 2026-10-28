@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/footer";
 import { MotionBoot } from "@/components/layout/motion-boot";
 import { Header } from "@/components/layout/header";
 import { StickyMobileCta } from "@/components/layout/sticky-mobile-cta";
+import { site } from "@/content/site";
 
 import "./globals.css";
 
@@ -52,7 +53,7 @@ export const metadata: Metadata = {
     template: "%s | Comunica",
   },
   description:
-    "Conectividad, voz, WiFi, IPTV e inteligencia artificial para hoteles, integradas y gestionadas por un equipo que entiende la operativa hotelera. 350 hoteles en 13 países.",
+    `Conectividad, voz fija y móvil, WiFi, IPTV e inteligencia artificial para hoteles, integradas y gestionadas por un equipo que entiende la operativa hotelera. ${site.claims.hotels} hoteles en ${site.claims.countries} países.`,
   openGraph: {
     type: "website",
     locale: "es_ES",

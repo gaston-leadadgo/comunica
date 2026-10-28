@@ -5,7 +5,7 @@ import type { Cta } from "./schema";
  * Copy de Soluciones. Transcripcion literal de la demo aprobada
  * (Copys/src/components/SolutionsSection.tsx), con la ortografia corregida.
  *
- * Las cuatro fichas de perfil y las siete capacidades NO estan aqui: viven en
+ * Las cuatro fichas de perfil y las capacidades NO estan aqui: viven en
  * `content/perfiles.ts`, porque la home tambien las usa. Este fichero solo tiene
  * lo que es exclusivo de la pagina: cabecera, el bloque largo de iAndrea y el
  * cierre.
@@ -17,7 +17,7 @@ export const soluciones = {
     titleLine2: "Construimos la solución alrededor de tu hotel",
     body: [
       "Un establecimiento independiente no tiene los mismos problemas que una cadena de veinte propiedades.",
-      "Por eso combinamos conectividad, voz, WiFi, IPTV, inteligencia artificial e integraciones según tu tamaño, tu infraestructura y tu forma de operar.",
+      "Por eso combinamos conectividad, voz fija y centralita virtual, móvil, WiFi, IPTV, inteligencia artificial e integraciones según tu tamaño, tu infraestructura y tu forma de operar.",
     ],
     highlight:
       "Primero entendemos qué necesitas. Después decidimos qué tecnología tiene sentido",
@@ -290,7 +290,7 @@ export const soluciones = {
       {
         title: "Integrada en el ecosistema del hotel.",
         description:
-          "Puede formar parte de una arquitectura conjunta con WiFi, voz, iAndrea e integraciones, bajo un mismo proveedor.",
+          "Puede formar parte de una arquitectura conjunta con WiFi, voz fija y centralita virtual, móvil, iAndrea e integraciones, bajo un mismo proveedor.",
       },
     ],
     closing:
@@ -314,6 +314,68 @@ export const soluciones = {
       extActive: "Ext. 304 Activa",
       actions: ["Llamada directa a Recepción", "Room Service"],
     },
+  },
+
+  /**
+   * WiFi hotelero, version Soluciones. Texto literal de cliente.
+   *
+   * Aqui el bloque desarrolla lo que la home solo anuncia: las cuatro razones
+   * con su explicacion (`features`) y el proceso en tres pasos (`steps`).
+   */
+  wifi: {
+    eyebrow: "WiFi hotelero",
+    title: "WiFi seguro y gestionado, diseñado para tu hotel",
+    body: [
+      "Para el huésped, el WiFi forma parte de la experiencia de su estancia. Cuando falla, no piensa que existe un problema de red: responsabiliza al hotel.",
+      "Y un buen WiFi hotelero no se improvisa.",
+      "Cada edificio es diferente. Cambian la distribución, los materiales, las zonas de mayor uso y el número de dispositivos conectados en las horas punta.",
+      "Por eso empezamos midiendo antes de instalar.",
+    ],
+    highlightIndex: 3,
+    features: [
+      {
+        title: "Cobertura medida",
+        description:
+          "Analizamos la cobertura in situ para definir cuántos puntos de acceso necesita el hotel y dónde deben colocarse.",
+      },
+      {
+        title: "El equipamiento adecuado para cada proyecto",
+        description:
+          "Trabajamos con fabricantes especializados y seleccionamos la tecnología que mejor se adapta al edificio y a la operativa del hotel.",
+      },
+      {
+        title: "Portal cautivo integrado",
+        description:
+          "Portal personalizado con la marca del hotel, disponible en varios idiomas y con posibilidad de integración con el PMS. Además, permite gestionar consentimientos y datos del huésped conforme al RGPD.",
+      },
+      {
+        title: "Y si quieres, también nos encargamos de gestionarlo",
+        description:
+          "No tenemos por qué desaparecer cuando termina la instalación. Podemos gestionar la red para ayudar a mantenerla operativa y disponible y convertirnos en un único interlocutor para el proyecto.",
+      },
+    ],
+    steps: [
+      {
+        number: "01",
+        title: "Medimos",
+        description: "Analizamos la cobertura y las necesidades reales del hotel.",
+      },
+      {
+        number: "02",
+        title: "Diseñamos e implantamos",
+        description: "Ponemos en marcha equipamiento, red, portal y registro.",
+      },
+      {
+        number: "03",
+        title: "Gestionamos",
+        description: "Si lo necesitas, nos hacemos cargo de la operativa de la red.",
+      },
+    ],
+    closing: "Menos preocupación por el WiFi. Más atención a tus huéspedes.",
+    cta: {
+      label: "Quiero mejorar el WiFi de mi hotel",
+      href: `${routes.contacto}?intent=wifi`,
+    } satisfies Cta,
   },
 
   closing: {

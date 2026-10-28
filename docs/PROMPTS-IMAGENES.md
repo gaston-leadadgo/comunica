@@ -2,7 +2,7 @@
 
 Generado automaticamente desde `content/images.ts`. **No editar a mano**: cambia el registro y vuelve a ejecutar `npm run images:doc`.
 
-**13 imagenes** en total.
+**15 imagenes** en total.
 
 ---
 
@@ -64,11 +64,13 @@ Nano Banana no escribe texto legible: un dashboard generado por IA con palabras 
 | 6 | `home-iandrea-voice-ai` | Home | Mockup de producto | 4:3 | 1448x1086 | C |
 | 7 | `home-differentials-engineer-hands` | Home | Apoyo de seccion | 4:5 | 1400x1750 | A |
 | 8 | `home-catalog-keycard-still` | Home | Bodegon editorial | 4:5 | 1400x1750 | A |
-| 9 | `soluciones-extension-desk-sin-telefono` | Soluciones | Apoyo de seccion | 16:9 | 2752x1536 | A |
-| 10 | `nosotros-trust-delegar` | Nosotros | Apoyo de seccion | 4:5 | 1400x1750 | A |
-| 11 | `nosotros-innovacion-preparado` | Nosotros | Apoyo de seccion | 4:3 | 1400x1050 | A |
-| 12 | `og-plate-dark` | Open Graph | Plancha Open Graph | 40:21 | 1200x630 | B |
-| 13 | `og-plate-light` | Open Graph | Plancha Open Graph | 40:21 | 1200x630 | A |
+| 9 | `home-wifi-instalacion` | Home | Apoyo de seccion | 4:3 | 1600x1200 | B |
+| 10 | `soluciones-extension-desk-sin-telefono` | Soluciones | Apoyo de seccion | 16:9 | 2752x1536 | A |
+| 11 | `soluciones-wifi-medicion` | Soluciones | Apoyo de seccion | 4:3 | 1600x1200 | A |
+| 12 | `nosotros-trust-delegar` | Nosotros | Apoyo de seccion | 4:5 | 1400x1750 | A |
+| 13 | `nosotros-innovacion-preparado` | Nosotros | Apoyo de seccion | 4:3 | 1400x1050 | A |
+| 14 | `og-plate-dark` | Open Graph | Plancha Open Graph | 40:21 | 1200x630 | B |
+| 15 | `og-plate-light` | Open Graph | Plancha Open Graph | 40:21 | 1200x630 | A |
 
 ---
 
@@ -98,7 +100,7 @@ House style for this image, follow it exactly. This is the PRODUCT image of iAnd
 
 ## Fichas
 
-### Home (8)
+### Home (9)
 
 #### 1. `home-hero-lobby-umbral`
 
@@ -207,11 +209,25 @@ A vertical photograph of two people standing together in front of an open wall-m
 A vertical overhead still-life photograph on a seamless warm off-white #FAFAF8 paper surface, arranged with the discipline of a museum display: a plain white hotel keycard, a nano SIM card, a small white matte sensor and a slim black television remote control, stacked in one clean vertical column with generous even gaps, all aligned to the same axis. Hard directional daylight from the upper left casts four crisp parallel shadows in deep navy. One object has a single tiny electric cyan #009FE3 LED lit. Nothing else in frame. Extremely clean editorial product photography, immaculate, almost clinical, with a lot of empty paper around the objects. This is the one deliberately abstract image in the set: it is the inventory of what goes into a hotel, laid out like evidence.
 ```
 
+#### 9. `home-wifi-instalacion`
+
+- **Archivo:** `public/images/home/home-wifi-instalacion.webp`
+- **Donde va:** Home / bloque WiFi hotelero, columna visual. Ratio 4:3. Va sobre fondo navy.
+- **Rol:** Apoyo de seccion
+- **Tamano:** 1600 x 1200 px (4:3)
+- **Bloque de estilo:** B
+- **Zona segura:** El punto de acceso y su luz de estado, nitidos y en el tercio superior.
+- **Alt (ya redactado):** Técnico instalando un punto de acceso WiFi en el techo del pasillo de un hotel de noche
+
+```text
+A photograph of the upstairs guest corridor of a small, well kept European hotel late at night, lit only by warm low wall sconces between the room doors, long carpeted floor running away from the camera. In the near middle ground a technician in a plain dark work polo stands on a short folding stepladder, arms raised, fixing a slim round white WiFi access point flush to the ceiling; the access point's single small status light glows electric cyan #009FE3 and is the brightest point in the frame. A second identical access point is already installed further down the corridor, its cyan light small in the distance, so the spacing between them reads as deliberate. We see the technician from behind and slightly to the side, face turned up toward the ceiling and away from the camera. A closed toolbag on the carpet at the foot of the ladder. The room doors stay shut; no guests. Quiet, careful work done at the hour that disturbs nobody.
+```
+
 ---
 
-### Soluciones (1)
+### Soluciones (2)
 
-#### 9. `soluciones-extension-desk-sin-telefono`
+#### 10. `soluciones-extension-desk-sin-telefono`
 
 - **Archivo:** `public/images/soluciones/soluciones-extension-desk-sin-telefono.webp`
 - **Donde va:** Home Y Soluciones / bloque Extensión Dinámica, cabecera de la columna visual. Mismo ratio 16:9 en las dos paginas porque comparten componente.
@@ -225,11 +241,25 @@ A vertical overhead still-life photograph on a seamless warm off-white #FAFAF8 p
 A wide horizontal photograph of the writing desk of a calm, modest hotel room in the morning, shot from a shallow angle just above the surface so the composition is panoramic rather than tall. The subject is twofold. First, a small white acrylic tent card standing upright on the desk, turned so that its front face is square to the lens and fully visible, and on that face, printed large and perfectly flat, a black and white QR code: a dense square matrix of small black modules on white, with the three characteristic solid square finder patterns in its top-left, top-right and bottom-left corners and a clean white quiet zone around the edge. The code fills most of the card face and must be sharp, high in contrast, unblurred, undistorted and free of glare or reflections. It is printed on the card as ink on plastic - not glowing, not projected, not floating in the air. Second, and just as important, the empty space beside it: the part of the desk where a hotel room telephone used to stand is now completely clear, with only a faint clean rectangle in the dust and one small unused socket on the skirting board behind to suggest that something was taken away. There must be NO telephone anywhere in the frame: no handset, no cradle, no coiled cable, no dock. On the rest of the desk, only a folded leather folio and a glass of water. Behind, a warm off-white wall and the edge of a window with clean morning daylight coming from the right, cooler than afternoon light, deep navy in the shadows. Nobody in frame. Ordinary, well kept, real: a room in a working hotel, not a suite in a brochure. One explicit exception to the house style rule that forbids graphics: this square black and white code pattern is required and must be clearly visible. Apart from it there is still absolutely no text, no lettering, no numbers, no logos and no watermarks anywhere in the image.
 ```
 
+#### 11. `soluciones-wifi-medicion`
+
+- **Archivo:** `public/images/soluciones/soluciones-wifi-medicion.webp`
+- **Donde va:** Soluciones / bloque WiFi hotelero, columna visual. Ratio 4:3.
+- **Rol:** Apoyo de seccion
+- **Tamano:** 1600 x 1200 px (4:3)
+- **Bloque de estilo:** A
+- **Zona segura:** Ninguna pantalla visible de frente: la tableta se ve de canto o por detras.
+- **Alt (ya redactado):** Técnico midiendo la cobertura WiFi en el salón de un hotel junto a la responsable del establecimiento
+
+```text
+A photograph of the breakfast room of a small independent hotel in the quiet mid-morning after service, tables already cleared and reset, chairs tucked in. A technician in a plain navy work polo walks slowly between the tables holding a small tablet and a compact handheld wireless survey meter with a short antenna, looking down at the meter while he measures; the tablet's screen faces away from the camera so that only its back is visible. A step behind him the hotel manager, a woman in her fifties in real working clothes, points toward the far corner of the room by the windows, explaining where guests usually sit with their laptops. Neither looks at the camera; faces are partly turned away. On the ceiling, out of focus, one existing older access point. Soft daylight from tall windows on the left. The photograph is about listening and measuring before deciding, two people walking the building together.
+```
+
 ---
 
 ### Nosotros (2)
 
-#### 10. `nosotros-trust-delegar`
+#### 12. `nosotros-trust-delegar`
 
 - **Archivo:** `public/images/nosotros/nosotros-trust-delegar.webp`
 - **Donde va:** Nosotros / bloque «Confiable no es una palabra bonita», columna derecha. Vertical 4:5, el mismo ratio que tenía la foto prestada, para no mover la columna.
@@ -243,7 +273,7 @@ A wide horizontal photograph of the writing desk of a calm, modest hotel room in
 A vertical photograph taken inside the small back office of an independent hotel, just behind reception. In the foreground, the hotel manager, a woman in her fifties in real working clothes, sits on the corner of the desk with a telephone handset held to her ear, relaxed, one arm across her body, mid-sentence and clearly listening rather than complaining - the posture of someone who has called a person she already knows and does not have to explain anything to. She is turned three-quarters away and her face is mostly out of view; she never looks at the camera. On the desk in front of her, a spread-out printed floor plan of the building, a mug, and a rack of room keys, with an open key cabinet on the wall behind. Deeper into the frame and softly out of focus through the open office door, the corridor beyond, where the door of a wall-mounted network cabinet stands open and a single link light glows electric cyan #009FE3 - the work is happening, but it is not her problem and it is not the subject of the photograph. Soft even daylight from a window on the left. The bottom fifth of the frame is out-of-focus desk surface with no detail, reserved for a caption. The photograph is about calm delegation: the argument is her posture, not the equipment.
 ```
 
-#### 11. `nosotros-innovacion-preparado`
+#### 13. `nosotros-innovacion-preparado`
 
 - **Archivo:** `public/images/nosotros/nosotros-innovacion-preparado.webp`
 - **Donde va:** Nosotros / bloque de innovación, columna derecha. Ratio 4:3, el mismo que tenía la foto prestada.
@@ -260,7 +290,7 @@ A photograph of a service stair landing in a working hotel, the part guests neve
 
 ### Open Graph (2)
 
-#### 12. `og-plate-dark`
+#### 14. `og-plate-dark`
 
 - **Archivo:** `public/images/og/og-plate-dark.webp`
 - **Donde va:** Plancha de fondo para las Open Graph. El texto se compone en build con next/og, nunca se genera con IA.
@@ -273,7 +303,7 @@ A photograph of a service stair landing in a working hotel, the part guests neve
 A wide abstract background image, 1200 by 630 proportions. A very dark field of near-black #1D1D1B deepening into deep navy #003057 toward the lower right, with one single long elegant light trail in electric cyan #009FE3 entering from the bottom left corner and curving smoothly out through the right edge, thin and unbroken. Far behind it, barely perceptible, the out-of-focus silhouettes of urban architecture at night with a handful of tiny cool white lit windows. The entire left two thirds of the image must be extremely dark, flat and free of any detail so that a logo and a large headline can be placed on top with perfect legibility. No text, no lettering, no logos, no icons. Restrained, deep, elegant.
 ```
 
-#### 13. `og-plate-light`
+#### 15. `og-plate-light`
 
 - **Archivo:** `public/images/og/og-plate-light.webp`
 - **Donde va:** Plancha de fondo clara para las Open Graph de secciones claras.

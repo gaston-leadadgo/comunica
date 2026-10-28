@@ -54,7 +54,7 @@ export const hotelProfiles = [
     headline: "Lo esencial bien resuelto",
     pain: "Tienes un hotel que gestionar. No necesitas convertirte también en experto en telecomunicaciones.",
     answer:
-      "Centralizamos las comunicaciones esenciales de tu establecimiento para que conectividad, telefonía y WiFi funcionen bajo una misma gestión.",
+      "Centralizamos las comunicaciones esenciales de tu establecimiento para que conectividad, telefonía fija y móvil y WiFi funcionen bajo una misma gestión.",
     body: [
       "Tienes suficientes cosas de las que ocuparte. Que Internet funcione, que el WiFi llegue donde tiene que llegar o que la telefonía esté operativa no debería requerir tu atención constante.",
       "Hotel Conectado reúne las comunicaciones esenciales de tu establecimiento bajo una misma gestión.",
@@ -63,6 +63,11 @@ export const hotelProfiles = [
       {
         title: "Centralita virtual",
         detail: "Comunicaciones del hotel gestionadas desde una solución flexible.",
+      },
+      {
+        title: "Móvil de empresa",
+        detail:
+          "Líneas móviles para el equipo con tarifas flexibles, en la misma factura que el resto de servicios.",
       },
       {
         title: "Internet con multicobertura y respaldo automático",
@@ -96,7 +101,7 @@ export const hotelProfiles = [
     headline: "Varias propiedades. Una sola forma de gestionarlas",
     pain: "Más hoteles no deberían significar más contratos, más facturas y más proveedores a los que perseguir cuando algo falla.",
     answer:
-      "Centralizamos las telecomunicaciones de todas tus propiedades para simplificar la gestión del grupo.",
+      "Centralizamos las telecomunicaciones fijas y móviles de todas tus propiedades para simplificar la gestión del grupo.",
     body: [
       "Cada nueva propiedad puede traer consigo otro proveedor, otro contrato, otra factura y otra forma de trabajar. Hasta que alguien decide centralizar.",
       "Hotel Consolidado permite gestionar las telecomunicaciones del grupo como una única estructura.",
@@ -106,6 +111,11 @@ export const hotelProfiles = [
         title: "Centralita premium multi-sede",
         detail:
           "Extensiones compartidas, colas de espera, grabación y gestión entre propiedades.",
+      },
+      {
+        title: "Móvil corporativo del grupo",
+        detail:
+          "Las líneas y terminales de todas las propiedades bajo un mismo contrato y una sola gestión.",
       },
       {
         title: "Conectividad gestionada",
@@ -121,7 +131,7 @@ export const hotelProfiles = [
         detail: "Más visibilidad y conocimiento del conjunto de establecimientos.",
       },
     ],
-    optional: ["IPTV, movilidad corporativa e iAndrea."],
+    optional: ["IPTV e iAndrea."],
     closing:
       "Porque gestionar cinco hoteles no debería significar gestionar cinco veces la tecnología.",
     cta: {
@@ -137,7 +147,7 @@ export const hotelProfiles = [
     headline: "Una cadena. Un mismo estándar tecnológico",
     pain: "Cuando una cadena crece, la tecnología también tiene que hacerlo.",
     answer:
-      "Homogeneizamos comunicaciones, conectividad y experiencia digital entre propiedades y las integramos con los sistemas del hotel.",
+      "Homogeneizamos comunicaciones fijas y móviles, conectividad y experiencia digital entre propiedades y las integramos con los sistemas del hotel.",
     body: [
       "El huésped reconoce tu marca independientemente del hotel en el que se aloje. Tu tecnología también debería responder a un mismo estándar.",
       "Hotel Gestionado ayuda a homogeneizar las comunicaciones y la experiencia tecnológica entre establecimientos, integrándolas con los sistemas del hotel.",
@@ -147,6 +157,11 @@ export const hotelProfiles = [
         title: "Comunicaciones multi-sede",
         detail:
           "Centralita premium, SIP Trunk e integración con herramientas corporativas como Teams.",
+      },
+      {
+        title: "Movilidad corporativa integrada",
+        detail:
+          "El móvil de cada empleado funciona como su extensión: se le localiza esté donde esté, dentro o fuera del hotel.",
       },
       {
         title: "Conectividad de alta capacidad",
@@ -177,17 +192,18 @@ export const hotelProfiles = [
     headline: "No hace falta sustituir lo que funciona para resolver lo que falta",
     pain: "Quizá no necesites cambiar tu infraestructura. Quizá necesites resolver únicamente aquello que tu proveedor habitual no puede cubrir. Entramos ahí.",
     answer:
-      "Diseñamos e integramos soluciones tecnológicas específicas dentro de la arquitectura existente.",
+      "Diseñamos e integramos soluciones tecnológicas específicas, de la voz fija y móvil al PMS, dentro de la arquitectura existente.",
     body: [
       "Puede que ya trabajes con un gran operador. Puede que tengas un equipo IT propio y una infraestructura estandarizada. Pero incluso en ese escenario aparecen proyectos o necesidades que requieren una capacidad muy específica.",
       "Comunica puede incorporarse como partner tecnológico para resolver esa pieza concreta.",
     ],
     includes: [
       { title: "SIP Trunk para Contact Center", detail: "" },
-      { title: "Soluciones de voz", detail: "" },
+      { title: "Soluciones de voz fija y móvil", detail: "" },
       { title: "iAndrea personalizada", detail: "" },
       { title: "IPTV e integraciones específicas", detail: "" },
     ],
+    optional: ["Integración con tu PMS."],
     closing:
       "Nos integramos donde podemos aportar valor. Sin obligarte a sustituir lo que ya funciona.",
     cta: {
@@ -198,8 +214,13 @@ export const hotelProfiles = [
 ] satisfies readonly HotelProfile[];
 
 /**
- * Las siete capacidades con las que se construye cada solucion. No son un
- * catalogo de productos: son las piezas que se combinan segun el perfil.
+ * Las capacidades con las que se construye cada solucion. No son un catalogo de
+ * productos: son las piezas que se combinan segun el perfil.
+ *
+ * El orden importa y es de cliente: Movil va justo detras de Voz porque es
+ * telefonia igual, y Terminales justo antes de Soporte. La lista alimenta a la
+ * vez Soluciones (numerada) y Nosotros ("Un equipo. Muchas capacidades"), asi
+ * que lo que se anade aqui aparece en las dos.
  */
 export const capabilities = [
   {
@@ -211,10 +232,17 @@ export const capabilities = [
   },
   {
     id: "voz",
-    title: "Voz y centralita",
+    title: "Voz fija y centralita virtual",
     description:
       "Centralitas virtuales, soluciones multi-sede, SIP Trunk, numeración, colas y comunicaciones adaptadas a la operativa hotelera.",
     icon: "phone-call",
+  },
+  {
+    id: "movil",
+    title: "Móvil",
+    description:
+      "Móvil de empresa sin sorpresas en la factura, con tarifas flexibles y una única gestión junto al resto de servicios del hotel.",
+    icon: "smartphone",
   },
   {
     id: "wifi",
@@ -244,10 +272,17 @@ export const capabilities = [
     icon: "sparkles",
   },
   {
+    id: "equipamiento",
+    title: "Terminales, accesorios y equipamiento",
+    description:
+      "El equipamiento de comunicaciones del hotel, desde el móvil hasta el PC o la pantalla, suministrado por quien ya gestiona tus servicios.",
+    icon: "monitor-smartphone",
+  },
+  {
     id: "soporte",
     title: "Soporte",
     description:
-      "Personas que conocen la instalación y entienden el contexto en el que se produce cada incidencia.",
+      "Personas que conocen la instalación y entienden el contexto en el que se produce cada incidencia. Profesionales que realizan consultoría y análisis de lo que tienes.",
     icon: "headphones",
   },
 ] as const;

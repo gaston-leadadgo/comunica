@@ -43,6 +43,7 @@ export type IconName =
   | "map-pin"
   | "megaphone"
   | "menu"
+  | "monitor-smartphone"
   | "message-square"
   | "phone"
   | "phone-call"

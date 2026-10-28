@@ -1,4 +1,4 @@
-import { routes } from "./site";
+import { routes, site } from "./site";
 import type { Cta, IconName, ProcessStep, ValueItem } from "./schema";
 
 /**
@@ -21,33 +21,33 @@ export const home = {
      */
     titleLine1: "Que la tecnología de tu hotel funcione,",
     titleLine2: "sin que tu equipo tenga que estar pendiente",
-    lead: "Conectividad, voz, WiFi, IPTV e inteligencia artificial gestionadas por un único equipo especializado en hoteles, que conoce tu operativa y tu instalación",
+    lead: "Conectividad, voz fija y móvil, WiFi, IPTV e inteligencia artificial gestionadas por un único equipo especializado en hoteles, que conoce tu operativa y tu instalación",
     ctas: [
       { label: "Habla con un especialista hotelero", href: routes.contacto, variant: "navy" },
       { label: "Solicita una revisión de tu factura", href: `${routes.contacto}?intent=factura`, variant: "outline" },
     ] satisfies Cta[],
   },
 
-  /** Banda de credibilidad. Va justo despues del hero, no dentro. */
+  /**
+   * Banda de autoridad. Va justo despues del hero, no dentro.
+   *
+   * Sin nombres de clientes, por decision de cliente: el marquee "Ya confian en
+   * Comunica" se retira. La autoridad la sostienen ahora los datos propios. Las
+   * cifras salen de `site.claims`, la misma fuente que la cabecera, el pie y
+   * Nosotros, asi que no pueden contradecirse entre si.
+   *
+   * El tercer dato no es una cifra nueva: "un solo interlocutor" es la promesa
+   * que el sitio ya hace en el lema del pie y en los diferenciales. Aqui se
+   * cuenta como dato porque es lo que el hotelero compara entre proveedores.
+   */
   credibility: {
-    claim: "350 hoteles · 13 países · Soporte con nombre propio",
-    logosLabel: "Ya confían en Comunica",
-    /**
-     * PENDIENTE DE AUTORIZACION DEL CLIENTE: son marcas de terceros y
-     * afirmaciones de cartera. No se publican sin confirmacion por escrito.
-     */
-    logos: [
-      "Meliá Hotels & Resorts",
-      "Barceló Hotel Group",
-      "Iberostar Hotels",
-      "NH Hotel Group",
-      "Eurostars Hotel Company",
-      "Riu Hotels & Resorts",
-      "Palladium Hotel Group",
-      "Paradores de Turismo",
-      "Catalonia Hotels & Resorts",
-      "H10 Hotels",
+    label: "Comunica en cifras",
+    stats: [
+      { value: site.claims.hotels, label: "hoteles" },
+      { value: site.claims.countries, label: "países" },
+      { value: site.claims.interlocutors, label: "interlocutor para todos tus servicios" },
     ],
+    support: "Soporte que te conoce",
   },
 
   problem: {
@@ -84,12 +84,12 @@ export const home = {
   },
 
   value: {
-    title: "Tecnología hotelera, resuelta",
+    title: "Tecnología hotelera que funciona",
     lead: "Comunica integra y gestiona las telecomunicaciones y soluciones tecnológicas que necesita un hotel",
     /** Etiqueta del listado. Era "Las piezas"; cliente pide "Soluciones". */
     capabilitiesLabel: "Soluciones",
     capabilitiesLine:
-      "Conectividad. Voz. WiFi. IPTV. Integraciones. Inteligencia artificial. Soporte",
+      "Conectividad. Voz fija - Móvil. WiFi. IPTV. Integraciones. Inteligencia artificial. Soporte",
     /** Fragmento de `differenceIntro` que va resaltado. */
     differenceLabel: "nuestra diferencia",
     differenceIntro: "Pero nuestra diferencia no está en tener muchos servicios.",
@@ -141,8 +141,17 @@ export const home = {
     roomsLabel: "N.º de habitaciones",
     roomsTicks: ["10 hab.", "150 hab.", "300+ hab."],
     spendLabel: "Gasto mensual actual en telecomunicaciones",
-    spendHint: "Voz + conectividad + WiFi + TV",
+    spendHint: "Voz fija y móvil + conectividad + WiFi + TV",
     spendTicks: ["200 €", "4.000 €", "8.000+ €"],
+    floorsLabel: "N.º de plantas",
+    floorsTicks: ["1", "10", "20+"],
+    areasLabel: "N.º de salones y áreas de servicio",
+    areasHint: "Salones, restaurante, spa, gimnasio, zonas comunes…",
+    areasTicks: ["0", "15", "30+"],
+    extensionsLabel: "N.º de extensiones de administración y servicios",
+    extensionsHint: "Recepción, oficinas, cocina, mantenimiento…",
+    extensionsTicks: ["0", "50", "100+"],
+    benchmarkLabel: "Coste de referencia para un hotel como el tuyo",
     sliderHint:
       "Ajusta los deslizadores según la dimensión aproximada de tu establecimiento.",
     resultLabel: "Potencial de optimización estimado",
@@ -286,6 +295,37 @@ export const home = {
     },
   },
 
+  /**
+   * WiFi hotelero, version home. Texto literal de cliente.
+   *
+   * Corto a proposito: en la home el bloque presenta la idea —medir antes de
+   * instalar— y manda a Soluciones, donde esta el desarrollo completo. Por eso
+   * lleva etiquetas sueltas (`pills`) y no razones desarrolladas.
+   */
+  wifi: {
+    eyebrow: "WiFi hotelero",
+    title: "Un buen WiFi no empieza en el router.",
+    subtitle: "Empieza entendiendo tu hotel",
+    body: [
+      "La cobertura que necesita un hotel depende del edificio, de dónde se concentra el uso y de cuántos dispositivos se conectan al mismo tiempo.",
+      "Por eso, antes de instalar, medimos.",
+      "Diseñamos la red, seleccionamos el equipamiento adecuado y, si lo necesitas, nos encargamos también de gestionarla para mantenerla operativa.",
+    ],
+    /** "Por eso, antes de instalar, medimos." es la tesis del bloque. */
+    highlightIndex: 1,
+    pills: [
+      "Cobertura medida",
+      "Equipamiento especializado",
+      "Portal cautivo",
+      "Gestión de red",
+    ],
+    closing: "Menos preocupación por el WiFi. Más atención a tus huéspedes.",
+    cta: {
+      label: "Conoce nuestro WiFi para hoteles",
+      href: `${routes.soluciones}#wifi`,
+    } satisfies Cta,
+  },
+
   differentials: {
     /**
      * Tres frases, tres lineas. Vienen partidas desde el copy y no se dejan al
@@ -307,7 +347,7 @@ export const home = {
       {
         title: "Todo conectado bajo una misma gestión",
         description:
-          "Voz, conectividad, WiFi, IPTV, IA e integraciones pueden trabajar bajo un mismo equipo. Menos interlocutores. Menos complejidad.",
+          "Voz fija y móvil, conectividad, WiFi, IPTV, IA e integraciones pueden trabajar bajo un mismo equipo. Menos interlocutores. Menos complejidad.",
       },
       {
         title: "Soporte con nombre propio",
@@ -353,7 +393,7 @@ export const home = {
         number: "3",
         title: "Diagnosticamos",
         description:
-          "Revisamos la infraestructura que afecta al proyecto: conectividad, cobertura WiFi, voz, capacidad, integraciones o aquello que necesitemos conocer.",
+          "Revisamos la infraestructura que afecta al proyecto: conectividad, cobertura WiFi, voz fija y móvil, capacidad, integraciones o aquello que necesitemos conocer.",
       },
       {
         number: "4",
@@ -396,9 +436,52 @@ export const home = {
 } as const;
 
 /** Formula de la calculadora, literal de la demo: 18 % a 35 %. */
+/**
+ * Parametros de la calculadora. La formula esta en `lib/calculator/estimate.ts`;
+ * aqui solo los numeros, para que se ajusten sin tocar codigo.
+ *
+ * Los rangos de los deslizadores cubren el publico real del sitio, del hotel
+ * independiente de diez habitaciones al edificio grande de una cadena.
+ */
 export const calculator = {
   rooms: { min: 10, max: 300, step: 10, default: 60 },
   spend: { min: 200, max: 8000, step: 100, default: 1500 },
+  floors: { min: 1, max: 20, step: 1, default: 4 },
+  areas: { min: 0, max: 30, step: 1, default: 4 },
+  extensions: { min: 0, max: 100, step: 5, default: 15 },
+
+  /**
+   * Coste mensual de REFERENCIA de un hotel bien resuelto: lo que deberia costar
+   * su telefonia, conectividad, WiFi y TV con una sola gestion. Cada termino
+   * es lo que anade una unidad de cada magnitud:
+   * - `base`: nucleo que tiene cualquier hotel (linea principal, centralita,
+   *   router y respaldo).
+   * - `perRoom`: la parte de WiFi, IPTV y extension que corresponde a una
+   *   habitacion.
+   * - `perFloor`: puntos de acceso y electronica de red por planta.
+   * - `perArea`: cobertura y lineas de un salon o area de servicio.
+   * - `perExtension`: un puesto de centralita para personal.
+   * Valores ORIENTATIVOS, pendientes de que Comunica los contraste con su
+   * cartera real.
+   */
+  benchmark: {
+    base: 180,
+    perRoom: 3.5,
+    perFloor: 15,
+    perArea: 20,
+    perExtension: 5,
+  },
+
+  /**
+   * Horquilla de optimizacion de la demo aprobada (18 %-35 % del gasto). Los
+   * nuevos datos no la amplian: deciden en que punto de ella cae cada hotel.
+   */
   minRatio: 0.18,
   maxRatio: 0.35,
+  /** Suelo cuando el gasto ya esta cerca de la referencia: algo de tarifa
+   * siempre se puede ajustar, pero sin prometer de mas. */
+  floorMinRatio: 0.06,
+  floorMaxRatio: 0.12,
+  /** Nunca se propone bajar del 85 % del coste de referencia. */
+  benchmarkFloor: 0.85,
 } as const;

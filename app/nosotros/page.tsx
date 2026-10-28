@@ -7,11 +7,12 @@ import { NosotrosTeamAndVision } from "@/components/sections/nosotros/team-and-v
 import { NosotrosTrust } from "@/components/sections/nosotros/trust";
 import { ClosingCta } from "@/components/sections/shared/closing-cta";
 import { nosotros } from "@/content/nosotros";
+import { site } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Nosotros",
   description:
-    "No somos un operador que también trabaja con hoteles: somos especialistas en tecnología hotelera. 350 hoteles en 13 países y una forma de trabajar que empieza escuchando.",
+    `No somos un operador que también trabaja con hoteles: somos especialistas en tecnología hotelera. ${site.claims.hotels} hoteles en ${site.claims.countries} países y una forma de trabajar que empieza escuchando.`,
   alternates: { canonical: "/nosotros" },
 };
 

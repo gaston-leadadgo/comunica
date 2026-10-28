@@ -278,7 +278,6 @@ export const images = {
     prompt: `A vertical overhead still-life photograph on a seamless warm off-white #FAFAF8 paper surface, arranged with the discipline of a museum display: a plain white hotel keycard, a nano SIM card, a small white matte sensor and a slim black television remote control, stacked in one clean vertical column with generous even gaps, all aligned to the same axis. Hard directional daylight from the upper left casts four crisp parallel shadows in deep navy. One object has a single tiny electric cyan #009FE3 LED lit. Nothing else in frame. Extremely clean editorial product photography, immaculate, almost clinical, with a lot of empty paper around the objects. This is the one deliberately abstract image in the set: it is the inventory of what goes into a hotel, laid out like evidence.`,
   },
 
-  // -------------------------------------------------------------------- OG
   // ------------------------------------------------------------ SOLUCIONES
   /**
    * Extension Dinamica: la foto del escritorio, compartida por Home y
@@ -356,6 +355,53 @@ export const images = {
     grading: "A",
     ready: true,
     prompt: `A photograph of a service stair landing in a working hotel, the part guests never see: painted breeze-block walls, a fire door, a mop bucket parked in the corner. The subject is a comparison that reads instantly and without any caption. Running up the wall, a brand new length of clean white cable trunking, its lid off at one end so that you can see the cables inside are combed straight and that there is deliberate empty room left beside them for more. Lying on the floor at its foot, a large coil of the old cable that has just been taken out: grey, dusty, tangled, tied off with a cable tie, finished with. Standing to one side and looking up at the new run rather than at the camera, the hotel's maintenance lead, a man in his fifties in a plain work polo with his sleeves pushed up, one hand still holding a screwdriver at his side, taking a moment to look at what has been left ready. His face is turned away. One small electric cyan #009FE3 status light glows on a compact device fixed at the top of the new run. Cool even daylight from a high window out of frame. Calm, ordinary, competent: nothing is being demonstrated to anyone, the work is simply finished and prepared for whatever comes next.`,
+  },
+
+  // ------------------------------------------------------------------ WIFI
+  /**
+   * WiFi hotelero, home.
+   *
+   * El bloque va sobre fondo navy, asi que la foto es gradacion B (noche,
+   * interior en penumbra): una A luminosa sobre navy saltaria como un hueco
+   * blanco. La escena es la segunda mitad del argumento —instalar donde la
+   * medicion dijo—, y la de Soluciones es la primera —medir—, para que las dos
+   * paginas no repitan imagen.
+   */
+  "home-wifi-instalacion": {
+    key: "home-wifi-instalacion",
+    src: "/images/home/home-wifi-instalacion.webp",
+    alt: "Técnico instalando un punto de acceso WiFi en el techo del pasillo de un hotel de noche",
+    width: 1600,
+    height: 1200,
+    usage:
+      "Home / bloque WiFi hotelero, columna visual. Ratio 4:3. Va sobre fondo navy.",
+    role: "apoyo",
+    grading: "B",
+    safeArea: "El punto de acceso y su luz de estado, nitidos y en el tercio superior.",
+    ready: false,
+    prompt: `A photograph of the upstairs guest corridor of a small, well kept European hotel late at night, lit only by warm low wall sconces between the room doors, long carpeted floor running away from the camera. In the near middle ground a technician in a plain dark work polo stands on a short folding stepladder, arms raised, fixing a slim round white WiFi access point flush to the ceiling; the access point's single small status light glows electric cyan #009FE3 and is the brightest point in the frame. A second identical access point is already installed further down the corridor, its cyan light small in the distance, so the spacing between them reads as deliberate. We see the technician from behind and slightly to the side, face turned up toward the ceiling and away from the camera. A closed toolbag on the carpet at the foot of the ladder. The room doors stay shut; no guests. Quiet, careful work done at the hour that disturbs nobody.`,
+  },
+
+  /**
+   * WiFi hotelero, Soluciones: medir antes de instalar.
+   *
+   * La pantalla de la tableta mira hacia el otro lado a proposito: un mapa de
+   * cobertura generado por un modelo de imagen saldria con rotulos y cifras en
+   * jerigonza. Se ve el gesto de medir, no el dato.
+   */
+  "soluciones-wifi-medicion": {
+    key: "soluciones-wifi-medicion",
+    src: "/images/soluciones/soluciones-wifi-medicion.webp",
+    alt: "Técnico midiendo la cobertura WiFi en el salón de un hotel junto a la responsable del establecimiento",
+    width: 1600,
+    height: 1200,
+    usage:
+      "Soluciones / bloque WiFi hotelero, columna visual. Ratio 4:3.",
+    role: "apoyo",
+    grading: "A",
+    safeArea: "Ninguna pantalla visible de frente: la tableta se ve de canto o por detras.",
+    ready: false,
+    prompt: `A photograph of the breakfast room of a small independent hotel in the quiet mid-morning after service, tables already cleared and reset, chairs tucked in. A technician in a plain navy work polo walks slowly between the tables holding a small tablet and a compact handheld wireless survey meter with a short antenna, looking down at the meter while he measures; the tablet's screen faces away from the camera so that only its back is visible. A step behind him the hotel manager, a woman in her fifties in real working clothes, points toward the far corner of the room by the windows, explaining where guests usually sit with their laptops. Neither looks at the camera; faces are partly turned away. On the ceiling, out of focus, one existing older access point. Soft daylight from tall windows on the left. The photograph is about listening and measuring before deciding, two people walking the building together.`,
   },
 
   // ------------------------------------------------------------ OPEN GRAPH

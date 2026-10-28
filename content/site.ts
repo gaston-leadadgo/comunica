@@ -16,15 +16,21 @@
 
 export const site = {
   name: "Comunica",
-  legalName: "Comunica Telecomunicaciones S.L.",
+  legalName: "Comunistone S.L.",
   url: "https://www.comunica.com",
   description:
-    "Tecnología y telecomunicaciones para hoteles. Conectividad, voz, WiFi, IPTV e inteligencia artificial integradas y gestionadas.",
+    "Tecnología y telecomunicaciones para hoteles. Conectividad, voz fija y móvil, WiFi, IPTV e inteligencia artificial integradas y gestionadas.",
   tagline:
-    "Tecnología y telecomunicaciones para hoteles. Conectividad, voz, WiFi, IPTV e inteligencia artificial integradas y gestionadas por un equipo que entiende la operativa hotelera.",
+    "Tecnología y telecomunicaciones para hoteles. Conectividad, voz fija y móvil, WiFi, IPTV e inteligencia artificial integradas y gestionadas por un equipo que entiende la operativa hotelera.",
 
   address: {
-    street: "Avda. Manoteras, 24. Bloque D, 2.ª Planta",
+    /**
+     * Solo calle y numero, por indicacion de cliente: el bloque y la planta
+     * salen de lo que se muestra. Codigo postal y ciudad se conservan porque
+     * los necesitan el aviso legal y los datos estructurados, aunque el pie
+     * ya no los pinte.
+     */
+    street: "Avda. Manoteras, 24",
     postalCode: "28050",
     city: "Madrid",
     country: "España",
@@ -37,7 +43,11 @@ export const site = {
     href: "tel:+34910600600",
   },
 
-  email: "alex@comunica.com",
+  /**
+   * Buzon comercial facilitado por el cliente. Sustituye a alex@comunica.com,
+   * que estaba marcado como pendiente precisamente por parecer personal.
+   */
+  email: "comercial@comunica.com",
 
   hours: {
     display: "Lunes a Viernes de 9:00 a 18:30",
@@ -54,9 +64,10 @@ export const site = {
   },
 
   claims: {
-    // PENDIENTE DE CONFIRMACION: van en portada y en el JSON-LD.
-    hotels: "350",
-    countries: "13",
+    // Cifras facilitadas por el cliente. Van en portada, cabecera, pie,
+    // Nosotros y el JSON-LD: cambiarlas aqui las cambia en todos esos sitios.
+    hotels: "482",
+    countries: "17",
     // Horquilla de la calculadora de la demo aprobada (18 % - 35 %),
     // no el 25-60 % del material anterior.
     savingsMin: 18,

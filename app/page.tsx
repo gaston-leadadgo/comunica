@@ -1,6 +1,7 @@
 import { CredibilityBand } from "@/components/sections/home/credibility-band";
 import { DifferentialsBento } from "@/components/sections/home/differentials-bento";
 import { ExtensionBlock } from "@/components/sections/shared/extension-block";
+import { WifiBlock } from "@/components/sections/shared/wifi-block";
 import { FinalCta } from "@/components/sections/home/final-cta";
 import { HeroCinematic } from "@/components/sections/home/hero-cinematic";
 import { IandreaBlock } from "@/components/sections/home/iandrea-block";
@@ -22,11 +23,12 @@ import { ValueBento } from "@/components/sections/home/value-bento";
  *   Atencion  hero cinematografico + banda de credibilidad
  *   Interes   problema (scrub) + bento de valor + testimonios
  *   Deseo     calculadora + acordeon de perfiles + iAndrea + Extension Dinamica
+ *             + WiFi hotelero
  *   Accion    diferenciales + metodologia apilada + CTA de cierre
  *
  * Ritmo claro/oscuro, sin dos bloques oscuros a sangre consecutivos:
  *   claro - OSCURO - claro - claro - claro - OSCURO - claro - OSCURO - claro -
- *   claro - claro - DEGRADADO
+ *   OSCURO (WiFi) - claro - claro - DEGRADADO
  */
 export default function HomePage() {
   return (
@@ -51,6 +53,7 @@ export default function HomePage() {
         content={home.extension}
         image="soluciones-extension-desk-sin-telefono"
       />
+      <WifiBlock content={home.wifi} image="home-wifi-instalacion" tone="dark" />
 
       {/* ACCION */}
       <DifferentialsBento />

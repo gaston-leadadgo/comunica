@@ -72,7 +72,7 @@ export function NosotrosTeamAndVision() {
           </div>
         </div>
 
-        {/* Las siete piezas, juntas: eso es el argumento */}
+        {/* Todas las piezas, juntas: eso es el argumento */}
         <ul data-reveal className="mt-10 flex flex-wrap gap-2">
           {capabilities.map((c) => (
             <li
