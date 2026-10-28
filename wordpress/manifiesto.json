@@ -1,0 +1,285 @@
+{
+ "version": 1,
+ "archivos": [
+  {
+   "repo": "css/01-estilos-base.css",
+   "dest": "css/01-estilos-base.css"
+  },
+  {
+   "repo": "css/02-adaptador-widgets.css",
+   "dest": "css/02-adaptador-widgets.css"
+  },
+  {
+   "repo": "css/03-clases.css",
+   "dest": "css/03-clases.css"
+  },
+  {
+   "repo": "css/estilos-cf7.css",
+   "dest": "css/estilos-cf7.css"
+  },
+  {
+   "repo": "assets/fuentes/04c5164763c40239-s.1kd-r_s9smv5m.woff2",
+   "dest": "fuentes/04c5164763c40239-s.1kd-r_s9smv5m.woff2"
+  },
+  {
+   "repo": "assets/fuentes/051742360c26797e-s.p.1bkzbscqrt8rl.woff2",
+   "dest": "fuentes/051742360c26797e-s.p.1bkzbscqrt8rl.woff2"
+  },
+  {
+   "repo": "assets/fuentes/0b1dc8ddaa74ba49-s.0e__wj8580tc5.woff2",
+   "dest": "fuentes/0b1dc8ddaa74ba49-s.0e__wj8580tc5.woff2"
+  },
+  {
+   "repo": "assets/fuentes/0c89a48fa5027cee-s.p.2cyn07wtgehh0.woff2",
+   "dest": "fuentes/0c89a48fa5027cee-s.p.2cyn07wtgehh0.woff2"
+  },
+  {
+   "repo": "assets/fuentes/1a099d89ee94ee96-s.35a5cae5tspm2.woff2",
+   "dest": "fuentes/1a099d89ee94ee96-s.35a5cae5tspm2.woff2"
+  },
+  {
+   "repo": "assets/fuentes/26f284dcc38c84c0-s.3hlisc-pwq13z.woff2",
+   "dest": "fuentes/26f284dcc38c84c0-s.3hlisc-pwq13z.woff2"
+  },
+  {
+   "repo": "assets/fuentes/28868e710e86be81-s.2eksvhm1z0jwa.woff2",
+   "dest": "fuentes/28868e710e86be81-s.2eksvhm1z0jwa.woff2"
+  },
+  {
+   "repo": "assets/fuentes/32687112bd2dd8db-s.1gepa_7fcx9fm.woff2",
+   "dest": "fuentes/32687112bd2dd8db-s.1gepa_7fcx9fm.woff2"
+  },
+  {
+   "repo": "assets/fuentes/6a5386fd6038edbe-s.3_z45zcoc-xoz.woff2",
+   "dest": "fuentes/6a5386fd6038edbe-s.3_z45zcoc-xoz.woff2"
+  },
+  {
+   "repo": "assets/fuentes/7e7f32a39836f228-s.0-oo9_1x_xmvg.woff2",
+   "dest": "fuentes/7e7f32a39836f228-s.0-oo9_1x_xmvg.woff2"
+  },
+  {
+   "repo": "assets/fuentes/e629b5bc06499d58-s.10u7vx61f1ie7.woff2",
+   "dest": "fuentes/e629b5bc06499d58-s.10u7vx61f1ie7.woff2"
+  },
+  {
+   "repo": "assets/fuentes/fa39153a3fc630ba-s.36fqqi66-3tjb.woff2",
+   "dest": "fuentes/fa39153a3fc630ba-s.36fqqi66-3tjb.woff2"
+  },
+  {
+   "repo": "assets/fuentes/fba5a26ea33df6a3-s.p.18rizl4rsrl42.woff2",
+   "dest": "fuentes/fba5a26ea33df6a3-s.p.18rizl4rsrl42.woff2"
+  },
+  {
+   "repo": "assets/images/home/home-catalog-keycard-still.webp",
+   "dest": "images/home/home-catalog-keycard-still.webp"
+  },
+  {
+   "repo": "assets/images/home/home-differentials-engineer-hands.webp",
+   "dest": "images/home/home-differentials-engineer-hands.webp"
+  },
+  {
+   "repo": "assets/images/home/home-hero-isometric.webp",
+   "dest": "images/home/home-hero-isometric.webp"
+  },
+  {
+   "repo": "assets/images/home/home-iandrea-voice-ai.webp",
+   "dest": "images/home/home-iandrea-voice-ai.webp"
+  },
+  {
+   "repo": "assets/images/home/home-profile-conectado-independiente.webp",
+   "dest": "images/home/home-profile-conectado-independiente.webp"
+  },
+  {
+   "repo": "assets/images/home/home-profile-consolidado-grupo.webp",
+   "dest": "images/home/home-profile-consolidado-grupo.webp"
+  },
+  {
+   "repo": "assets/images/home/home-profile-especializado-proyecto.webp",
+   "dest": "images/home/home-profile-especializado-proyecto.webp"
+  },
+  {
+   "repo": "assets/images/home/home-profile-gestionado-cadena.webp",
+   "dest": "images/home/home-profile-gestionado-cadena.webp"
+  },
+  {
+   "repo": "assets/images/home/home-wifi-instalacion.webp",
+   "dest": "images/home/home-wifi-instalacion.webp"
+  },
+  {
+   "repo": "assets/images/nosotros/nosotros-innovacion-preparado.webp",
+   "dest": "images/nosotros/nosotros-innovacion-preparado.webp"
+  },
+  {
+   "repo": "assets/images/nosotros/nosotros-trust-delegar.webp",
+   "dest": "images/nosotros/nosotros-trust-delegar.webp"
+  },
+  {
+   "repo": "assets/images/soluciones/soluciones-extension-desk-sin-telefono.webp",
+   "dest": "images/soluciones/soluciones-extension-desk-sin-telefono.webp"
+  },
+  {
+   "repo": "assets/images/soluciones/soluciones-wifi-medicion.webp",
+   "dest": "images/soluciones/soluciones-wifi-medicion.webp"
+  },
+  {
+   "repo": "js/calculadora.js",
+   "dest": "js/calculadora.js"
+  },
+  {
+   "repo": "js/comunica.js",
+   "dest": "js/comunica.js"
+  },
+  {
+   "repo": "js/contacto.js",
+   "dest": "js/contacto.js"
+  },
+  {
+   "repo": "js/simulador.js",
+   "dest": "js/simulador.js"
+  },
+  {
+   "repo": "js/vendor/Flip.min.js",
+   "dest": "js/vendor/Flip.min.js"
+  },
+  {
+   "repo": "js/vendor/ScrollTrigger.min.js",
+   "dest": "js/vendor/ScrollTrigger.min.js"
+  },
+  {
+   "repo": "js/vendor/gsap.min.js",
+   "dest": "js/vendor/gsap.min.js"
+  },
+  {
+   "repo": "assets/video/home-hero-isometric.mp4",
+   "dest": "video/home-hero-isometric.mp4"
+  }
+ ],
+ "iconos": [
+  "activity",
+  "arrow-right",
+  "award",
+  "book-open",
+  "calendar-range",
+  "check",
+  "circle-check-big",
+  "circle-question-mark",
+  "clock",
+  "database",
+  "file-text",
+  "globe",
+  "headphones",
+  "hotel",
+  "layers",
+  "mail",
+  "map-pin",
+  "monitor-smartphone",
+  "phone",
+  "phone-call",
+  "radio",
+  "refresh-cw",
+  "settings",
+  "shield-check",
+  "smartphone",
+  "sparkles",
+  "split",
+  "tv",
+  "user",
+  "users",
+  "wifi",
+  "workflow",
+  "x",
+  "zap"
+ ],
+ "imagenes": [
+  {
+   "src": "/images/home/home-catalog-keycard-still.webp",
+   "alt": ""
+  },
+  {
+   "src": "/images/home/home-differentials-engineer-hands.webp",
+   "alt": ""
+  },
+  {
+   "src": "/images/home/home-iandrea-voice-ai.webp",
+   "alt": ""
+  },
+  {
+   "src": "/images/home/home-profile-conectado-independiente.webp",
+   "alt": ""
+  },
+  {
+   "src": "/images/home/home-profile-consolidado-grupo.webp",
+   "alt": ""
+  },
+  {
+   "src": "/images/home/home-profile-especializado-proyecto.webp",
+   "alt": ""
+  },
+  {
+   "src": "/images/home/home-profile-gestionado-cadena.webp",
+   "alt": ""
+  },
+  {
+   "src": "/images/home/home-wifi-instalacion.webp",
+   "alt": ""
+  },
+  {
+   "src": "/images/nosotros/nosotros-innovacion-preparado.webp",
+   "alt": ""
+  },
+  {
+   "src": "/images/nosotros/nosotros-trust-delegar.webp",
+   "alt": "La responsable de un hotel al teléfono en la oficina interna, tranquila, mientras al fondo se trabaja en la instalación"
+  },
+  {
+   "src": "/images/soluciones/soluciones-extension-desk-sin-telefono.webp",
+   "alt": ""
+  },
+  {
+   "src": "/images/soluciones/soluciones-wifi-medicion.webp",
+   "alt": ""
+  }
+ ],
+ "paginas": [
+  {
+   "clave": "home",
+   "slug": "/",
+   "titulo": "Inicio"
+  },
+  {
+   "clave": "soluciones",
+   "slug": "/soluciones",
+   "titulo": "Soluciones"
+  },
+  {
+   "clave": "nosotros",
+   "slug": "/nosotros",
+   "titulo": "Nosotros"
+  },
+  {
+   "clave": "partners",
+   "slug": "/partners",
+   "titulo": "Partners"
+  },
+  {
+   "clave": "contacto",
+   "slug": "/contacto",
+   "titulo": "Contacto"
+  },
+  {
+   "clave": "legal-aviso-legal",
+   "slug": "/legal/aviso-legal",
+   "titulo": "Aviso legal"
+  },
+  {
+   "clave": "legal-privacidad",
+   "slug": "/legal/privacidad",
+   "titulo": "Politica de privacidad"
+  },
+  {
+   "clave": "legal-cookies",
+   "slug": "/legal/cookies",
+   "titulo": "Politica de cookies"
+  }
+ ]
+}

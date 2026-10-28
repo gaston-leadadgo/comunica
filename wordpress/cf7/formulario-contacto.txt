@@ -1,0 +1,71 @@
+<div class="rounded-shield border border-line bg-paper p-7 lg:p-10 js-contacto-form">
+<div aria-hidden="true" class="absolute h-0 w-0 overflow-hidden"><label>No rellenar[text web autocomplete:off]</label></div>
+[hidden intent "general"]
+[hidden consulta "Cuéntanos qué necesitas resolver en tu hotel"]
+[hidden ticket]
+<h2 class="text-display-3 js-intent-titulo">Cuéntanos qué necesitas resolver en tu hotel</h2>
+[response]
+<fieldset class="mt-8">
+<legend class="font-mono text-eyebrow tracking-[0.2em] text-cyan-ink-strong uppercase">¿Qué tipo de consulta o solución deseas?</legend>
+<div class="mt-4 flex flex-wrap gap-2">
+<button type="button" value="general" aria-pressed="true" class="rounded-full px-4 py-2.5 text-body-sm font-semibold transition-colors bg-navy text-white">Consulta general</button>
+<button type="button" value="factura" aria-pressed="false" class="rounded-full px-4 py-2.5 text-body-sm font-semibold transition-colors border border-line text-navy hover:border-navy">Revisión de factura</button>
+<button type="button" value="iandrea" aria-pressed="false" class="rounded-full px-4 py-2.5 text-body-sm font-semibold transition-colors border border-line text-navy hover:border-navy">iAndrea (IA de voz)</button>
+<button type="button" value="hotel_conectado" aria-pressed="false" class="rounded-full px-4 py-2.5 text-body-sm font-semibold transition-colors border border-line text-navy hover:border-navy">Soluciones para mi hotel</button>
+<button type="button" value="partner_canal" aria-pressed="false" class="rounded-full px-4 py-2.5 text-body-sm font-semibold transition-colors border border-line text-navy hover:border-navy">Programa de partners</button>
+</div>
+</fieldset>
+<div class="mt-8 grid gap-6 sm:grid-cols-2">
+<div>
+<label for="_R_3eatpeslb_-nombre" class="text-body-sm font-semibold">Nombre y apellidos <span aria-hidden="true">*</span></label>
+[text* nombre id:_R_3eatpeslb_-nombre class:mt-2 class:w-full class:rounded-lg class:border class:bg-paper class:px-4 class:py-3 class:text-body class:text-fg class:transition-colors class:border-line class:cf7-campo minlength:2 maxlength:120 autocomplete:name placeholder "Ej. Carlos Mendoza"]
+</div>
+<div>
+<label for="_R_3eatpeslb_-email" class="text-body-sm font-semibold">Email corporativo <span aria-hidden="true">*</span></label>
+[email* email id:_R_3eatpeslb_-email class:mt-2 class:w-full class:rounded-lg class:border class:bg-paper class:px-4 class:py-3 class:text-body class:text-fg class:transition-colors class:border-line class:cf7-campo maxlength:180 autocomplete:email placeholder "carlos@hotel.com"]
+</div>
+<div>
+<label for="_R_3eatpeslb_-telefono" class="text-body-sm font-semibold">Teléfono de contacto <span aria-hidden="true">*</span></label>
+[tel* telefono id:_R_3eatpeslb_-telefono class:mt-2 class:w-full class:rounded-lg class:border class:bg-paper class:px-4 class:py-3 class:text-body class:text-fg class:transition-colors class:border-line class:cf7-campo minlength:6 maxlength:24 autocomplete:tel placeholder "+34 600 000 000"]
+</div>
+<div>
+<label for="_R_3eatpeslb_-empresa" class="text-body-sm font-semibold">Hotel / cadena / empresa <span aria-hidden="true">*</span></label>
+[text* empresa id:_R_3eatpeslb_-empresa class:mt-2 class:w-full class:rounded-lg class:border class:bg-paper class:px-4 class:py-3 class:text-body class:text-fg class:transition-colors class:border-line class:cf7-campo minlength:2 maxlength:160 autocomplete:organization placeholder "Ej. Hotel Marina Centro"]
+</div>
+</div>
+<div class="mt-6">
+<label for="_R_3eatpeslb_-dimension" class="text-body-sm font-semibold">Número de habitaciones o propiedades</label>
+<p class="mt-1 text-small text-fg-muted">Opcional. Nos ayuda a saber con quién estamos hablando.</p>
+[text dimension id:_R_3eatpeslb_-dimension class:mt-2 class:w-full class:rounded-lg class:border class:bg-paper class:px-4 class:py-3 class:text-body class:text-fg class:transition-colors class:border-line class:cf7-campo maxlength:120 placeholder "Ej. 65 habitaciones / 3 propiedades"]
+</div>
+<div class="mt-6 rounded-lg border border-dashed border-cyan/40 bg-brand-gradient-soft p-5 js-zona-factura" hidden>
+<p class="flex items-center gap-2 text-body-sm font-semibold text-navy"><span class="js-icono-file-text"></span>Adjuntar factura actual para revisión de costes<span class="font-mono text-[0.75rem] font-normal text-fg-muted uppercase">Opcional</span></p>
+<p class="measure-body mt-2 text-small text-fg-muted">Detectamos costes innecesarios, duplicidades y puntos de mejora.</p>
+<p class="measure-body mt-3 text-small text-navy">Mientras habilitamos la subida, puedes enviárnosla por correo a comercial@comunica.com indicando el nombre de tu establecimiento.</p>
+</div>
+<div class="mt-6">
+<label for="_R_3eatpeslb_-mensaje" class="text-body-sm font-semibold">¿Qué quieres resolver o mejorar en tu hotel?</label>
+[textarea mensaje id:_R_3eatpeslb_-mensaje class:mt-2 class:w-full class:rounded-lg class:border class:bg-paper class:px-4 class:py-3 class:text-body class:text-fg class:transition-colors class:border-line class:cf7-campo class:resize-y x4 maxlength:2000 placeholder "Cuéntanos brevemente cuál es el principal problema o qué servicio deseas analizar"]
+</div>
+<div class="mt-8 border-t border-line pt-6">
+[acceptance consent id:_R_3eatpeslb_-consent class:cf7-consentimiento]He leído y acepto la <a class="text-cyan-ink underline underline-offset-2" href="/legal/privacidad">política de privacidad</a>, y autorizo el tratamiento de mis datos para recibir respuesta a esta consulta.[/acceptance]
+<p class="measure-body mt-3 text-small text-fg-muted">Tratamiento confidencial. No cedemos tus datos a terceros ni te incluimos en ningún envío comercial sin tu permiso.</p>
+</div>
+<div class="mt-8 flex flex-wrap items-center justify-between gap-4">
+<p class="font-mono text-[0.75rem] text-fg-muted uppercase">Los campos marcados con * son obligatorios.</p>
+<span class="relative inline-flex">[submit class:relative class:inline-flex class:h-13 class:items-center class:justify-center class:gap-2 class:overflow-hidden class:rounded-full class:px-7 class:bg-navy class:text-body class:font-semibold class:text-white class:cf7-enviar "Enviar consulta"]</span>
+</div>
+</div>
+<div class="rounded-shield border border-line bg-paper p-8 lg:p-12 js-contacto-ok" aria-live="polite" hidden>
+<span class="grid size-14 place-items-center rounded-full bg-positive/10 text-positive"><span class="js-icono-check-circle"></span></span>
+<h2 class="mt-7 text-display-2">Mensaje recibido</h2>
+<p class="measure-body mt-5 text-body text-fg-muted js-ok-texto">Hemos registrado tu solicitud.</p>
+<div class="mt-7 rounded-lg bg-paper-warm-2 p-5">
+<p class="font-mono text-eyebrow tracking-[0.18em] text-fg-muted uppercase">Referencia de tu solicitud</p>
+<p class="mt-2 font-mono text-display-3 text-navy is-tabular js-ok-ticket"></p>
+</div>
+<div class="mt-7 border-t border-line pt-6">
+<p class="flex items-center gap-2 font-mono text-eyebrow tracking-[0.18em] text-cyan-ink-strong uppercase"><span class="js-icono-shield-check"></span>Compromiso de respuesta Comunica</p>
+<p class="measure-body mt-3 text-body-sm text-fg-muted">Revisaremos lo que necesitas y un especialista de nuestro equipo se pondrá en contacto contigo a la brevedad.</p>
+</div>
+</div>

@@ -1,0 +1,68 @@
+PESTAÑA «CORREO» DE CONTACT FORM 7 — formulario de Contacto (Comunica)
+=====================================================================
+Copia cada bloque en su casilla. Lo que va entre corchetes son etiquetas de
+correo de CF7: se sustituyen por lo que escribió la persona.
+
+[intent]    código de la consulta (general, factura, wifi, hotel_consolidado…)
+[consulta]  título legible de esa consulta (lo rellena js/contacto.js)
+[ticket]    referencia COM-123456 que se le enseña a la persona al enviar
+
+---------------------------------------------------------------------
+Para:
+---------------------------------------------------------------------
+comercial@comunica.com
+
+---------------------------------------------------------------------
+De:
+---------------------------------------------------------------------
+[_site_title] <wordpress@DOMINIO-DE-LA-WEB>
+
+(Cambia DOMINIO-DE-LA-WEB por el dominio real de la web, por ejemplo
+wordpress@comunica.com. Tiene que ser del MISMO dominio que la web o el
+correo acaba en spam; CF7 avisa en amarillo si no lo es.)
+
+---------------------------------------------------------------------
+Asunto:
+---------------------------------------------------------------------
+Consulta web ([intent]): [consulta] · [empresa] · [ticket]
+
+(Ojo: no escribas [[intent]] con corchetes dobles; en CF7 eso significa
+«escribe el texto [intent] tal cual» y no se sustituye.)
+
+---------------------------------------------------------------------
+Cabeceras adicionales:
+---------------------------------------------------------------------
+Reply-To: [nombre] <[email]>
+
+---------------------------------------------------------------------
+Cuerpo del mensaje:
+---------------------------------------------------------------------
+Nueva solicitud desde el formulario de contacto de la web.
+
+Referencia: [ticket]
+Tipo de consulta: [consulta] ([intent])
+
+Nombre y apellidos: [nombre]
+Email corporativo: [email]
+Teléfono de contacto: [telefono]
+Hotel / cadena / empresa: [empresa]
+Número de habitaciones o propiedades: [dimension]
+
+¿Qué quieres resolver o mejorar en tu hotel?
+[mensaje]
+
+Consentimiento de privacidad: [consent]
+
+--
+Enviado el [_date] a las [_time] desde [_url]
+IP: [_remote_ip]
+
+---------------------------------------------------------------------
+Casillas de abajo
+---------------------------------------------------------------------
+[ ] Usar tipo de contenido HTML  -> déjala SIN marcar (texto plano).
+Archivos adjuntos: vacío (el original todavía no sube la factura: pide
+enviarla por correo).
+
+Correo (2) (respuesta automática a la persona): el original no la tiene.
+Déjalo desactivado.

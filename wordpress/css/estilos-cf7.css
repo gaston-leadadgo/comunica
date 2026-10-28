@@ -1,0 +1,274 @@
+/* =========================================================================
+   Adaptador de Contact Form 7 para el formulario de Contacto (Comunica).
+   -------------------------------------------------------------------------
+   CF7 genera su propio marcado alrededor de cada campo. Este archivo lo
+   devuelve al aspecto de components/sections/contacto/form.tsx.
+   Va DESPUES de 01-estilos-base.css. Todo acotado bajo .dl-landing.
+
+   Por que hace falta repetir aqui algunas utilidades:
+   - La opcion `class:` de CF7 solo admite letras, numeros, - y _. Las
+     utilidades con variante (`placeholder:text-fg-muted/60`,
+     `hover:border-navy/30`, `before:...`, `disabled:...`, `mt-0.5`) no
+     pasan. Se reproducen aqui con sus valores compilados exactos.
+   - El checkbox de consentimiento y el boton los pinta CF7 sin clases
+     nuestras en el <label> ni en el <input>.
+   - Los temas y el kit de Elementor suelen pintar input[type=submit] e
+     inputs de texto con especificidad (0,2,1)-(0,3,1); aqui se gana con
+     (0,3,1) o mas para que el formulario no dependa del tema.
+   ========================================================================= */
+
+/* --- 1. Envoltorio de cada campo -------------------------------------------
+   CF7 mete cada control en <span class="wpcf7-form-control-wrap">, que es
+   inline. En el original el input es hijo directo de un <div> y ocupa todo el
+   ancho: el envoltorio tiene que comportarse como bloque. */
+.dl-landing .wpcf7 .wpcf7-form-control-wrap {
+  display: block;
+  position: relative;
+}
+/* El honeypot va dentro de un div de 0x0 (absolute h-0 w-0 overflow-hidden),
+   igual que el original: no se toca. */
+
+/* --- 2. Campos de texto (reproduce inputClass() del original) -------------- */
+.dl-landing .wpcf7 .wpcf7-form-control.cf7-campo {
+  /* inline-block como en el original: el textarea deja el mismo hueco de
+     linea debajo que en la web Next. */
+  display: inline-block;
+  width: 100%;
+  margin-top: calc(var(--spacing) * 2);
+  padding: calc(var(--spacing) * 3) calc(var(--spacing) * 4);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-paper);
+  color: var(--color-fg);
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+  box-shadow: none;
+  transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke;
+  transition-timing-function: var(--default-transition-timing-function);
+  transition-duration: var(--default-transition-duration);
+}
+/* placeholder:text-fg-muted/60 */
+.dl-landing .wpcf7 .wpcf7-form-control.cf7-campo::placeholder {
+  color: #5a5a5799;
+  opacity: 1;
+}
+/* hover:border-navy/30 */
+.dl-landing .wpcf7 .wpcf7-form-control.cf7-campo:hover {
+  border-color: #0030574d;
+}
+/* resize-y del textarea (tambien va como clase, se repite por el tema) */
+.dl-landing .wpcf7 textarea.wpcf7-form-control.cf7-campo {
+  resize: vertical;
+}
+/* Campo con error: el original cambia border-line por border-critical, tambien
+   en hover. CF7 marca el control con .wpcf7-not-valid y aria-invalid. */
+.dl-landing .wpcf7 .wpcf7-form-control.cf7-campo.wpcf7-not-valid,
+.dl-landing .wpcf7 .wpcf7-form-control.cf7-campo.wpcf7-not-valid:hover,
+.dl-landing .wpcf7 .wpcf7-form-control.cf7-campo[aria-invalid="true"] {
+  border-color: var(--color-critical);
+}
+
+/* --- 3. Mensaje de error bajo el campo (FieldError del original) ----------
+   <p class="mt-2 flex items-start gap-1.5 text-small text-critical"> con el
+   icono lucide "info" de 14px (mt-0.5 shrink-0). El icono va como mascara con
+   el mismo trazo (1.6) para heredar el color del texto. */
+.dl-landing .wpcf7 .wpcf7-not-valid-tip {
+  display: flex;
+  align-items: flex-start;
+  gap: calc(var(--spacing) * 1.5);
+  margin-top: calc(var(--spacing) * 2);
+  font-size: var(--text-small);
+  line-height: var(--text-small--line-height);
+  font-weight: 400;
+  color: var(--color-critical);
+}
+.dl-landing .wpcf7 .wpcf7-not-valid-tip::before {
+  content: "";
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  margin-top: calc(var(--spacing) * 0.5);
+  background-color: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 16v-4'/%3E%3Cpath d='M12 8h.01'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 16v-4'/%3E%3Cpath d='M12 8h.01'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+/* --- 4. Resumen de errores ([response]) ------------------------------------
+   El original pinta arriba, bajo el titulo, una caja role="alert":
+   mt-6 rounded-lg border border-critical/40 bg-critical/[0.05] p-4 con
+   <p class="text-body-sm font-semibold text-critical">. CF7 colorea el borde
+   segun el estado (naranja, rojo, verde): aqui todos usan el del original.
+   CF7 ya lo oculta solo en los estados init / submitting / resetting. */
+.dl-landing .wpcf7 form.wpcf7-form .wpcf7-response-output {
+  margin: calc(var(--spacing) * 6) 0 0;
+  padding: calc(var(--spacing) * 4);
+  border: 1px solid #b3261e66;
+  border-radius: var(--radius-lg);
+  background-color: #b3261e0d;
+  color: var(--color-critical);
+  font-size: var(--text-body-sm);
+  line-height: var(--text-body-sm--line-height);
+  font-weight: var(--font-weight-semibold);
+}
+/* Enviado con exito: el JS sustituye el formulario por el panel de
+   confirmacion, asi que este mensaje no se ve (red de seguridad sin JS). */
+.dl-landing .wpcf7 form.wpcf7-form.sent .wpcf7-response-output {
+  border-color: var(--color-line);
+  background-color: #0f7a521a;
+  color: var(--color-positive);
+}
+
+/* --- 5. Consentimiento ([acceptance]) --------------------------------------
+   Original: <label class="flex items-start gap-3 text-body-sm"> con
+   <input type="checkbox" class="mt-0.5 size-5 shrink-0 accent-navy">. */
+.dl-landing .wpcf7 .wpcf7-acceptance,
+.dl-landing .wpcf7 .wpcf7-acceptance .wpcf7-list-item {
+  display: block;
+  margin: 0;
+}
+.dl-landing .wpcf7 .wpcf7-acceptance label {
+  display: flex;
+  align-items: flex-start;
+  gap: calc(var(--spacing) * 3);
+  font-size: var(--text-body-sm);
+  line-height: var(--text-body-sm--line-height);
+  font-weight: 400;
+  cursor: pointer;
+}
+.dl-landing .wpcf7 .wpcf7-acceptance input[type="checkbox"] {
+  flex-shrink: 0;
+  width: calc(var(--spacing) * 5);
+  height: calc(var(--spacing) * 5);
+  margin: calc(var(--spacing) * 0.5) 0 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background-color: transparent;
+  box-shadow: none;
+  accent-color: var(--color-navy);
+  appearance: auto;
+  -webkit-appearance: checkbox;
+}
+.dl-landing .wpcf7 .wpcf7-acceptance .wpcf7-list-item-label {
+  display: inline;
+}
+/* Otras listas de CF7 (radio/checkbox) por si se anaden: sin la sangria de 1em. */
+.dl-landing .wpcf7 .wpcf7-list-item {
+  margin: 0;
+}
+
+/* --- 6. Boton de envio --------------------------------------------------
+   CF7 genera <input type="submit">, que no admite ::before ni hijos. El
+   original lleva una flecha a la derecha y, al pasar el raton, un barrido del
+   degradado de marca desde la izquierda (before:scale-x-0 -> 100, 240ms
+   ease-out-expo). Se reproduce con dos fondos del propio input: la flecha
+   (SVG lucide arrow-right, 17px, trazo 1.6) y el degradado, que crece de 0 a
+   100 % de ancho. El texto queda centrado con el hueco de la flecha a la
+   derecha, como el gap-2 del original. */
+.dl-landing .wpcf7 input.wpcf7-submit.cf7-enviar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(var(--spacing) * 13);
+  margin: 0;
+  padding: 0 calc(var(--spacing) * 7 + 17px + var(--spacing) * 2) 0 calc(var(--spacing) * 7);
+  border: 0;
+  border-radius: 3.40282e38px;
+  background-color: var(--color-navy);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='17' height='17' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m12 5 7 7-7 7'/%3E%3C/svg%3E"),
+    linear-gradient(100deg, var(--color-navy) 0%, var(--color-cyan) 100%);
+  background-repeat: no-repeat, no-repeat;
+  background-position: right calc(var(--spacing) * 7) center, left center;
+  background-size: 17px 17px, 0% 100%;
+  color: var(--color-white);
+  font-family: inherit;
+  font-size: var(--text-body);
+  line-height: var(--text-body--line-height);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: normal;
+  text-transform: none;
+  box-shadow: none;
+  cursor: pointer;
+  transition: background-size .24s var(--ease-out-expo), opacity .15s;
+}
+.dl-landing .wpcf7 input.wpcf7-submit.cf7-enviar:hover {
+  background-color: var(--color-navy);
+  background-size: 17px 17px, 100% 100%;
+  color: var(--color-white);
+}
+.dl-landing .wpcf7 input.wpcf7-submit.cf7-enviar:active {
+  transform: translateY(1px);
+}
+
+/* Enviando: disabled:pointer-events-none disabled:opacity-60 del original.
+   CF7 pone la clase .submitting en el <form> mientras espera la respuesta. El
+   texto cambia a "Enviando" desde js/contacto.js. */
+.dl-landing .wpcf7 form.submitting input.wpcf7-submit.cf7-enviar {
+  pointer-events: none;
+  opacity: .6;
+  background-image: linear-gradient(100deg, var(--color-navy) 0%, var(--color-cyan) 100%);
+  background-size: 0% 100%;
+}
+
+/* --- 7. Spinner --------------------------------------------------------
+   CF7 anade <span class="wpcf7-spinner"> justo detras del boton (por eso el
+   boton va dentro de un <span class="relative inline-flex">). Se coloca en el
+   hueco de la flecha y se pinta como el del original:
+   size-4 animate-spin rounded-full border-2 border-white/30 border-t-white. */
+.dl-landing .wpcf7 .cf7-enviar + .wpcf7-spinner {
+  position: absolute;
+  top: 50%;
+  right: calc(var(--spacing) * 7);
+  width: calc(var(--spacing) * 4);
+  height: calc(var(--spacing) * 4);
+  margin: calc(var(--spacing) * -2) 0 0;
+  padding: 0;
+  border: 2px solid #ffffff4d;
+  border-top-color: var(--color-white);
+  border-radius: 3.40282e38px;
+  background: none;
+  opacity: 1;
+  visibility: hidden;
+  pointer-events: none;
+  animation: var(--animate-spin);
+}
+.dl-landing .wpcf7 .cf7-enviar + .wpcf7-spinner::before {
+  display: none;
+}
+.dl-landing .wpcf7 form.submitting .cf7-enviar + .wpcf7-spinner {
+  visibility: visible;
+}
+@media (prefers-reduced-motion: reduce) {
+  .dl-landing .wpcf7 .cf7-enviar + .wpcf7-spinner {
+    animation-duration: 2s;
+  }
+}
+
+/* --- 8. Estados del formulario -----------------------------------------
+   Enviado: js/contacto.js oculta .js-contacto-form y muestra
+   .js-contacto-ok (el panel "Mensaje recibido" del original). Sin JS, el
+   formulario se queda y se ve el mensaje de exito de CF7 (punto 4). */
+.dl-landing .wpcf7 .js-contacto-ok:focus {
+  outline: none;
+}
+.dl-landing .wpcf7 .js-contacto-ok:focus-visible {
+  outline: 3px solid var(--color-navy);
+  outline-offset: 3px;
+}
+
+/* Lista de errores para lectores de pantalla que CF7 pone encima del form:
+   ya es invisible (clip), solo se asegura que el tema no la muestre. */
+.dl-landing .wpcf7 .screen-reader-response {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  border: 0;
+  word-wrap: normal;
+}

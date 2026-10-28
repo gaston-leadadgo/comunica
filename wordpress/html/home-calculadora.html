@@ -1,0 +1,66 @@
+<div class="mt-16 grid gap-px overflow-clip rounded-xl bg-white/12 lg:grid-cols-2 m-reveal js-calc">
+<!--
+  DATOS DE LA CALCULADORA (los lee js/calculadora.js al cargar).
+  Se pueden ajustar sin tocar el JS. Copia literal de content/home.ts (calculator).
+  - deslizadores: min / max / step / default de cada control, en este orden:
+      rooms = habitaciones, spend = gasto mensual en euros, floors = plantas,
+      areas = salones y areas de servicio, extensions = extensiones de personal.
+    OJO: si cambias min o max, cambia tambien a mano las marcas de texto que hay
+    debajo de cada deslizador (por ejemplo "10 hab.", "150 hab.", "300+ hab.").
+  - benchmark: coste mensual de REFERENCIA de un hotel bien resuelto.
+      base = nucleo fijo de cualquier hotel; perRoom = por habitacion;
+      perFloor = por planta; perArea = por salon o area; perExtension = por extension.
+  - minRatio / maxRatio: horquilla de optimizacion (0.18 = 18 %, 0.35 = 35 %).
+  - floorMinRatio / floorMaxRatio: suelo cuando el gasto ya esta cerca de la referencia.
+  - benchmarkFloor: nunca se propone bajar del 85 % (0.85) del coste de referencia.
+  Tiene que seguir siendo JSON valido: comillas dobles, punto decimal, sin coma final.
+-->
+<script type="application/json" class="js-calc-datos">
+{
+  "deslizadores": {
+    "rooms": {
+      "min": 10,
+      "max": 300,
+      "step": 10,
+      "default": 60
+    },
+    "spend": {
+      "min": 200,
+      "max": 8000,
+      "step": 100,
+      "default": 1500
+    },
+    "floors": {
+      "min": 1,
+      "max": 20,
+      "step": 1,
+      "default": 4
+    },
+    "areas": {
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "default": 4
+    },
+    "extensions": {
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 15
+    }
+  },
+  "benchmark": {
+    "base": 180,
+    "perRoom": 3.5,
+    "perFloor": 15,
+    "perArea": 20,
+    "perExtension": 5
+  },
+  "minRatio": 0.18,
+  "maxRatio": 0.35,
+  "floorMinRatio": 0.06,
+  "floorMaxRatio": 0.12,
+  "benchmarkFloor": 0.85
+}
+</script>
+<div class="min-w-0 bg-abyss/80 p-6 sm:p-8 lg:p-12"><div class="flex flex-col gap-7 lg:gap-8"><div><label for="_R_ard5eslb_" class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1"><span class="text-card-title text-white">N.º de habitaciones</span><span class="font-mono text-display-3 whitespace-nowrap text-cyan is-tabular">60</span></label><input id="_R_ard5eslb_" type="range" min="10" max="300" step="10" aria-valuetext="60 habitaciones" class="mt-1 h-11 w-full cursor-pointer accent-cyan" value="60"/><div class="flex justify-between font-mono text-[0.75rem] text-fg-inverse-muted"><span>10 hab.</span><span>150 hab.</span><span>300+ hab.</span></div></div><div><label for="_R_ird5eslb_" class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1"><span class="text-card-title text-white">Gasto mensual actual en telecomunicaciones</span><span class="font-mono text-display-3 whitespace-nowrap text-cyan is-tabular">1500 €</span></label><p class="mt-1 font-mono text-data text-fg-inverse-muted">Voz fija y móvil + conectividad + WiFi + TV</p><input id="_R_ird5eslb_" type="range" min="200" max="8000" step="100" aria-valuetext="1500 euros al mes" class="mt-1 h-11 w-full cursor-pointer accent-cyan" value="1500"/><div class="flex justify-between font-mono text-[0.75rem] text-fg-inverse-muted"><span>200 €</span><span>4.000 €</span><span>8.000+ €</span></div></div><div><label for="_R_qrd5eslb_" class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1"><span class="text-card-title text-white">N.º de plantas</span><span class="font-mono text-display-3 whitespace-nowrap text-cyan is-tabular">4</span></label><input id="_R_qrd5eslb_" type="range" min="1" max="20" step="1" aria-valuetext="4 plantas" class="mt-1 h-11 w-full cursor-pointer accent-cyan" value="4"/><div class="flex justify-between font-mono text-[0.75rem] text-fg-inverse-muted"><span>1</span><span>10</span><span>20+</span></div></div><div><label for="_R_12rd5eslb_" class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1"><span class="text-card-title text-white">N.º de salones y áreas de servicio</span><span class="font-mono text-display-3 whitespace-nowrap text-cyan is-tabular">4</span></label><p class="mt-1 font-mono text-data text-fg-inverse-muted">Salones, restaurante, spa, gimnasio, zonas comunes…</p><input id="_R_12rd5eslb_" type="range" min="0" max="30" step="1" aria-valuetext="4 salones y áreas de servicio" class="mt-1 h-11 w-full cursor-pointer accent-cyan" value="4"/><div class="flex justify-between font-mono text-[0.75rem] text-fg-inverse-muted"><span>0</span><span>15</span><span>30+</span></div></div><div><label for="_R_1ard5eslb_" class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1"><span class="text-card-title text-white">N.º de extensiones de administración y servicios</span><span class="font-mono text-display-3 whitespace-nowrap text-cyan is-tabular">15</span></label><p class="mt-1 font-mono text-data text-fg-inverse-muted">Recepción, oficinas, cocina, mantenimiento…</p><input id="_R_1ard5eslb_" type="range" min="0" max="100" step="5" aria-valuetext="15 extensiones" class="mt-1 h-11 w-full cursor-pointer accent-cyan" value="15"/><div class="flex justify-between font-mono text-[0.75rem] text-fg-inverse-muted"><span>0</span><span>50</span><span>100+</span></div></div></div><p class="mt-10 measure-body text-body-sm text-fg-inverse-muted">Ajusta los deslizadores según la dimensión aproximada de tu establecimiento.</p><div aria-hidden="true" class="sticky bottom-[calc(5rem+env(safe-area-inset-bottom))] z-10 mt-8 flex flex-wrap items-center justify-between gap-x-3 gap-y-0.5 rounded-full border border-cyan/40 bg-navy/95 px-5 py-2.5 shadow-lg backdrop-blur-md max-[359px]:justify-center max-[359px]:rounded-2xl lg:hidden"><span class="font-mono text-[0.75rem] tracking-[0.08em] whitespace-nowrap text-fg-inverse-muted uppercase">Ahorro / mes</span><span class="font-mono text-body font-semibold whitespace-nowrap text-cyan is-tabular">343 €<!-- --> - <!-- -->471 €</span></div></div><div class="min-w-0 bg-navy p-6 sm:p-8 lg:p-12"><div class="lg:sticky lg:top-[calc(var(--header-h)+2.5rem)]"><p class="font-mono text-eyebrow tracking-[0.2em] text-cyan uppercase">Potencial de optimización estimado</p><p class="mt-7 text-metric text-white is-tabular" aria-live="polite">343 €<span class="text-cyan"> - </span>471 €</p><p class="mt-1 font-mono text-data text-fg-inverse-muted">/ mes</p><p class="mt-8 text-display-3 text-cyan is-tabular">4116 €<!-- --> - <!-- -->5652 €<span class="ml-2 font-mono text-data text-fg-inverse-muted">/ año</span></p><p class="mt-8 border-t border-white/12 pt-6 text-body-sm text-fg-inverse-muted">Coste de referencia para un hotel como el tuyo<!-- -->:<!-- --> <span class="font-mono text-white is-tabular">605 €</span> <!-- -->/ mes</p><div class="mt-8 border-t border-white/12 pt-6"><p class="measure-body text-body-sm text-fg-inverse-muted">Estimación orientativa basada en la experiencia de Comunica en el sector hotelero</p><p class="mt-2 measure-body text-[13px] text-fg-inverse-muted/80">El ahorro real depende de los servicios contratados, proveedores, infraestructura y situación actual de cada hotel.</p></div></div></div></div>

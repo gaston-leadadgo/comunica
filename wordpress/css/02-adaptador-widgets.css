@@ -1,0 +1,298 @@
+/* ==========================================================================
+   02 - ADAPTADOR ELEMENTOR 4.3 <-> CSS DE COMUNICA
+   --------------------------------------------------------------------------
+   Orden de carga obligatorio: 01-estilos-base, 02 (este), 03-clases.
+
+   Que hace: que cada contenedor y cada widget de Elementor se comporte como el
+   <div>, <h2>, <p> o <a> que habia en la web original, para que las clases
+   cortas cm-* (la 03) encuentren lo mismo que encontraban las utilidades de
+   Tailwind.
+
+   Especificidades, de menos a mas, y por que:
+     Elementor .e-con, .elementor-element, kit ........ (0,1,0) a (0,2,0)
+     ESTE ARCHIVO, reseteos ........................... (0,3,0) a (0,4,1)
+     03 clases cm-* (clase triple) .................... (0,4,0) en adelante
+   Las cm-* empatan o ganan a este archivo y van despues: siempre mandan.
+   La regla mas fuerte de Elementor sobre widgets (`.elementor.elementor
+   .e-con>.elementor-widget{max-width:100%}`, (0,4,0)) pierde por orden: el
+   snippet de carga declara estas hojas como dependientes de las de Elementor.
+
+   Elementor 4.3 ya no mete `.elementor-widget-container` (marcado optimizado).
+   Las reglas que lo mencionan son red de seguridad por si el sitio lo tiene
+   desactivado.
+   ========================================================================== */
+
+
+/* === 1 · CONTENEDORES ==================================================== */
+/* Un contenedor de Elementor es flex en columna, con 10px de relleno, hueco,
+   ancho 100% y transicion de fondo y transform. El <div> original era un
+   bloque sin nada. Se deja en bloque: lo que necesite flex o grid lo pone su
+   clase cm-*. La transicion importa: con ella, cada animacion de GSAP sobre
+   un contenedor iria con retraso. */
+.dl-landing .elementor-element.e-con,
+.elementor-element.e-con.dl-landing {
+  display: block;
+  flex: 0 1 auto;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: normal;
+  align-content: normal;
+  align-self: auto;
+  justify-content: normal;
+  gap: normal;
+  order: 0;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  max-width: none;
+  min-width: auto;
+  min-height: auto;
+  height: auto;
+  position: static;
+  text-align: inherit;
+  transition: none;
+  border-radius: 0;
+}
+/* La raiz de cada pagina es el <main> original: ocupa todo el ancho y recorta
+   en horizontal con `clip`, nunca `hidden` (hidden crea un contenedor de
+   scroll y rompe todos los `position: sticky` de dentro: la tarjeta de la
+   calculadora, las columnas fijas). */
+.elementor-element.e-con.dl-landing {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+/* Capa ::before de fondo de Elementor: fuera, el fondo lo pinta la clase. */
+.dl-landing .elementor-element.e-con::before { content: none; }
+
+
+/* === 2 · WIDGETS: el envoltorio es la etiqueta original ================== */
+/* El envoltorio del widget lleva las clases. Se le quita todo lo que pone
+   Elementor: posicion relativa, min-width:0, margen inferior entre widgets,
+   alineacion centrada de la imagen y la transicion. */
+.dl-landing .elementor-element.elementor-widget {
+  position: static;
+  margin: 0;
+  padding: 0;
+  min-width: auto;
+  max-width: none;
+  width: auto;
+  flex: 0 1 auto;
+  align-self: auto;
+  order: 0;
+  gap: normal;
+  text-align: inherit;
+  transition: none;
+  --kit-widget-spacing: 0px;
+  --widgets-spacing: 0px;
+}
+.dl-landing .elementor-widget > .elementor-widget-container { display: contents; }
+
+/* Escotilla: hace desaparecer el envoltorio del arbol de cajas. */
+.dl-landing .elementor-element.dl-flat { display: contents; }
+
+
+/* === 3 · TITULO ========================================================== */
+/* La tipografia vive en el envoltorio. El <h2> de dentro la hereda: hace
+   falta (0,3,0) porque el CSS base tiene reglas por etiqueta (h1-h6, (0,1,1))
+   y el kit de Elementor `.elementor-widget-heading .elementor-heading-title`
+   (0,2,0), y cualquiera de las dos gana a la herencia. */
+.dl-landing .elementor-widget-heading .elementor-heading-title {
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  line-height: inherit;
+  text-align: inherit;
+  margin: 0;
+  padding: 0;
+}
+/* Titulos con un icono dentro (las capacidades de Soluciones): en el original
+   el <h3> era `flex items-center gap-3` con el svg y el texto como hijos. El
+   flex vive ahora en el envoltorio, asi que el <h3> deja de dibujar caja. */
+.dl-landing .elementor-widget-heading .elementor-heading-title:has(> svg) { display: contents; }
+
+/* Y al reves: lo que el CSS base le daba a h1, h2 y h3 por ser h1-h3 (la
+   tipografia display, el equilibrado de lineas) tiene que llegar al
+   envoltorio, que es de donde ahora hereda el titulo. (0,3,1): por debajo de
+   las cm-*, asi un h3 en monoespaciada sigue en monoespaciada. */
+.dl-landing .elementor-widget-heading:has(> :is(h1, h2, h3).elementor-heading-title) {
+  font-family: var(--font-display);
+  text-wrap: balance;
+  hanging-punctuation: first;
+  hyphens: manual;
+  overflow-wrap: break-word;
+}
+
+
+/* === 4 · EDITOR DE TEXTO ================================================= */
+/* El editor envuelve el texto en <p>. El envoltorio es el <p> original; el de
+   dentro hereda y no anade margen. */
+/* (0,1,1) a proposito, con :where: gana a la regla `p` del tema (0,0,1) y
+   pierde ante las reglas del CSS base que apuntan al <p> por contexto, como
+   `.legal-prose p` (0,2,1): el texto legal va entero en un Editor de texto. */
+.dl-landing :where(.elementor-widget-text-editor) p {
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  text-align: inherit;
+}
+.dl-landing :where(.elementor-widget-text-editor) p + p { margin-top: 0.75em; }
+/* Con un solo parrafo (el caso de todos los textos de la web), el <p> no
+   dibuja caja: lo que lleva dentro (spans con clases) pasa a ser hijo directo
+   del envoltorio, como en el original, donde el envoltorio ERA esa etiqueta.
+   Importa cuando el envoltorio es flex o grid (las cifras del metodo, las
+   etiquetas de las tarjetas): ahi cada <span> tiene que ser un elemento mas. */
+.dl-landing .elementor-widget-text-editor.elementor-widget > p:only-child { display: contents; }
+
+
+/* === 5 · BOTON =========================================================== */
+/* El que se pinta es el <a>, no el envoltorio: el envoltorio desaparece y la
+   clase cm-* del boton apunta a `.elementor-button`. Aqui se quita lo que pone
+   Elementor (fondo gris o el acento del kit, radio 3px, 15px, line-height 1,
+   relleno 12px 24px, transicion `all`). (0,4,0) para ganar al CSS que el kit
+   genera por elemento. */
+.dl-landing .elementor-element.elementor-widget-button { display: contents; }
+.dl-landing .elementor-widget-button .elementor-button.elementor-button {
+  background: none;
+  border: 0 solid;
+  border-radius: 0;
+  color: inherit;
+  fill: currentColor;
+  font: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  text-transform: none;
+  padding: 0;
+  text-align: inherit;
+  transition: none;
+  box-shadow: none;
+  width: auto;
+}
+.dl-landing .elementor-widget-button .elementor-button.elementor-button:is(:hover, :focus, :visited) { color: inherit; }
+/* Dentro del <a> original iban el texto y el svg sueltos, como hijos directos
+   del flex del boton. Las dos envolturas de Elementor desaparecen. */
+.dl-landing .elementor-widget-button .elementor-button-content-wrapper,
+.dl-landing .elementor-widget-button .elementor-button-text { display: contents; }
+.dl-landing .elementor-widget-button .elementor-button-icon { display: contents; }
+/* Elementor pone el icono SIEMPRE antes del texto en el DOM y lo mueve con
+   flex-direction en una envoltura que aqui ya no existe. Icono detras: order. */
+.dl-landing .is-icono-despues :is(.elementor-button-icon, .elementor-button-icon svg) { order: 2; }
+
+/* Botones de marca (el componente Button de la web): el texto y el icono iban
+   en <span class="relative z-10"> por encima del degradado que entra en hover
+   (un ::before a z-0). Aqui esos dos spans son los de Elementor. */
+.dl-landing .is-btn-marca .elementor-button-text {
+  display: inline;
+  position: relative;
+  z-index: 10;
+}
+.dl-landing .is-btn-marca .elementor-button-icon {
+  display: inline-flex;
+  position: relative;
+  z-index: 10;
+  transition: translate 200ms cubic-bezier(.4, 0, .2, 1);
+}
+@media (hover: hover) {
+  .dl-landing .is-btn-marca .elementor-button:hover .elementor-button-icon { translate: 0.125rem 0; }
+}
+
+
+/* === 6 · ICONO =========================================================== */
+.dl-landing .elementor-widget-icon .elementor-icon-wrapper,
+.dl-landing .elementor-widget-icon .elementor-icon { display: contents; }
+.dl-landing .elementor-widget-icon .elementor-icon {
+  font-size: inherit;
+  color: inherit;
+  line-height: inherit;
+}
+
+
+/* === 7 · LISTA DE ICONOS ================================================= */
+/* El envoltorio es el <ul> original (o el <p> con icono, en las listas de un
+   solo elemento). La <ul> de Elementor desaparece; cada <li> lleva lo que
+   llevaba el <li> original (en la cm-* de la lista) y el texto va suelto,
+   igual que iba. Elementor pone padding de 5px al texto, alineacion centrada
+   y margen al svg a (0,3,0)/(0,3,1): aqui (0,4,0)/(0,4,1). */
+.dl-landing .elementor-widget-icon-list.elementor-widget .elementor-icon-list-items { display: contents; }
+.dl-landing .elementor-widget-icon-list.elementor-widget .elementor-icon-list-item {
+  display: list-item;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  align-items: normal;
+}
+.dl-landing .elementor-widget-icon-list.elementor-widget .elementor-icon-list-item::after { content: none; }
+.dl-landing .elementor-widget-icon-list.elementor-widget .elementor-icon-list-icon { display: contents; }
+.dl-landing .elementor-widget-icon-list.elementor-widget .elementor-icon-list-text {
+  display: contents;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+}
+.dl-landing .elementor-widget-icon-list.elementor-widget .elementor-icon-list-icon svg {
+  margin: 0;
+  width: auto;
+  height: auto;
+}
+
+
+/* === 8 · SVG DE ICONOS =================================================== */
+/* Los iconos son de Lucide: trazo, no relleno. El kit de Elementor pinta
+   `fill` en los iconos de lista y de boton, y una regla CSS gana al atributo
+   fill="none" del archivo. */
+.dl-landing .elementor-element :is(.elementor-icon-list-icon, .elementor-button-icon, .elementor-icon) svg {
+  fill: none;
+  stroke: currentColor;
+}
+
+
+/* === 9 · IMAGEN ========================================================== */
+/* Elementor 4.3 pone el <img> directamente dentro del envoltorio, igual que
+   el original (envoltorio con el recorte + img a tamano completo). Se quita
+   el inline-block centrado y el `height:auto` del tema. */
+.dl-landing .elementor-widget-image.elementor-widget img {
+  display: block;
+  vertical-align: middle;
+  max-width: 100%;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+
+/* === 10 · CONMUTADORES DE LA WEB ========================================= */
+/* Bento de diferenciales: la tarjeta elegida y una segunda ocupan 4 de 6
+   columnas en escritorio, el resto 2. El JS pone `is-wide`; en el original lo
+   calculaba React con `lg:col-span-4 / lg:col-span-2`. */
+@media (min-width: 64rem) {
+  .dl-landing .js-bento-celda.js-bento-celda { grid-column: span 2 / span 2; }
+  .dl-landing .js-bento-celda.js-bento-celda.is-wide { grid-column: span 4 / span 4; }
+}
+
+/* Botones que en el original eran <button> y aqui son contenedores: el JS les
+   da role="button" y tabindex; el cursor y el foco van aqui. */
+.dl-landing .js-btn { cursor: pointer; }
+.dl-landing .js-btn:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 2px;
+}
+
+/* Elementos que solo se ven en el estado encendido de su componente (el
+   subrayado de la pestana activa, el halo del avatar activo). */
+.dl-landing :is(.js-tab, .js-avatar, .js-acc, .js-bento-celda):not(.is-on) .js-solo-on.js-solo-on { display: none; }
+
+
+/* === 11 · RESERVA DE LA CTA FIJA MOVIL =================================== */
+/* Fuera del ambito a proposito: va en el <body>. comunica.js pone el atributo
+   mientras la barra existe (en Contacto no). Misma condicion de ancho que la
+   barra (`lg:hidden`), como en la web original. */
+body[data-sticky-cta="true"] {
+  padding-bottom: calc(5.5rem + env(safe-area-inset-bottom));
+}
+@media (min-width: 1024px) {
+  body[data-sticky-cta="true"] { padding-bottom: 0; }
+}
