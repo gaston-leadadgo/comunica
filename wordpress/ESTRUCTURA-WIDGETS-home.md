@@ -182,15 +182,15 @@ Como leer este plano:
                 - **Contenedor** · clases: `cm-28`
                     - **Contenedor** · clases: `cm-29 js-avatar is-on js-btn`
                         - **Editor de texto** · clases: `cm-2a`
-                            Texto: `MG`
+                            Texto: `AS`
                         - **Contenedor** · clases: `cm-2b js-solo-on`
                     - **Contenedor** · clases: `cm-2c js-avatar js-btn`
                         - **Editor de texto** · clases: `cm-2a`
-                            Texto: `CR`
+                            Texto: `JC`
                         - **Contenedor** · clases: `cm-2b js-solo-on`
                     - **Contenedor** · clases: `cm-2d js-avatar js-btn`
                         - **Editor de texto** · clases: `cm-2a`
-                            Texto: `JS`
+                            Texto: `AR`
                         - **Contenedor** · clases: `cm-2b js-solo-on`
                 - **Contenedor** · clases: `cm-o js-slides`
                     - **Contenedor** · clases: `cm-2e js-slide is-on`
@@ -198,34 +198,34 @@ Como leer este plano:
                             Texto: `«`
                         - **Contenedor** · clases: `cm-2g`
                             - **Editor de texto** · clases: `cm-2h`
-                                Texto: `Antes teníamos 4 proveedores distintos y cuando fallaba el WiFi nadie se hacía responsable. Con Comunica tenemos un único interlocutor que resuelve en minutos cualquier incidencia.`
+                                Texto: `Nuestras campañas cambian con poca antelación. Comunica se adapta cada vez, sin trasladarnos la complejidad. Es un proveedor con el que se puede trabajar a nuestro ritmo.`
                         - **Contenedor** · clases: `cm-2i`
                             - **Editor de texto** · clases: `cm-2j`
-                                Texto: `Manuel Gómez`
+                                Texto: `Alberto S.`
                             - **Editor de texto** · clases: `cm-2k`
-                                Texto: `Director General · Resort Costa Brava (180 hab.)`
+                                Texto: `Director de Producto de una agencia de medios multinacional`
                     - **Contenedor** · clases: `cm-2e js-slide`
                         - **Editor de texto** · clases: `cm-2f`
                             Texto: `«`
                         - **Contenedor** · clases: `cm-2g`
                             - **Editor de texto** · clases: `cm-2h`
-                                Texto: `iAndrea y la centralita en la nube nos han permitido atender el 100% de las llamadas en temporada alta sin saturar recepción. El huésped recibe respuesta inmediata en su idioma.`
+                                Texto: `Cuando hay una incidencia en un hotel, hablamos con un técnico que ya conoce la instalación. No hay que explicar el problema desde cero ni solventar burocracia innecesaria. Esa cercanía y ese conocimiento nos ahorran mucho tiempo.`
                         - **Contenedor** · clases: `cm-2i`
                             - **Editor de texto** · clases: `cm-2j`
-                                Texto: `Carmen Rivas`
+                                Texto: `Jordi C.`
                             - **Editor de texto** · clases: `cm-2k`
-                                Texto: `Operations Manager · Hotel Boutique Madrid`
+                                Texto: `IT Director en una cadena y gestora de hoteles boutique`
                     - **Contenedor** · clases: `cm-2e js-slide`
                         - **Editor de texto** · clases: `cm-2f`
                             Texto: `«`
                         - **Contenedor** · clases: `cm-2g`
                             - **Editor de texto** · clases: `cm-2h`
-                                Texto: `Modernizar la red y la telefonía de 6 hoteles con ellos fue impecable. Cero cortes en el servicio al cliente y un ahorro operativo tangible desde el primer mes.`
+                                Texto: `Comunica entiende cómo funcionan nuestros hoteles, los diseña y configura con nosotros. Nos acompañan en cada decisión tecnológica. Y además, sin intentar vendernos lo que no necesitamos.`
                         - **Contenedor** · clases: `cm-2i`
                             - **Editor de texto** · clases: `cm-2j`
-                                Texto: `Javier Serrano`
+                                Texto: `Alejandro R.`
                             - **Editor de texto** · clases: `cm-2k`
-                                Texto: `Director IT · Cadena Hotelera Urbana`
+                                Texto: `CTO de la mayor cadena hotelera de España`
 
 ## 6. Seccion `calculadora`
 
