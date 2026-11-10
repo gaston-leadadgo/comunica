@@ -17,50 +17,50 @@ Como leer este plano:
 
 ## 1. Seccion `pie`
 
-- **Contenedor** `<footer>` · clases: `cm-8d tone-dark ms-pie`
+- **Contenedor** `<footer>` · clases: `cm-8f tone-dark ms-pie`
     - **HTML** · clases: `dl-flat` · pegar `html/pie-01.html`
         Por que HTML: SVG decorativo (arco de marca, logotipo o motivo): no es contenido editable.
-    - **Contenedor** · clases: `cm-8e`
-        - **Contenedor** · clases: `cm-8f`
+    - **Contenedor** · clases: `cm-8g`
+        - **Contenedor** · clases: `cm-8h`
             - **Contenedor** · clases: `(ninguna)`
                 - **HTML** · clases: `dl-flat` · pegar `html/pie-02.html`
                     Por que HTML: SVG decorativo (arco de marca, logotipo o motivo): no es contenido editable.
-                - **Editor de texto** · clases: `cm-8g`
+                - **Editor de texto** · clases: `cm-8i`
                     Texto: `Tecnología y telecomunicaciones para hoteles. Conectividad, voz fija y móvil, WiFi, IPTV e inteligencia artificial integradas y gestionadas por un equipo que entiende la operativa hotelera.`
-                - **Lista de iconos** · clases: `cm-8h`
+                - **Lista de iconos** · clases: `cm-8j`
                     - [`check.svg`] `Experiencia en 482 hoteles`
                     - [`check.svg`] `17 países con soporte especializado`
             - **Contenedor** `<nav>` · clases: `(ninguna)`
-                - **Titulo** · clases: `cm-3t` · etiqueta `h2`
+                - **Titulo** · clases: `cm-4q` · etiqueta `h2`
                     Titulo: `Navegación`
-                - **Lista de iconos** · clases: `cm-8i`
+                - **Lista de iconos** · clases: `cm-8k`
                     - `<a class="inline-block py-1.5 text-body-sm text-fg-inverse-muted transition-colors hover:text-white" href="/">Inicio</a>`
                     - `<a class="inline-block py-1.5 text-body-sm text-fg-inverse-muted transition-colors hover:text-white" href="/soluciones">Soluciones por hotel</a>`
                     - `<a class="inline-block py-1.5 text-body-sm text-fg-inverse-muted transition-colors hover:text-white" href="/nosotros">Nosotros y especialización</a>`
                     - `<a class="inline-block py-1.5 text-body-sm text-fg-inverse-muted transition-colors hover:text-white" href="/partners">Canal de partners</a>`
             - **Contenedor** · clases: `(ninguna)`
-                - **Titulo** · clases: `cm-3t` · etiqueta `h2`
+                - **Titulo** · clases: `cm-4q` · etiqueta `h2`
                     Titulo: `Partners y contacto`
-                - **Contenedor** · clases: `cm-8j`
-                    - **Editor de texto** · clases: `cm-8k`
+                - **Contenedor** · clases: `cm-8l`
+                    - **Editor de texto** · clases: `cm-8m`
                         Texto: `¿Ya eres partner de Comunica?`
-                    - **Boton** · clases: `cm-8l cm-btn`
+                    - **Boton** · clases: `cm-8n cm-btn`
                         Texto: «Acceder al portal de partners» · Enlace: `/partners#portal` · Icono: `shield-check.svg` (antes)
-                - **Contenedor** · clases: `cm-8m`
-                    - **Lista de iconos** · clases: `cm-8n cm-solo`
+                - **Contenedor** · clases: `cm-8o`
+                    - **Lista de iconos** · clases: `cm-8p cm-solo`
                         - [`map-pin.svg`] `Avda. Manoteras, 24`
-                    - **Boton** · clases: `cm-8o cm-btn`
+                    - **Boton** · clases: `cm-8q cm-btn`
                         Texto: «+34 910 600 600» · Enlace: `tel:+34910600600` · Icono: `phone.svg` (antes)
-                    - **Boton** · clases: `cm-8p cm-btn`
+                    - **Boton** · clases: `cm-8r cm-btn`
                         Texto: «comercial@comunica.com» · Enlace: `mailto:comercial@comunica.com` · Icono: `mail.svg` (antes)
                     - **HTML** · clases: `dl-flat` · pegar `html/pie-03.html`
                         Por que HTML: Enlace con dos iconos (logotipo y flecha de enlace externo): el widget Boton solo admite uno. Para cambiar la URL, editar el href.
-        - **Editor de texto** · clases: `cm-8q`
+        - **Editor de texto** · clases: `cm-8s`
             Texto: `Un solo interlocutor. Menos gestión. Más tranquilidad.`
-        - **Contenedor** · clases: `cm-8r`
+        - **Contenedor** · clases: `cm-8t`
             - **Editor de texto** · clases: `(ninguna)`
                 Texto: `© 2026 Comunistone S.L. Todos los derechos reservados.`
             - **Contenedor** `<nav>` · clases: `(ninguna)`
-                - **Lista de iconos** · clases: `cm-8s`
+                - **Lista de iconos** · clases: `cm-8u`
                     - `<a class="inline-block py-1.5 transition-colors hover:text-white" href="/legal/aviso-legal">Aviso legal</a>`
                     - `<a class="inline-block py-1.5 transition-colors hover:text-white" href="/legal/privacidad">Política de privacidad</a>`

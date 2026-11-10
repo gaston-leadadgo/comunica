@@ -272,3 +272,43 @@
   border: 0;
   word-wrap: normal;
 }
+
+
+/* --- Subida de la factura ([file factura]) -------------------------------
+   El control nativo de archivo, con el boton pintado como los botones
+   secundarios de la web (borde navy, pildora). El texto "Ningun archivo
+   seleccionado" lo pone el navegador en su idioma. */
+.dl-landing .wpcf7 input[type="file"].cf7-archivo {
+  display: block;
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  border: 1px dashed rgb(0 159 227 / 0.4);
+  border-radius: var(--radius-lg, 0.75rem);
+  background-color: var(--color-paper);
+  color: var(--color-fg-muted);
+  font: inherit;
+  font-size: var(--text-small);
+  cursor: pointer;
+}
+.dl-landing .wpcf7 input[type="file"].cf7-archivo::file-selector-button {
+  margin-right: 0.875rem;
+  padding: 0.55rem 1.1rem;
+  border: 1px solid rgb(0 48 87 / 0.25);
+  border-radius: 999px;
+  background-color: var(--color-paper);
+  color: var(--color-navy);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 200ms, color 200ms, border-color 200ms;
+}
+.dl-landing .wpcf7 input[type="file"].cf7-archivo:hover::file-selector-button {
+  border-color: var(--color-navy);
+  background-color: var(--color-navy);
+  color: #fff;
+}
+.dl-landing .wpcf7 input[type="file"].cf7-archivo:focus-visible {
+  outline: 3px solid var(--color-navy);
+  outline-offset: 3px;
+}

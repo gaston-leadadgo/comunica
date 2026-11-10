@@ -19,7 +19,7 @@ Como leer este plano:
 
 ID CSS del contenedor de la seccion (Avanzado → ID CSS): `main`
 
-- **Contenedor** · clases: `cm-5o ms-legal-aviso-legal`
-    - **Contenedor** · clases: `cm-5p`
-        - **Editor de texto** · clases: `cm-5q`
+- **Contenedor** · clases: `cm-5r ms-legal-aviso-legal`
+    - **Contenedor** · clases: `cm-5s`
+        - **Editor de texto** · clases: `cm-5t`
             Texto: `<h1>Aviso legal</h1><p><strong>Pendiente de redacción definitiva.</strong> Esta página está preparada para recibir el texto legal que facilite Comunica. Hasta entonces no se indexa en buscadores.</p><h2>Titular del sitio</h2><p>Comunistone S.L.<br/>Avda. Manoteras, 24<br/>28050 Madrid, España<br/>Teléfono: 910 600 600<br/>Correo: <a href="mailto:comercial@comunica.com">comercial@comunica.com</a></p><h2>Datos que faltan por confirmar</h2><ul><li>CIF y datos de inscripción en el Registro Mercantil.</li><li>Número de operador registrado ante la CNMC.</li><li>Correo corporativo definitivo para comunicaciones legales.</li><li>Condiciones de uso, propiedad intelectual y ley aplicable.</li></ul>`

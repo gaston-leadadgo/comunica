@@ -41,7 +41,9 @@
 <div class="mt-6 rounded-lg border border-dashed border-cyan/40 bg-brand-gradient-soft p-5 js-zona-factura" hidden>
 <p class="flex items-center gap-2 text-body-sm font-semibold text-navy"><span class="js-icono-file-text"></span>Adjuntar factura actual para revisión de costes<span class="font-mono text-[0.75rem] font-normal text-fg-muted uppercase">Opcional</span></p>
 <p class="measure-body mt-2 text-small text-fg-muted">Detectamos costes innecesarios, duplicidades y puntos de mejora.</p>
-<p class="measure-body mt-3 text-small text-navy">Mientras habilitamos la subida, puedes enviárnosla por correo a comercial@comunica.com indicando el nombre de tu establecimiento.</p>
+<label for="cf7-factura" class="mt-4 block text-small font-semibold text-navy">Archivo de la factura</label>
+[file factura id:cf7-factura class:cf7-archivo limit:10mb filetypes:pdf|jpg|jpeg|png]
+<p class="mt-2 font-mono text-[0.75rem] text-fg-muted">PDF, JPG o PNG. Máximo 10 MB.</p>
 </div>
 <div class="mt-6">
 <label for="_R_3eatpeslb_-mensaje" class="text-body-sm font-semibold">¿Qué quieres resolver o mejorar en tu hotel?</label>

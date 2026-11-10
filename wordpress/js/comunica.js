@@ -374,7 +374,7 @@
     if (!isFinite(objetivo) || objetivo < (o.min || 0)) return;
     var obj = { v: 0 };
     var tw = { v: objetivo, duration: o.duration, ease: "power2.out",
-      onUpdate: function () { el.textContent = String(Math.round(obj.v)); } };
+      onUpdate: function () { el.textContent = Math.round(obj.v).toLocaleString("es-ES"); } };
     if (o.tl) {
       o.tl.to(obj, tw, o.at);
     } else {

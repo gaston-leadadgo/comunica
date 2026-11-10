@@ -22,6 +22,42 @@
    "dest": "css/estilos-cf7.css"
   },
   {
+   "repo": "assets/favicon/apple-touch-icon.png",
+   "dest": "favicon/apple-touch-icon.png"
+  },
+  {
+   "repo": "assets/favicon/favicon-16.png",
+   "dest": "favicon/favicon-16.png"
+  },
+  {
+   "repo": "assets/favicon/favicon-192.png",
+   "dest": "favicon/favicon-192.png"
+  },
+  {
+   "repo": "assets/favicon/favicon-32.png",
+   "dest": "favicon/favicon-32.png"
+  },
+  {
+   "repo": "assets/favicon/favicon-48.png",
+   "dest": "favicon/favicon-48.png"
+  },
+  {
+   "repo": "assets/favicon/favicon-512-ios.png",
+   "dest": "favicon/favicon-512-ios.png"
+  },
+  {
+   "repo": "assets/favicon/favicon-512.png",
+   "dest": "favicon/favicon-512.png"
+  },
+  {
+   "repo": "assets/favicon/favicon.ico",
+   "dest": "favicon/favicon.ico"
+  },
+  {
+   "repo": "assets/favicon/favicon.svg",
+   "dest": "favicon/favicon.svg"
+  },
+  {
    "repo": "assets/fuentes/04c5164763c40239-s.1kd-r_s9smv5m.woff2",
    "dest": "fuentes/04c5164763c40239-s.1kd-r_s9smv5m.woff2"
   },
@@ -162,6 +198,7 @@
   "activity",
   "arrow-right",
   "award",
+  "bed-double",
   "book-open",
   "calendar-range",
   "check",

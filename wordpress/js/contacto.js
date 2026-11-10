@@ -216,7 +216,12 @@
         b.setAttribute("aria-pressed", on ? "true" : "false");
         b.className = PILL_BASE + " " + (on ? PILL_ON : PILL_OFF);
       });
-      if (zonaFactura) zonaFactura.hidden = pill !== "factura";
+      if (zonaFactura) {
+        zonaFactura.hidden = pill !== "factura";
+        // Si se cambia a otra consulta, la factura elegida no se envia.
+        var archivo = zonaFactura.querySelector('input[type="file"]');
+        if (archivo && zonaFactura.hidden) archivo.value = "";
+      }
     }
 
     pills.forEach(function (b, i) {
