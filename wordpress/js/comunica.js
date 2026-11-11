@@ -344,13 +344,27 @@
 
   /* ----------------------------------------------------------- animaciones
      Copia literal de los useBrandMotion de cada seccion. */
+
+  // Muchas tarjetas llevan una transicion CSS en `transform` (el levantamiento
+  // al pasar el raton). Mientras GSAP anima esa misma propiedad, el navegador
+  // intenta suavizar cada fotograma con la transicion y, segun el equipo, las
+  // tarjetas se quedan a medio camino ("caidas"). Durante la entrada se apaga
+  // la transicion y al terminar se devuelve la de la hoja de estilos.
+  function sinTransicion(els) {
+    els = [].concat(els).filter(Boolean);
+    els.forEach(function (e) { e.style.transition = "none"; });
+    return function () {
+      els.forEach(function (e) { e.style.transition = ""; });
+    };
+  }
   function revelar(gs, scope, piezas, o) {
     o = o || {};
     var els = typeof piezas === "string" ? $$(piezas, scope) : piezas;
     if (!els.length) return;
     var v = { opacity: 0, y: o.y == null ? 24 : o.y, duration: o.duration || 0.65,
       stagger: o.stagger == null ? 0.09 : o.stagger, delay: o.delay || 0, ease: o.ease || "power3.out",
-      immediateRender: true, scrollTrigger: { trigger: scope, start: o.start || "top 82%", once: true } };
+      immediateRender: true, scrollTrigger: { trigger: scope, start: o.start || "top 82%", once: true },
+      onComplete: sinTransicion(els) };
     if (o.scale) v.scale = o.scale;
     gs.from(els, v);
   }
@@ -359,13 +373,13 @@
     if (!els.length) return;
     gs.from(els, { opacity: 0, y: o.y, scale: o.scale, duration: o.duration, ease: "power2.out", immediateRender: true,
       stagger: { each: o.each, from: o.from || "start", grid: "auto" },
-      scrollTrigger: { trigger: scope, start: o.start, once: true } });
+      scrollTrigger: { trigger: scope, start: o.start, once: true }, onComplete: sinTransicion(els) });
   }
   function entrada(gs, scope, sel, o) {
     var els = $$(sel, scope);
     if (!els.length) return;
     gs.from(els, { opacity: 0, y: o.y || 0, x: o.x || 0, duration: o.duration, ease: o.ease || "power3.out",
-      immediateRender: true, stagger: o.stagger || 0, delay: o.delay || 0,
+      immediateRender: true, stagger: o.stagger || 0, delay: o.delay || 0, onComplete: sinTransicion(els),
       scrollTrigger: o.inmediato ? undefined : { trigger: o.trigger ? $$(o.trigger, scope)[0] || scope : scope,
         start: o.start, once: true } });
   }
@@ -395,8 +409,10 @@
       }
     },
     cifras: function (gs, s) {
-      var tl = gs.timeline({ scrollTrigger: { trigger: s, start: "top 85%", once: true } });
-      tl.from($$(".m-stat", s), { opacity: 0, y: 28, duration: 0.6, ease: "power3.out", stagger: 0.1, immediateRender: true })
+      var stats = $$(".m-stat", s);
+      var tl = gs.timeline({ scrollTrigger: { trigger: s, start: "top 85%", once: true },
+        onComplete: sinTransicion(stats.concat($$(".m-stat-icon", s))) });
+      tl.from(stats, { opacity: 0, y: 28, duration: 0.6, ease: "power3.out", stagger: 0.1, immediateRender: true })
         .from($$(".m-stat-bar", s), { scaleX: 0, transformOrigin: "left center", duration: 0.7, ease: "power2.out", stagger: 0.1, immediateRender: true }, 0.15)
         .from($$(".m-stat-icon", s), { scale: 0.5, rotate: -14, opacity: 0, duration: 0.5, ease: "back.out(2)", stagger: 0.1, immediateRender: true }, 0.2);
       $$(".m-count", s).forEach(function (el, i) {
