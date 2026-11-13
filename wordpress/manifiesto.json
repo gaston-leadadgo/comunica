@@ -192,6 +192,38 @@
   {
    "repo": "assets/video/home-hero-isometric.mp4",
    "dest": "video/home-hero-isometric.mp4"
+  },
+  {
+   "repo": "assets/voz/recepcion-salida-tardia.mp3",
+   "dest": "voz/recepcion-salida-tardia.mp3"
+  },
+  {
+   "repo": "assets/voz/recepcion-saludo.mp3",
+   "dest": "voz/recepcion-saludo.mp3"
+  },
+  {
+   "repo": "assets/voz/recepcion-spa-parking.mp3",
+   "dest": "voz/recepcion-spa-parking.mp3"
+  },
+  {
+   "repo": "assets/voz/recepcion-wifi.mp3",
+   "dest": "voz/recepcion-wifi.mp3"
+  },
+  {
+   "repo": "assets/voz/reservas-desayuno.mp3",
+   "dest": "voz/reservas-desayuno.mp3"
+  },
+  {
+   "repo": "assets/voz/reservas-disponibilidad.mp3",
+   "dest": "voz/reservas-disponibilidad.mp3"
+  },
+  {
+   "repo": "assets/voz/reservas-persona.mp3",
+   "dest": "voz/reservas-persona.mp3"
+  },
+  {
+   "repo": "assets/voz/reservas-saludo.mp3",
+   "dest": "voz/reservas-saludo.mp3"
   }
  ],
  "iconos": [

@@ -19,81 +19,90 @@
 -->
 <div class="js-simulador m-reveal mt-12 overflow-hidden rounded-xl border border-white/12 bg-navy">
   <script type="application/json" class="js-simulador-datos">
+{
+  "title": "Escucha cómo responde iAndrea",
+  "disclaimer": "Simulación con respuestas guionizadas. En producción, iAndrea consulta tus sistemas reales.",
+  "statusIdle": "Canal listo para simular",
+  "statusThinking": "iAndrea está pensando…",
+  "statusLive": "Llamada conectada",
+  "optionsLabel": "Elige qué preguntarle:",
+  "resetLabel": "Reiniciar la llamada",
+  "scenarioLabel": "Escenario",
+  "callLabel": "Llamar a iAndrea",
+  "hangUpLabel": "Colgar",
+  "statusRingingCall": "Llamando…",
+  "statusIdleCall": "Descuelga para escucharla",
+  "speakingLabel": "iAndrea está hablando",
+  "muteLabel": "Silenciar la voz",
+  "unmuteLabel": "Activar la voz",
+  "lockedHint": "Llama primero: iAndrea responde en voz alta.",
+  "voiceDisclaimer": "Simulación con respuestas guionizadas y la voz real de iAndrea. En producción, además, consulta tus sistemas reales.",
+  "voiceUnavailable": "Tu navegador no tiene instalada ninguna voz en español, así que la llamada continúa solo en texto.",
+  "scenarios": [
     {
-      "title": "Escucha cómo responde iAndrea",
-      "disclaimer": "Simulación con respuestas guionizadas. En producción, iAndrea consulta tus sistemas reales.",
-      "statusIdle": "Canal listo para simular",
-      "statusThinking": "iAndrea está pensando…",
-      "statusLive": "Llamada conectada",
-      "optionsLabel": "Elige qué preguntarle:",
-      "resetLabel": "Reiniciar la llamada",
-      "scenarioLabel": "Escenario",
-      "callLabel": "Llamar a iAndrea",
-      "hangUpLabel": "Colgar",
-      "statusRingingCall": "Llamando…",
-      "statusIdleCall": "Descuelga para escucharla",
-      "speakingLabel": "iAndrea está hablando",
-      "muteLabel": "Silenciar la voz",
-      "unmuteLabel": "Activar la voz",
-      "lockedHint": "Llama primero: iAndrea responde en voz alta.",
-      "voiceDisclaimer": "Simulación con respuestas guionizadas. La voz es la que trae tu navegador, no la de iAndrea en producción, donde además consulta tus sistemas reales.",
-      "voiceUnavailable": "Tu navegador no tiene instalada ninguna voz en español, así que la llamada continúa solo en texto.",
-      "scenarios": [
+      "id": "recepcion",
+      "name": "Recepción del hotel",
+      "icon": "hotel",
+      "voice": true,
+      "subtitle": "Integrada con el PMS",
+      "description": "iAndrea atiende al huésped alojado: horarios, servicios y peticiones sencillas que hoy interrumpen a recepción.",
+      "greeting": "Buenos días, ha llamado al Hotel Miramar. Soy iAndrea, la asistente de voz del hotel. Veo que llama desde la habitación 304. ¿En qué puedo ayudarle?",
+      "options": [
         {
-          "id": "recepcion",
-          "name": "Recepción del hotel",
-          "icon": "hotel",
-          "voice": false,
-          "subtitle": "Integrada con el PMS",
-          "description": "iAndrea atiende al huésped alojado: horarios, servicios y peticiones sencillas que hoy interrumpen a recepción.",
-          "greeting": "Buenos días, ha llamado al Hotel Miramar. Soy iAndrea, la asistente de voz del hotel. Veo que llama desde la habitación 304. ¿En qué puedo ayudarle?",
-          "options": [
-            {
-              "label": "Pedir salida tardía",
-              "question": "Hola, ¿sería posible retrasar unas horas el check-out de la habitación 304?",
-              "answer": "Déjeme comprobarlo en el sistema del hotel. Con la ocupación de hoy puedo confirmarle el check-out hasta las 14:00 sin coste. Lo dejo anotado en su reserva y aviso a recepción, así no tendrá que repetirlo al bajar."
-            },
-            {
-              "label": "Preguntar por el WiFi",
-              "question": "¿Cuál es la clave del WiFi? ¿Tiene algún coste?",
-              "answer": "El WiFi es gratuito para huéspedes. La red se llama Miramar_Guest y no necesita contraseña: al conectarse se abre una página donde solo tiene que indicar su número de habitación y su apellido."
-            },
-            {
-              "label": "Reservar spa y parking",
-              "question": "Me gustaría una plaza de parking y una sesión de spa para las seis de la tarde.",
-              "answer": "Consulto la agenda. Tengo libre el circuito termal a las 18:30 y queda plaza en el parking cubierto. ¿Le cargo ambos servicios a la cuenta de la habitación?"
-            }
-          ]
+          "label": "Pedir salida tardía",
+          "question": "Hola, ¿sería posible retrasar unas horas el check-out de la habitación 304?",
+          "answer": "Déjeme comprobarlo en el sistema del hotel. Con la ocupación de hoy puedo confirmarle el check-out hasta las 14:00 sin coste. Lo dejo anotado en su reserva y aviso a recepción, así no tendrá que repetirlo al bajar.",
+          "audio": "recepcion-salida-tardia.mp3"
         },
         {
-          "id": "reservas",
-          "name": "Llamada de reserva",
-          "icon": "calendar-range",
-          "voice": true,
-          "subtitle": "En hora punta",
-          "description": "La llamada que hoy se pierde porque recepción está atendiendo a alguien delante. iAndrea la coge y la deja cerrada.",
-          "greeting": "Hotel Miramar, le atiende iAndrea. ¿Desea consultar disponibilidad, hacer una reserva o que le pase con recepción?",
-          "options": [
-            {
-              "label": "Consultar disponibilidad",
-              "question": "Buenas, ¿tenéis una habitación doble libre para el próximo fin de semana?",
-              "answer": "Sí, para el viernes y el sábado me quedan habitaciones dobles con vistas exteriores. La tarifa incluye desayuno y cancelación gratuita hasta 48 horas antes. ¿Quiere que se la reserve?"
-            },
-            {
-              "label": "Preguntar por el desayuno",
-              "question": "¿A qué hora servís el desayuno y está incluido?",
-              "answer": "El desayuno se sirve de 7:00 a 10:30, y hasta las 11:00 los fines de semana. Está incluido en su tarifa. Si necesita salir antes, podemos prepararle un desayuno para llevar avisando la noche anterior."
-            },
-            {
-              "label": "Hablar con una persona",
-              "question": "Quiero organizar un grupo de veinte personas, prefiero hablarlo con alguien.",
-              "answer": "Por supuesto. Para grupos a partir de diez habitaciones tenemos condiciones concertadas. Le paso ahora mismo con el equipo de reservas y les adelanto que llama por un grupo de veinte, para que no tenga que explicarlo de nuevo."
-            }
-          ]
+          "label": "Preguntar por el WiFi",
+          "question": "¿Cuál es la clave del WiFi? ¿Tiene algún coste?",
+          "answer": "El WiFi es gratuito para huéspedes. La red se llama Miramar_Guest y no necesita contraseña: al conectarse se abre una página donde solo tiene que indicar su número de habitación y su apellido.",
+          "audio": "recepcion-wifi.mp3"
+        },
+        {
+          "label": "Reservar spa y parking",
+          "question": "Me gustaría una plaza de parking y una sesión de spa para las seis de la tarde.",
+          "answer": "Consulto la agenda. Tengo libre el circuito termal a las 18:30 y queda plaza en el parking cubierto. ¿Le cargo ambos servicios a la cuenta de la habitación?",
+          "audio": "recepcion-spa-parking.mp3"
         }
-      ]
+      ],
+      "greetingAudio": "recepcion-saludo.mp3"
+    },
+    {
+      "id": "reservas",
+      "name": "Llamada de reserva",
+      "icon": "calendar-range",
+      "voice": true,
+      "subtitle": "En hora punta",
+      "description": "La llamada que hoy se pierde porque recepción está atendiendo a alguien delante. iAndrea la coge y la deja cerrada.",
+      "greeting": "Hotel Miramar, le atiende iAndrea. ¿Desea consultar disponibilidad, hacer una reserva o que le pase con recepción?",
+      "options": [
+        {
+          "label": "Consultar disponibilidad",
+          "question": "Buenas, ¿tenéis una habitación doble libre para el próximo fin de semana?",
+          "answer": "Sí, para el viernes y el sábado me quedan habitaciones dobles con vistas exteriores. La tarifa incluye desayuno y cancelación gratuita hasta 48 horas antes. ¿Quiere que se la reserve?",
+          "audio": "reservas-disponibilidad.mp3"
+        },
+        {
+          "label": "Preguntar por el desayuno",
+          "question": "¿A qué hora servís el desayuno y está incluido?",
+          "answer": "El desayuno se sirve de 7:00 a 10:30, y hasta las 11:00 los fines de semana. Está incluido en su tarifa. Si necesita salir antes, podemos prepararle un desayuno para llevar avisando la noche anterior.",
+          "audio": "reservas-desayuno.mp3"
+        },
+        {
+          "label": "Hablar con una persona",
+          "question": "Quiero organizar un grupo de veinte personas, prefiero hablarlo con alguien.",
+          "answer": "Por supuesto. Para grupos a partir de diez habitaciones tenemos condiciones concertadas. Le paso ahora mismo con el equipo de reservas y les adelanto que llama por un grupo de veinte, para que no tenga que explicarlo de nuevo.",
+          "audio": "reservas-persona.mp3"
+        }
+      ],
+      "greetingAudio": "reservas-saludo.mp3"
     }
-  </script>
+  ],
+  "audioBase": "/wp-content/uploads/comunica/voz/"
+}
+</script>
   <!-- Estado inicial (primer escenario): solo se ve hasta que carga js/simulador.js -->
   <div class="flex flex-col gap-4 border-b border-white/10 bg-white/[0.04] p-5 sm:flex-row sm:items-center sm:justify-between">
     <div class="flex items-center gap-3">

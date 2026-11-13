@@ -223,14 +223,62 @@
       onChange();
     }
 
+    // Voz real de iAndrea (ElevenLabs, "Raquel pro v1"): cada frase tiene su
+    // MP3. Un solo <audio> para toda la llamada; `unlock()` lo arranca dentro
+    // del clic de "Llamar", porque Safari en iPhone bloquea los audios que
+    // empiezan despues (el saludo suena 1,6 s mas tarde, tras el tono).
+    var audio = null;
+
+    voice.unlock = function () {
+      if (audio) return;
+      audio = new Audio();
+      audio.preload = "auto";
+      // Un MP3 vacio de 0,05 s: basta con que suene algo dentro del gesto.
+      audio.src = "data:audio/mpeg;base64,//NAxAAAAANIAAAAAExBTUUzLjEwMFVVVVVVVVVVVVVMQU1FMy4xMDBVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVX/80LEWwAAA0gAAAAAVVVVVVVVVVVVVVVVVVVVVVVVVVVMQU1FMy4xMDBVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVX/80DEpAAAA0gAAAAAVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQsSjAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVQ==";
+      var p = audio.play();
+      if (p && p.catch) p.catch(function () {});
+    };
+
     voice.stop = function () {
       generation += 1;
       var s = synth();
       if (s) s.cancel();
+      if (audio) {
+        audio.onended = audio.onerror = null;
+        audio.pause();
+      }
       set("speaking", false);
     };
 
-    voice.speak = function (text, onDone) {
+    /**
+     * Con `url`, reproduce el MP3 de esa frase; si no carga o el navegador lo
+     * bloquea, la lee con la voz del navegador (el comportamiento anterior).
+     */
+    voice.speak = function (text, onDone, url) {
+      if (url) {
+        if (!audio) voice.unlock();
+        generation += 1;
+        var mine = generation;
+        var s0 = synth();
+        if (s0) s0.cancel();
+        var fin = function () {
+          if (mine !== generation) return;
+          set("speaking", false);
+          if (onDone) onDone();
+        };
+        var respaldo = function () {
+          if (mine !== generation) return;
+          audio.onended = audio.onerror = null;
+          voice.speak(text, onDone);
+        };
+        audio.onended = fin;
+        audio.onerror = respaldo;
+        audio.src = url;
+        set("speaking", true);
+        var p = audio.play();
+        if (p && p.catch) p.catch(respaldo);
+        return;
+      }
       var s = synth();
       if (!s) {
         set("unavailable", true);
@@ -713,15 +761,20 @@
       render();
     }
 
-    /** Lee el turno de iAndrea, salvo que no sea llamada o este silenciada. */
-    function say(text) {
+    /**
+     * Lee el turno de iAndrea, salvo que no sea llamada o este silenciada.
+     * `archivo`: el MP3 de esa frase en `d.audioBase` (si no hay, voz del
+     * navegador).
+     */
+    function say(text, archivo) {
       if (!d.scenarios[st.index].voice || st.muted) return;
-      voice.speak(text);
+      voice.speak(text, null, archivo && d.audioBase ? d.audioBase + archivo : null);
     }
 
     /** Descolgar: tono de llamada y, al conectar, el saludo en voz alta. */
     function call() {
       var s = d.scenarios[st.index];
+      voice.unlock();
       clearTimer();
       st.turns = [];
       st.asked = [];
@@ -732,7 +785,7 @@
         timer = null;
         st.turns = [{ speaker: "andrea", text: s.greeting }];
         st.phase = "live";
-        say(s.greeting);
+        say(s.greeting, s.greetingAudio);
         render();
       }, RINGING_MS);
     }
@@ -759,7 +812,7 @@
         timer = null;
         append("andrea", option.answer);
         st.thinking = false;
-        say(option.answer);
+        say(option.answer, option.audio);
         render();
       }, THINKING_MS);
     }
